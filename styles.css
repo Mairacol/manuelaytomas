@@ -1,0 +1,880 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y VARIABLES (BRANDING MANUELA & TOMAS)
+   Concepto: CORN IS THE NEW BLACK - Campo, fiesta y los de siempre
+   ========================================================================== */
+@font-face {
+  font-family: 'Lee Ton Dra Outline';
+  src: url('./images/LeeTonDraOutline-9Mp6Z.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  /* Paleta Extraída del Moodboard / Brand ADN */
+  --color-burgundy: #520f19;       /* Color profundo y protagonista */
+  --color-terracotta: #9e4139;     /* Acento visual y estados activos */
+  --color-olive-dark: #424123;     /* Texto principal y cuerpo de lectura */
+  --color-corn-gold: #cab87b;      /* Acento maíz/alfalfa y detalles gráficos */
+  --color-bg-light: #faf8f5;       /* Fondo claro editorial sin blanco puro */
+  --color-white: #ffffff;
+  --color-muted-grey: #8a8880;
+
+  /* Tipografías */
+  --font-featured: 'Lee Ton Dra Outline';
+  --font-title: 'BAKERIE ROUGH HEAVY', 'Prata', 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+/* Revisa el nombre dentro de font-family */
+
+  /* Espaciados y transiciones */
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  --border-radius-card: 16px;
+  --max-width: 720px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-bg-light);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-olive-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+
+  /* Imagen de fondo */
+  background-image: 
+    linear-gradient(
+      rgba(250, 248, 245, 0.45), 
+      rgba(250, 248, 245, 0.45)
+    ),
+    url('images/fondo.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ==========================================================================
+   INTRODUCCIÓN / OVERLAY ANIMADO CON BOTÓN DE AUDIO
+   ========================================================================== */
+
+/* OVERLAY DE ENTRADA CON MISMO FONDO DE LA INVITACIÓN */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg-light);
+  background-image: 
+    linear-gradient(
+      rgba(250, 248, 245, 0.45), 
+      rgba(250, 248, 245, 0.45)
+    ),
+    url('images/fondo.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-olive-dark);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 20px;
+}
+
+/* LOGO EN LUGAR DEL MONOGRAMA SVG */
+.intro-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.intro-logo-img {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.intro-divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-burgundy);
+  opacity: 0.3;
+}
+
+.intro-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-burgundy);
+  opacity: 0.9;
+}
+.intro-enter-btn {
+  position: relative;
+  z-index: 10000;
+  margin-top: 1rem;
+  padding: 6px 0;
+  
+  background: transparent;
+  color: #520f19;
+  border: none;
+  border-bottom: 1px solid #cab87b; /* Subrayado base tenue */
+  
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  
+  transition: border-color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.intro-enter-btn:hover {
+  border-bottom-color: #520f19;
+  letter-spacing: 4.5px; /* Expansión sutil de las letras */
+}
+.music-player-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #520f19; /* Tono borgoña */
+  color: var(--color-corn-gold, #d4af37);
+  border: 1px solid var(--color-corn-gold, #d4af37);
+  padding: 8px; /* Padding uniforme para mantener el botón compacto */
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(82, 15, 25, 0.35);
+  transition: var(--transition-smooth, all 0.3s ease);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.music-btn:focus,
+.music-btn:active {
+  outline: none;
+}
+
+.music-btn:hover {
+  background-color: #6b1421;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(82, 15, 25, 0.45);
+}
+
+/* --- Disco de Vinilo --- */
+.music-vinyl {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  /* Surcos radiales sobre el color #520f19 */
+  background: repeating-radial-gradient(
+    circle,
+    #520f19 0px,
+    #2a070c 2px,
+    #520f19 3px,
+    #6d1421 4px
+  );
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
+}
+
+/* Centro / Etiqueta dorada del vinilo */
+.music-vinyl .vinyl-center {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-corn-gold, #d4af37);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #520f19; /* Color del icono dentro del centro */
+  font-size: 0.5rem;
+}
+
+/* Ajuste óptico del icono */
+.music-vinyl .vinyl-center i {
+  display: block;
+  margin-left: 1px;
+}
+
+/* Animación de rotación del vinilo */
+.music-vinyl.spinning {
+  animation: spinVinyl 3s linear infinite;
+}
+
+@keyframes spinVinyl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   MAIN CONTAINER & SECCIONES GENERALES
+   ========================================================================== */
+
+/* ==========================================================================
+   MAIN CONTAINER & SECCIONES GENERALES
+   ========================================================================== */
+
+.main-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.reveal {
+  opacity: 1;
+  transition: var(--transition-smooth);
+}
+/* ==========================================================================
+   HERO FULLSCREEN (100% VIEWPORT HEIGHT)
+   ========================================================================== */
+
+.hero-section {
+  width: 100%;
+  height: 100vh;           /* Fallback para navegadores antiguos */
+  height: 100dvh;          /* 100% de la pantalla real en móviles */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 16px 0;   /* Espaciado interno superior e inferior */
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Marco e ilustración escalables al alto disponible */
+.hero-frame-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  flex: 1;                 /* Ocupa todo el espacio vertical sobrante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;           /* Previene desbordamientos en pantallas pequeñas */
+}
+
+.hero-frame-bg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;        /* Escala la imagen para que nunca supere la pantalla */
+  object-fit: contain;
+  display: block;
+}
+
+/* Área de texto enmascarada dentro del recuadro (ampliada para más margen) */
+.hero-frame-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;              /* Aumentado para dar espacio a tipografías más grandes */
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.hero-frame-content .hero-tagline {
+  font-size: clamp(0.55rem, 2.2vw, 0.75rem);
+  letter-spacing: 2px;
+  background: none;
+  padding: 0;
+  margin-bottom: 0.3rem;
+}
+
+/* Nombres con font-size e interlineado optimizados */
+.hero-frame-content .hero-names {
+  font-size: clamp(2.2rem, 8.5vw, 3.6rem); 
+  font-family: var(--font-featured); 
+  line-height: 0.95;       /* Interlineado más compacto para compensar el tamaño */
+  color: var(--color-burgundy);
+}
+
+/* Cada elemento del nombre en su propia línea */
+.hero-names span {
+  display: block;
+}
+
+/* Estilo unificado para el ampersand */
+.hero-names .ampersand-inline {
+  font-size: 0.9em;
+  margin: 0;               /* Eliminados los márgenes para ganar espacio vertical */
+}
+
+/* Indicador de scroll fijo abajo */
+.scroll-indicator {
+  position: relative;      /* Permite el flujo flex natural */
+  bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--color-muted-grey);
+  padding-top: 8px;
+  z-index: 10;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--color-corn-gold), transparent);
+  animation: pulseLine 2s infinite;
+}
+
+@keyframes pulseLine {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+/* 1. Preparamos el contenedor para posicionar las imágenes respecto a él */
+.hero-agendar-wrapper {
+    position: relative;       /* IMPORTANTE: El punto de referencia */
+    display: block;           /* Volvemos a block (o inline-block) */
+    text-align: center;       /* Centra el botón de texto */
+    margin: 20px auto;        /* Espaciado arriba/abajo */
+    width: fit-content;       /* El contenedor solo ocupa el ancho del botón */
+    max-width: 100%;          /* Seguridad para móviles */
+}
+
+/* 2. Estilos para el botón de texto (por si acaso no lo tenías definido) */
+.intro-enter-btn {
+    position: relative;       /* Para que esté por encima de las imágenes */
+    z-index: 2;               /* Botón arriba */
+    display: inline-block;
+    color: #4A1A17;           /* Color borgoña oscuro */
+    text-decoration: underline; /* Subrayado como en tu dibujo */
+    font-size: 1.1rem;
+    padding: 5px 0;
+}
+
+/* 3. Estilos generales de las imágenes (Absolutas) */
+.agendar-icon {
+    position: absolute;       /* Sacamos del flujo */
+    top: 50%;                 /* Centrado vertical relativo al botón */
+    transform: translateY(-50%); /* Ajuste fino del centrado vertical */
+    z-index: 1;               /* Imágenes por debajo del botón */
+    height: auto;
+    display: block;
+
+    /* --- AJUSTA EL TAMAÑO AQUÍ --- */
+    /* Para que sobresalgan mucho, necesitamos un ancho mayor */
+    width: 100px;             /* Prueba 80px, 100px o 120px */
+    /* --- */
+}
+
+/* 4. Posicionamiento específico IZQUIERDA */
+.icon-left {
+    left: -70px;              /* Ajusta para alejarla más del texto (sobresale a la izq) */
+    transform: translateY(-50%) scaleX(-1); /* La espejamos para simetría */
+}
+
+/* 5. Posicionamiento específico DERECHA */
+.icon-right {
+    right: -70px;             /* Ajusta para alejarla más del texto (sobresale a la der) */
+    /* No la espejamos */
+}
+
+/* --- OPTIMIZACIÓN MÓVIL --- */
+/* Si en móviles muy estrechos se cortan, reducimos su tamaño */
+@media (max-width: 400px) {
+    .agendar-icon {
+        width: 70px;          /* Más pequeño en móviles */
+    }
+    .icon-left { left: -90px; }
+    .icon-right { right: -90px; }
+}
+/* Opcional: si tus imágenes necesitan rotación o reflejo */
+/* .icon-left { transform: scaleX(-1); } */
+
+/* Opcional: si tus imágenes necesitan rotación o reflejo */
+/* .icon-left { transform: scaleX(-1); } */
+
+/* ==========================================================================
+   SECCIÓN REVELACIÓN
+   ========================================================================== */
+
+.reveal-section {
+  padding: 60px 0;
+  text-align: center;
+  border-top: 1px solid rgba(202, 184, 123, 0.3);
+  border-bottom: 1px solid rgba(202, 184, 123, 0.3);
+  margin-bottom: 60px;
+}
+
+.hero-date-script {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--color-burgundy);
+  letter-spacing: 6px;
+  margin-bottom: 1.8rem;
+}
+
+.editorial-agendar-link,
+.editorial-map-link,
+.editorial-spotify-link,
+.editorial-drive-btn,
+.editorial-submit-btn {
+  display: inline-block;
+  text-decoration: none;
+  background-color: var(--color-burgundy);
+  color: var(--color-corn-gold);
+  border: 1px solid var(--color-burgundy);
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.editorial-agendar-link:hover,
+.editorial-map-link:hover,
+.editorial-spotify-link:hover,
+.editorial-drive-btn:hover,
+.editorial-submit-btn:hover {
+  background-color: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(158, 65, 57, 0.25);
+}
+
+/* ==========================================================================
+   LUGAR Y UBICACIÓN
+   ========================================================================== */
+
+.venue-editorial-section {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 10px 30px rgba(66, 65, 35, 0.04);
+  margin-bottom: 60px;
+  border: 1px solid rgba(202, 184, 123, 0.2);
+}
+
+.venue-title {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  color: var(--color-burgundy);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.venue-address {
+  font-family: var(--font-featured);
+  font-size: 1.4rem;
+  color: var(--color-terracotta);
+  margin-bottom: 0.2rem;
+}
+
+.venue-city {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-muted-grey);
+  margin-bottom: 1.2rem;
+}
+
+.venue-text {
+  font-size: 0.95rem;
+  color: var(--color-olive-dark);
+  max-width: 480px;
+  margin: 0 auto 1.8rem auto;
+}
+
+/* ==========================================================================
+   CRONOGRAMA
+   ========================================================================== */
+
+.cronograma-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.cronograma-subtitle,
+.spotify-subtitle,
+.gifts-subtitle,
+.rsvp-subtitle,
+.section-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--color-terracotta);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.cronograma-title-script,
+.spotify-title-script,
+.gifts-title-script,
+.title-script,
+.photo-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--color-burgundy);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.free-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.timeline-block {
+  background-color: var(--color-white);
+  padding: 24px;
+  border-radius: var(--border-radius-card);
+  border: 1px solid rgba(202, 184, 123, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  transition: var(--transition-smooth);
+}
+
+.timeline-block:hover {
+  transform: translateX(4px);
+  border-color: var(--color-corn-gold);
+}
+
+.block-time {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-terracotta);
+  letter-spacing: 1px;
+}
+
+.block-event {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  color: var(--color-burgundy);
+  margin-top: 2px;
+}
+
+.illustration-wrap img {
+  max-width: 55px;
+  height: auto;
+  opacity: 0.85;
+  filter: sepia(20%) hue-rotate(-20deg);
+}
+
+/* ==========================================================================
+   DRESS CODE
+   ========================================================================== */
+
+.dresscode-section {
+  padding: 60px 0;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  margin-bottom: 60px;
+  border: 1px solid rgba(202, 184, 123, 0.2);
+}
+
+.dresscode-title-script {
+  font-family: var(--font-title);
+  font-size: 2.4rem;
+  color: var(--color-burgundy);
+  text-transform: uppercase;
+}
+
+.dresscode-main-type {
+  font-family: var(--font-featured);
+  font-size: 1.25rem;
+  color: var(--color-terracotta);
+  margin-bottom: 2.5rem;
+}
+
+.dresscode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 0 20px;
+}
+
+.dresscode-card {
+  background-color: var(--color-bg-light);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.dresscode-category {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-burgundy);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+}
+
+.dresscode-double-img-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.dresscode-sub-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dresscode-illus {
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.sub-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-olive-dark);
+}
+
+/* ==========================================================================
+   SPOTIFY & FIESTA
+   ========================================================================== */
+
+.spotify-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.spotify-desc {
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  color: var(--color-olive-dark);
+}
+
+.spotify-player-wrapper {
+  margin-top: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   REGALOS / DETALLES BANCARIOS
+   ========================================================================== */
+
+.gifts-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  margin-bottom: 60px;
+  border: 1px solid rgba(202, 184, 123, 0.2);
+}
+
+.gifts-intro {
+  font-size: 0.95rem;
+  max-width: 520px;
+  margin: 0 auto 2rem auto;
+  color: var(--color-olive-dark);
+}
+
+.gifts-links-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.gift-trigger-link {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--color-corn-gold);
+  color: var(--color-burgundy);
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.gift-trigger-link:hover {
+  background-color: var(--color-burgundy);
+  color: var(--color-corn-gold);
+}
+
+.gift-details {
+  background-color: var(--color-bg-light);
+  padding: 16px;
+  border-radius: 6px;
+  margin-top: 8px;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.gift-details p {
+  margin-bottom: 4px;
+}
+
+.gift-details span {
+  font-weight: 600;
+  color: var(--color-terracotta);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   RSVP
+   ========================================================================== */
+
+.rsvp {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  margin-bottom: 60px;
+  border: 1px solid rgba(202, 184, 123, 0.2);
+}
+
+.card {
+  background-color: var(--color-bg-light);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.guest-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-muted-grey);
+}
+
+.limit {
+  font-size: 0.85rem;
+  color: var(--color-terracotta);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   FOTOS Y FOOTER
+   ========================================================================== */
+
+.photo-upload-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.photo-desc {
+  font-size: 0.95rem;
+  max-width: 480px;
+  margin: 0 auto 2rem auto;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.75rem;
+  color: var(--color-muted-grey);
+  border-top: 1px solid rgba(202, 184, 123, 0.2);
+}
+
+footer a {
+  color: var(--color-burgundy);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .hero-names {
+    font-size: 2.4rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .timeline-block {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .editorial-agendar-link,
+  .editorial-map-link,
+  .editorial-spotify-link,
+  .editorial-drive-btn,
+  .editorial-submit-btn {
+    width: 100%;
+    padding: 14px 16px;
+  }
+}
