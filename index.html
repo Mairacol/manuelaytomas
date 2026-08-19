@@ -42,7 +42,7 @@
         Tu navegador no soporta audio.
     </audio>
 
-    <button id="musicToggleBtn" class="music-btn" title="Pausar / Reproducir música">
+    <button id="musicToggleBtn" class="intro-enter-btn" title="Pausar / Reproducir música">
         <!-- Disco de vinilo con icono Play/Pausa -->
         <span id="vinylDisc" class="music-vinyl">
             <span class="vinyl-center">
@@ -84,8 +84,8 @@
             27 / 03 / 2027
         </div>
         <div class="hero-agendar-wrapper">
-            <!-- Imagen Izquierda -->
-            <img src="/images/trigotrazogrueso.png" alt="Decoración izquierda" class="agendar-icon icon-left">
+            <!-- Imagen Izquierda
+            <img src="/images/trigotrazogrueso.png" alt="Decoración izquierda" class="agendar-icon icon-left">-->
 
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Manuela+%26+Tomas&dates=20270327T203000Z%2F20270328T080000Z&details=¡Campo,+fiesta+y+los+de+siempre!&location=Calle+falsa+123,+Despeñaderos" 
                target="_blank" 
@@ -95,229 +95,183 @@
                 AGENDAR FECHA
             </a>
 
-            <!-- Imagen Derecha -->
+            <!-- Imagen Derecha 
             <img src="/images/trigoverdes.png" alt="Decoración derecha" class="agendar-icon icon-right">
-        </div>
+        </div>-->
     </div>
 </section>
 
 
-        <!-- 4. FRASE CONCEPTO -->
-        <section class="phrase-section reveal">
-            <div class="hero-concept-wrapper">
-                <p class="hero-concept-sub">All you need is love... y una buena fiesta.</p>
+    <!-- 4. FRASE CONCEPTO -->
+<section class="phrase-section reveal">
+    <div class="hero-concept-wrapper">
+        <!-- Imagen colocada arriba del texto -->
+        <img src="/images/allyouneedislove.png" alt="Descripción de la imagen" class="concept-image">
+        
+        <p class="hero-concept-sub"> y una buena fiesta.</p>
+    </div>
+</section>
+
+<!-- LUGAR Y UBICACIÓN -->
+<section class="venue-editorial-section reveal">
+   <div class="map-interactive-container">
+    <!-- Ilustración completa -->
+    <img src="/images/iglesiaycampo.png" alt="Ceremonia y Fiesta" class="map-illustration">
+
+    <!-- ZONA SUPERIOR: CEREMONIA -->
+    <div class="map-tag tag-ceremonia">
+        <a href="https://maps.google.com/?q=TU_UBICACION_CEREMONIA" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="map-tag-link">
+            <span class="map-tag-title">ceremonia</span>
+            <span class="map-tag-action">ver mapa</span>
+        </a>
+    </div>
+
+    <!-- ZONA INFERIOR: FIESTA -->
+    <div class="map-tag tag-fiesta">
+        <a href="https://maps.google.com/?q=Campo+Los+Martinez+Despeñaderos" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="map-tag-link">
+            <span class="map-tag-title">fiesta</span>
+            <span class="map-tag-action">ver mapa</span>
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="cronograma-section reveal">
+    <div class="cronograma-container">
+        <span class="cronograma-subtitle" id="txtCronogramaSub">EL GRAN DÍA</span>
+        <h2 class="cronograma-title-script" id="txtCronogramaTitle">Cronograma</h2>
+
+        <!-- Contenedor interactivo sobre la imagen única -->
+        <div class="cronograma-interactive-wrapper">
+            
+            <!-- Imagen completa del Cronograma -->
+            <img src="images/timeline.png" alt="Ilustración Cronograma" class="cronograma-img">
+
+            <!-- EVENTO 1: Ceremonia (Parroquia) -->
+            <div class="chrono-tag tag-ceremonia">
+                <span class="chrono-time">17:00 hs</span>
+                <span class="chrono-event" id="txtEv1">Ceremonia</span>
             </div>
-        </section>
 
-        <!-- 5. RESTO DE LAS SECCIONES -->
-
-        <!-- LUGAR Y UBICACIÓN -->
-        <section class="venue-editorial-section reveal">
-            <div class="venue-editorial-container">
-                <h2 class="venue-title">Campo Los Martinez</h2>
-                <p class="venue-address">Ruta 36</p>
-                <p class="venue-city">Despeñaderos</p>
-                <p class="venue-text" id="txtVenueDesc">Campo, fiesta y los de siempre. Te esperamos para celebrar juntos.</p>
-
-                <div class="venue-link-wrapper">
-                    <a href="https://maps.google.com" 
-                       target="_blank" 
-                       class="editorial-map-link"
-                       id="txtVerMapa"
-                       title="Ver mapa en Google Maps">
-                        VER MAPA
-                    </a>
-                </div>
+            <!-- EVENTO 2: Recepción en el Campo -->
+            <div class="chrono-tag tag-recepcion">
+                <span class="chrono-time">18:30 hs</span>
+                <span class="chrono-event" id="txtEv2">Recepción</span>
             </div>
-        </section>
 
-        <!-- CRONOGRAMA -->
-        <section class="cronograma-section reveal">
-            <div class="cronograma-container">
-                <span class="cronograma-subtitle" id="txtCronogramaSub">EL GRAN DÍA</span>
-                <h2 class="cronograma-title-script" id="txtCronogramaTitle">Cronograma</h2>
-
-                <div class="free-timeline">
-                    <!-- Recepción -->
-                    <div class="timeline-block block-with-illustration">
-                        <div class="block-content">
-                            <span class="block-time">17:30 hs</span>
-                            <h3 class="block-event" id="txtEv1">Recepción</h3>
-                        </div>
-                        <div class="illustration-wrap illus-left-recepcion">
-                            <img src="images/icon-recepcion.png" alt="Recepción" class="illus-img">
-                        </div>
-                    </div>
-
-                    <!-- Ceremonia -->
-                    <div class="timeline-block block-with-illustration">
-                        <div class="block-content">
-                            <span class="block-time">18:00 hs</span>
-                            <h3 class="block-event" id="txtEv2">Ceremonia</h3>
-                        </div>
-                        <div class="illustration-wrap illus-right">
-                            <img src="images/icon-ceremonia.png" alt="Ceremonia" class="illus-img">
-                        </div>
-                    </div>
-
-                    <!-- Cena y Fiesta -->
-                    <div class="timeline-block block-with-illustration">
-                        <div class="block-content">
-                            <span class="block-time">19:00 hs</span>
-                            <h3 class="block-event" id="txtEv3">Cena & Fiesta</h3>
-                        </div>
-                        <div class="illustration-wrap illus-left-large">
-                            <img src="images/icon-cena.png" alt="Cena" class="illus-img">
-                        </div>
-                    </div>
-
-                    <!-- Cierre -->
-                    <div class="timeline-block block-with-illustration block-cierre">
-                        <div class="block-content">
-                            <span class="block-time">02:00 hs</span>
-                            <h3 class="block-event" id="txtEv4">Cierre</h3>
-                        </div>
-                        <div class="illustration-wrap illus-bottom-cierre">
-                            <img src="images/icon-cierre.png" alt="Cierre" class="illus-img">
-                        </div>
-                    </div>
-                </div>
+            <!-- EVENTO 3: Cena & Fiesta -->
+            <div class="chrono-tag tag-cena">
+                <span class="chrono-time">20:30 hs</span>
+                <span class="chrono-event" id="txtEv3">Cena & Fiesta</span>
             </div>
-        </section>
 
-        <!-- DRESS CODE -->
+            <!-- EVENTO 4: Cierre -->
+            <div class="chrono-tag tag-cierre">
+                <span class="chrono-time">03:00 hs</span>
+                <span class="chrono-event" id="txtEv4">Cierre</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+   <!-- DRESS CODE -->
         <section class="dresscode-section reveal">
             <div class="dresscode-container">
                 <h2 class="dresscode-title-script" id="txtDressTitle">Dress Code</h2>
-                <p class="dresscode-main-type" id="txtDressType">Elegante / Cocktail</p>
-
-                <div class="dresscode-grid">
-                    <div class="dresscode-card">
-                        <h3 class="dresscode-category" id="txtMujeres">Mujeres</h3>
-                        <div class="dresscode-double-img-wrapper">
-                            <div class="dresscode-sub-img">
-                                <img src="images/largoyatadoo.png" alt="Vestido Largo" class="dresscode-illus">
-                                <span class="sub-label" id="txtLargo">Largo</span>
-                            </div>
-                            <div class="dresscode-sub-img">
-                                <img src="images/cortoysueltochica.png" alt="Vestido Corto" class="dresscode-illus">
-                                <span class="sub-label" id="txtCorto">Corto</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dresscode-card">
-                        <h3 class="dresscode-category" id="txtHombres">Hombres</h3>
-                        <div class="dresscode-double-img-wrapper">
-                            <div class="dresscode-sub-img">
-                                <img src="images/marcoscorbata.png" alt="Con Corbata" class="dresscode-illus">
-                                <span class="sub-label" id="txtCorbata">Con Corbata</span>
-                            </div>
-                            <div class="dresscode-sub-img">
-                                <img src="images/marcos.png" alt="Sin Corbata" class="dresscode-illus">
-                                <span class="sub-label" id="txtSinCorbata">Sin Corbata</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <p class="dresscode-main-type" id="txtDressType">Próximamente</p>
             </div>
         </section>
 
-        <!-- MÚSICA & PLAYLIST -->
-        <section class="spotify-section reveal">
-            <div class="spotify-container">
-                <span class="spotify-subtitle" id="txtPartySub">LA FIESTA</span>
-                <h2 class="spotify-title-script">Playlist</h2>
-                <p class="spotify-desc" id="txtSpotifyDesc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
-
-                <div class="spotify-action-wrapper">
-                    <a href="https://open.spotify.com/playlist/1nofGPzPymNX051TgYr0lu?si=vCa6GzwnSEGyhdQAvdFfOg" 
-                       target="_blank" 
-                       class="editorial-spotify-link"
-                       id="txtSpotifyBtn"
-                       title="Sumar canciones a la playlist">
-                        SUGERIR CANCIÓN
-                    </a>
-                </div>
-
-                <div class="spotify-player-wrapper">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1nofGPzPymNX051TgYr0lu?utm_source=generator&si=784b6a2029714e22" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- REGALOS -->
-        <section class="gifts-section reveal">
-            <div class="gifts-container">
-                <span class="gifts-subtitle" id="txtGiftsSub">DETALLES</span>
-                <h2 class="gifts-title-script" id="txtGiftsTitle">Regalos</h2>
-                <p class="gifts-intro" id="txtGiftsDesc">
-                    Lo más importante para nosotros es compartir este día con ustedes. Si desean acompañarnos con un gesto por el comienzo de esta nueva etapa, pueden hacerlo aquí:
-                </p>
-                
-                <div class="gifts-links-wrapper">
-                    <div class="gift-accordion-item">
-                        <button class="gift-trigger-link" onclick="toggleGiftDetails('nacional')" id="txtBtnNac">
-                            VER DATOS BANCARIOS (ARGENTINA)
-                        </button>
-                        <div id="gift-nacional" class="gift-details hidden">
-                            <p><span>Alias:</span> manuela.tomas.boda</p>
-                            <p><span>CBU:</span> 0000003100012345678910</p>
-                            <p><span id="txtTitularNac">Titular:</span> Manuela o Tomas</p>
-                        </div>
-                    </div>
-
-                    <div class="gift-accordion-item">
-                        <button class="gift-trigger-link" onclick="toggleGiftDetails('internacional')" id="txtBtnInt">
-                            VER DATOS BANCARIOS (INTERNACIONAL)
-                        </button>
-                        <div id="gift-internacional" class="gift-details hidden">
-                            <p><span id="txtBancoInt">Banco:</span> Wise / Revolut</p>
-                            <p><span>IBAN / Account:</span> US63SWIS00000012345678</p>
-                            <p><span>Swift/BIC:</span> SWISUS33XXX</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RSVP -->
-        <section class="rsvp reveal" id="rsvpSection">
-            <div class="container">
-                <div class="rsvp-inner">
-                    <div class="card">
-                        <span class="guest-label" id="txtGuestLabel">Invitados</span>
-                        <h3 id="familyName"></h3>
-                        <p id="slots"></p>
-                    </div>
-
-                    <div class="rsvp-header-block">
-                        <span class="rsvp-subtitle" id="txtRsvpSub">ASISTENCIA</span>
-                        <h2 class="title-script">RSVP</h2>
-                        <p class="limit" id="txtRsvpLimit">Confirmar antes del 15 de Febrero 2027</p>
-                    </div>
-
-                    <div id="guests"></div>
-                    
-                    <p id="formError" class="form-error hidden">Por favor completá los campos obligatorios.</p>
-
-                    <div style="display:none !important;" aria-hidden="true">
-                        <input type="text" id="validationCode" name="validation_code" tabindex="-1" autocomplete="off">
-                    </div>
-                    
-                    <button id="submitBtn" class="editorial-submit-btn">ENVIAR CONFIRMACIÓN</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- MODAL DE AGRADECIMIENTO -->
-        <div id="thanksModal" class="modal hidden">
-            <div class="modal-content">
-                <h3>¡Muchas gracias!</h3>
-                <p>Tu respuesta ha sido registrada con éxito.</p>
-                <button onclick="closeThanksModal()" class="modal-btn">Cerrar</button>
-            </div>
+       <!-- MÚSICA & PLAYLIST -->
+<section class="spotify-section reveal">
+    <div class="spotify-container">
+        
+        <!-- 1. Título -->
+        <h2 class="spotify-title-script">Playlist</h2>
+        
+        <!-- 2. Ilustración -->
+        <div class="spotify-image-wrapper">
+            <img src="images/dancevinilo.png" alt="Nuestra Playlist" class="spotify-illus">
         </div>
+        
+        <!-- 3. Breve resumen -->
+        <p class="spotify-desc" id="txtSpotifyDesc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
+
+
+
+        <!-- 5. Frame de Spotify -->
+        <div class="spotify-player-wrapper">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7pG2RLYgHGwQ0ZhTwkNHdE?utm_source=generator&si=27225d80f83c40fc" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+             <!-- 4. Botón Agregar Canción -->
+        <div class="spotify-action-wrapper">
+            <a href="https://open.spotify.com/playlist/7pG2RLYgHGwQ0ZhTwkNHdE?si=HvtyujltQWumhjkntsNovw" 
+               target="_blank" 
+               class="editorial-spotify-link">
+                AGREGAR CANCIÓN
+            </a>
+        </div>
+    </div>
+</section>
+        <!-- REGALOS -->
+<section class="gifts-section reveal">
+    <div class="gifts-container">
+        <span class="gifts-subtitle" id="txtGiftsSub">DETALLES</span>
+        <h2 class="gifts-title-script" id="txtGiftsTitle">Regalos</h2>
+        <p class="gifts-intro" id="txtGiftsDesc">
+            Próximamente
+        </p>
+    </div>
+</section>
+ <!-- =========================================
+       SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
+       ========================================= -->
+<section class="rsvp reveal" id="rsvpSection" style="display: none;">
+  <div class="container">
+    <div class="rsvp-inner">
+      
+      <!-- Información del invitado (limpia, sin tarjeta tipo caja) -->
+      <div class="rsvp-guest-info">
+          <span class="guest-label" id="txtGuestLabel">Invitados</span>
+          <h3 id="familyName"></h3>
+          <p id="slots"></p>
+      </div>
+
+      <div class="rsvp-header-block">
+        <span class="rsvp-subtitle" id="txtRsvpSub">ASISTENCIA</span>
+        <h2 class="title-script">RSVP</h2>
+        <p class="limit" id="txtRsvpLimit">Confirmar antes del 15 de Febrero 2027</p>
+      </div>
+
+      <!-- Contenedor donde el script genera dinámicamente los campos y selects de cada invitado -->
+      <div id="guests"></div>
+      
+      <p id="formError" class="form-error hidden" style="display: none;">Por favor completá los campos obligatorios.</p>
+
+      <div style="display:none !important;" aria-hidden="true">
+        <input type="text" id="validationCode" name="validation_code" tabindex="-1" autocomplete="off">
+      </div>
+      
+      <button id="submitBtn" class="intro-enter-btn">ENVIAR CONFIRMACIÓN</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DE AGRADECIMIENTO -->
+<div id="thanksModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>¡Muchas gracias!</h3>
+        <p>Tu respuesta ha sido registrada con éxito.</p>
+        <button onclick="closeThanksModal()" class="intro-enter-btn">Cerrar</button>
+    </div>
+</div>
 
     </main>
 
@@ -330,7 +284,7 @@
                 <p class="photo-desc" id="txtPhotoDesc">
                     Queremos revivir nuestro día a través de sus ojos. Compartinos las fotos y videos que saquen durante la celebración.
                 </p>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="editorial-drive-btn" id="txtPhotoBtn">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="intro-enter-btn" id="txtPhotoBtn">
                     <i class="fa-solid fa-cloud-arrow-up"></i> SUBIR FOTOS
                 </a>
             </div>
