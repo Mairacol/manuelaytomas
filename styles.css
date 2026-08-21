@@ -8,23 +8,31 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'BAKERIE ROUGH HEAVY';
+  src: url('./images/BakerieRough-Heavy.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'professor';
+  src: url('./images/Professor.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
-  /* Paleta Extraída del Moodboard / Brand ADN */
-  --color-burgundy: #520f19;       /* Color profundo y protagonista */
-  --color-terracotta: #9e4139;     /* Acento visual y estados activos */
-  --color-olive-dark: #424123;     /* Texto principal y cuerpo de lectura */
-  --color-corn-gold: #cab87b;      /* Acento maíz/alfalfa y detalles gráficos */
-  --color-bg-light: #faf8f5;       /* Fondo claro editorial sin blanco puro */
+  --color-burgundy: #520f19;       
+  --color-terracotta: #9e4139;     
+  --color-olive-dark: #424123;     
+  --color-corn-gold: #cab87b;      
+  --color-bg-light: #faf8f5;       
   --color-white: #ffffff;
   --color-muted-grey: #8a8880;
 
-  /* Tipografías */
   --font-featured: 'Lee Ton Dra Outline';
-  --font-title: 'BAKERIE ROUGH HEAVY', 'Prata', 'Playfair Display', serif;
-  --font-body: 'Montserrat', sans-serif;
-/* Revisa el nombre dentro de font-family */
+  --font-title: 'BAKERIE ROUGH HEAVY';
+  --font-body: 'professor';
 
-  /* Espaciados y transiciones */
   --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   --border-radius-card: 16px;
   --max-width: 720px;
@@ -49,16 +57,15 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 
-  /* Fondo unificado y optimizado */
   background: linear-gradient(rgba(250, 248, 245, 0.45), rgba(250, 248, 245, 0.45)), 
               url('images/fondo.webp') no-repeat center center fixed;
   background-size: cover;
 }
+
 /* ==========================================================================
    INTRODUCCIÓN / OVERLAY ANIMADO CON BOTÓN DE AUDIO
    ========================================================================== */
 
-/* OVERLAY DE ENTRADA CON MISMO FONDO DE LA INVITACIÓN */
 .intro-overlay {
   position: fixed;
   top: 0;
@@ -92,7 +99,6 @@ body {
   padding: 20px;
 }
 
-/* LOGO EN LUGAR DEL MONOGRAMA SVG */
 .intro-logo-wrapper {
   display: flex;
   justify-content: center;
@@ -123,31 +129,30 @@ body {
   color: var(--color-burgundy);
   opacity: 0.9;
 }
+
 .intro-enter-btn {
   position: relative;
   z-index: 10000;
   margin-top: 1rem;
   padding: 6px 0;
-  
   background: transparent;
   color: #520f19;
   border: none;
-  border-bottom: 1px solid #cab87b; /* Subrayado base tenue */
-  
-  font-family: var(--font-body);
+  border-bottom: 1px solid #cab87b;
+  font-family: var(--font-title);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   cursor: pointer;
-  
   transition: border-color 0.3s ease, letter-spacing 0.3s ease;
 }
 
 .intro-enter-btn:hover {
   border-bottom-color: #520f19;
-  letter-spacing: 4.5px; /* Expansión sutil de las letras */
+  letter-spacing: 4.5px;
 }
+
 .music-player-floating {
   position: fixed;
   bottom: 24px;
@@ -159,10 +164,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #520f19; /* Tono borgoña */
+  background-color: #520f19;
   color: var(--color-corn-gold, #d4af37);
   border: 1px solid var(--color-corn-gold, #d4af37);
-  padding: 8px; /* Padding uniforme para mantener el botón compacto */
+  padding: 8px;
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(82, 15, 25, 0.35);
@@ -171,6 +176,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
 }
+
 .music-btn:focus,
 .music-btn:active {
   outline: none;
@@ -182,12 +188,10 @@ body {
   box-shadow: 0 6px 20px rgba(82, 15, 25, 0.45);
 }
 
-/* --- Disco de Vinilo --- */
 .music-vinyl {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  /* Surcos radiales sobre el color #520f19 */
   background: repeating-radial-gradient(
     circle,
     #520f19 0px,
@@ -203,7 +207,6 @@ body {
   box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
 }
 
-/* Centro / Etiqueta dorada del vinilo */
 .music-vinyl .vinyl-center {
   width: 14px;
   height: 14px;
@@ -212,33 +215,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #520f19; /* Color del icono dentro del centro */
+  color: #520f19;
   font-size: 0.5rem;
 }
 
-/* Ajuste óptico del icono */
 .music-vinyl .vinyl-center i {
   display: block;
   margin-left: 1px;
 }
 
-/* Animación de rotación del vinilo */
 .music-vinyl.spinning {
   animation: spinVinyl 3s linear infinite;
 }
 
 @keyframes spinVinyl {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-
-/* ==========================================================================
-   MAIN CONTAINER & SECCIONES GENERALES
-   ========================================================================== */
 
 /* ==========================================================================
    MAIN CONTAINER & SECCIONES GENERALES
@@ -255,51 +248,50 @@ body {
   opacity: 1;
   transition: var(--transition-smooth);
 }
+
 /* ==========================================================================
-   HERO FULLSCREEN (100% VIEWPORT HEIGHT)
+   HERO FULLSCREEN
    ========================================================================== */
 
 .hero-section {
   width: 100%;
-  height: 100vh;           /* Fallback para navegadores antiguos */
-  height: 100dvh;          /* 100% de la pantalla real en móviles */
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0 16px 0;   /* Espaciado interno superior e inferior */
+  padding: 20px 0 16px 0;
   position: relative;
   box-sizing: border-box;
 }
 
-/* Marco e ilustración escalables al alto disponible */
 .hero-frame-container {
   position: relative;
   width: 100%;
   max-width: 420px;
-  flex: 1;                 /* Ocupa todo el espacio vertical sobrante */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 0;           /* Previene desbordamientos en pantallas pequeñas */
+  min-height: 0;
 }
 
 .hero-frame-bg {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;        /* Escala la imagen para que nunca supere la pantalla */
+  max-height: 100%;
   object-fit: contain;
   display: block;
 }
 
-/* Área de texto enmascarada dentro del recuadro (ampliada para más margen) */
 .hero-frame-content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;              /* Aumentado para dar espacio a tipografías más grandes */
+  width: 70%;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -318,34 +310,31 @@ body {
   margin-bottom: 0.3rem;
 }
 
-/* Nombres con font-size e interlineado optimizados */
 .hero-frame-content .hero-names {
   font-size: clamp(2.2rem, 8.5vw, 3.6rem); 
   font-family: var(--font-featured); 
-  line-height: 0.95;       /* Interlineado más compacto para compensar el tamaño */
+  line-height: 0.95;
   color: var(--color-burgundy);
 }
 
-/* Cada elemento del nombre en su propia línea */
 .hero-names span {
   display: block;
 }
 
-/* Estilo unificado para el ampersand */
 .hero-names .ampersand-inline {
   font-size: 0.9em;
-  margin: 0;               /* Eliminados los márgenes para ganar espacio vertical */
+  margin: 0;
 }
 
-/* Indicador de scroll fijo abajo */
 .scroll-indicator {
-  position: relative;      /* Permite el flujo flex natural */
+  position: relative;
   bottom: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   font-size: 0.65rem;
+  font-family: var(--font-title);
   letter-spacing: 3px;
   color: var(--color-muted-grey);
   padding-top: 8px;
@@ -363,68 +352,42 @@ body {
   0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
   50% { opacity: 1; transform: scaleY(1); }
 }
-/* 1. Preparamos el contenedor para posicionar las imágenes respecto a él */
+
 .hero-agendar-wrapper {
-    position: relative;       /* IMPORTANTE: El punto de referencia */
-    display: block;           /* Volvemos a block (o inline-block) */
-    text-align: center;       /* Centra el botón de texto */
-    margin: 20px auto;        /* Espaciado arriba/abajo */
-    width: fit-content;       /* El contenedor solo ocupa el ancho del botón */
-    max-width: 100%;          /* Seguridad para móviles */
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    width: fit-content;
+    max-width: 100%;
 }
 
-/* 2. Estilos para el botón de texto (por si acaso no lo tenías definido) */
-.intro-enter-btn {
-    position: relative;       /* Para que esté por encima de las imágenes */
-    z-index: 2;               /* Botón arriba */
-    display: inline-block;
-    color: #4A1A17;           /* Color borgoña oscuro */
-    text-decoration: underline; /* Subrayado como en tu dibujo */
-    font-size: 1.1rem;
-    padding: 5px 0;
-}
-
-/* 3. Estilos generales de las imágenes (Absolutas) */
 .agendar-icon {
-    position: absolute;       /* Sacamos del flujo */
-    top: 50%;                 /* Centrado vertical relativo al botón */
-    transform: translateY(-50%); /* Ajuste fino del centrado vertical */
-    z-index: 1;               /* Imágenes por debajo del botón */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
     height: auto;
     display: block;
-
-    /* --- AJUSTA EL TAMAÑO AQUÍ --- */
-    /* Para que sobresalgan mucho, necesitamos un ancho mayor */
-    width: 100px;             /* Prueba 80px, 100px o 120px */
-    /* --- */
+    width: 100px;
 }
 
-/* 4. Posicionamiento específico IZQUIERDA */
 .icon-left {
-    left: -70px;              /* Ajusta para alejarla más del texto (sobresale a la izq) */
-    transform: translateY(-50%) scaleX(-1); /* La espejamos para simetría */
+    left: -70px;
+    transform: translateY(-50%) scaleX(-1);
 }
 
-/* 5. Posicionamiento específico DERECHA */
 .icon-right {
-    right: -70px;             /* Ajusta para alejarla más del texto (sobresale a la der) */
-    /* No la espejamos */
+    right: -70px;
 }
 
-/* --- OPTIMIZACIÓN MÓVIL --- */
-/* Si en móviles muy estrechos se cortan, reducimos su tamaño */
 @media (max-width: 400px) {
     .agendar-icon {
-        width: 70px;          /* Más pequeño en móviles */
+        width: 70px;
     }
     .icon-left { left: -90px; }
     .icon-right { right: -90px; }
 }
-/* Opcional: si tus imágenes necesitan rotación o reflejo */
-/* .icon-left { transform: scaleX(-1); } */
-
-/* Opcional: si tus imágenes necesitan rotación o reflejo */
-/* .icon-left { transform: scaleX(-1); } */
 
 /* ==========================================================================
    SECCIÓN REVELACIÓN
@@ -440,7 +403,7 @@ body {
 
 .hero-date-script {
   font-family: var(--font-title);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-size: 1.5rem;
   color: var(--color-burgundy);
   letter-spacing: 6px;
   margin-bottom: 1.8rem;
@@ -457,7 +420,7 @@ body {
   color: var(--color-corn-gold);
   border: 1px solid var(--color-burgundy);
   padding: 14px 32px;
-  font-family: var(--font-body);
+  font-family: var(--font-title);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -478,25 +441,34 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(158, 65, 57, 0.25);
 }
-.phrase-section {
-    background-image: url('ruta/de/tu-imagen.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
 .concept-image {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 1.5rem auto; /* Ajusta el margen para separarla del texto */
-    border-radius: 8px; /* Opcional: bordes redondeados */
+    margin: 0 auto 1.5rem auto;
+    border-radius: 8px;
 }
-/* Contenedor principal de la imagen */
+
+.hero-concept-sub {
+    font-family: var(--font-body);
+    font-size: 2.1rem;
+    color: var(--color-olive-dark);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ==========================================================================
+   MAPA INTERACTIVO
+   ========================================================================== */
+
 .map-interactive-container {
     position: relative;
     width: 100%;
     max-width: 450px;
-    margin: 0 auto;
+    margin: 70px auto 0 auto
 }
 
 .map-illustration {
@@ -505,7 +477,6 @@ body {
     display: block;
 }
 
-/* Posicionamiento base de las etiquetas flotantes */
 .map-tag {
     position: absolute;
     z-index: 2;
@@ -522,89 +493,84 @@ body {
     opacity: 0.6;
 }
 
-/* Estilos de los textos flotantes */
 .map-tag-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+    font-family: var(--font-title);
+    font-size: 1.75rem;
     font-weight: 500;
-    color: #421c1c; /* Tono acorde al color del trazo */
-    text-transform: lowercase;
+    color: #421c1c;
     line-height: 1.1;
 }
 
 .map-tag-action {
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
     font-weight: 400;
     color: #421c1c;
-    text-transform: lowercase;
     line-height: 1.2;
 }
 
-/* Ubicación Arriba a la Izquierda (Ceremonia) */
+/* Posicionamiento en el Mapa (Aquí puedes moverlos libremente) */
 .tag-ceremonia {
-    top: 17%;
-    left: 10%;
+    top: 15%; 
+    left: 17%; 
     text-align: left;
 }
 
-/* Ubicación Abajo a la Derecha (Fiesta) */
 .tag-fiesta {
     bottom: 2%;
-    right: 10%;
+    right: 15%;
     text-align: right;
 }
 
 .tag-fiesta .map-tag-link {
     align-items: flex-end;
 }
+
 /* ==========================================================================
-   CRONOGRAMA (Orden cronológico: Ceremonia primero)
+   CRONOGRAMA
    ========================================================================== */
 
 .cronograma-section {
-   padding: 60px 0px; /* Cambiado de 60px 20px a 0px en los laterales */
-    text-align: center;
-    width: 100%;
+   padding: 60px 0px;
+   text-align: center;
+   width: 100%;
 }
 
 .cronograma-container {
    width: 100%;
-    max-width: 100%; /* Quitamos la limitación de ancho para que toque los bordes */
-    margin: 0;
+   max-width: 100%;
+  margin: 120px auto 0 auto
+
 }
 
 .cronograma-subtitle {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #9e4139;
-    margin-bottom: 5px;
+   display: block;
+   font-size: 1.25rem;
+   letter-spacing: 3px;
+   color: #9e4139;
+   margin-bottom: 5px;
 }
 
 .cronograma-title-script {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-title);
     font-size: 2.2rem;
     font-weight: 400;
     color: #520f19;
     margin-bottom: 30px;
 }
 
-/* Contenedor relativo de la imagen */
 .cronograma-interactive-wrapper {
- position: relative;
+    position: relative;
     width: 100%;
     margin: 0;
 }
 
 .cronograma-img {
- width: 100%;
+    width: 100%;
     height: auto;
     display: block;
 }
 
-/* Base de los textos superpuestos */
 .chrono-tag {
     position: absolute;
     display: flex;
@@ -621,44 +587,36 @@ body {
 }
 
 .chrono-event {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-title);
     font-size: 1.15rem;
     font-weight: 400;
     color: #424123;
     line-height: 1.2;
 }
-
-/* ==========================================================================
-   POSICIONAMIENTO SIGUIENDO EL RECORRIDO DE LA ILUSTRACIÓN
-   ========================================================================== */
-
-/* 1. Ceremonia (Arriba - Iglesia) */
-.tag-ceremonia {
-    top: 5%;
-    left: 35%;
+.tag-ceremoniaa {
+    top: 5%; 
+    left: 27%; 
     text-align: left;
 }
-
-/* 2. Llegada al Campo (Medio Derecha - Camino/Llegada) */
+/* Posiciones de los hitos del cronograma */
 .tag-recepcion {
     top: 40%;
     right: 20%;
     text-align: right;
 }
 
-/* 3. Cena & Fiesta (Medio Izquierda - Mesa larga) */
 .tag-cena {
     top: 62%;
     left: 20%;
     text-align: left;
 }
 
-/* 4. Cierre (Abajo Derecha) */
 .tag-cierre {
     bottom: 10%;
     right: 28%;
     text-align: right;
 }
+
 /* ==========================================================================
    DRESS CODE
    ========================================================================== */
@@ -666,9 +624,9 @@ body {
 .dresscode-section {
   padding: 40px 20px;
   text-align: center;
-  background-color: transparent; /* Quitamos el fondo blanco de tarjeta */
-  border: none; /* Quitamos el borde */
-  border-radius: 0; /* Quitamos los bordes redondeados */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   margin-bottom: 40px;
 }
 
@@ -676,7 +634,7 @@ body {
   font-family: var(--font-title);
   font-size: 2.4rem;
   color: var(--color-burgundy);
-  text-transform: uppercase;
+ 
   margin-bottom: 0.5rem;
 }
 
@@ -686,8 +644,9 @@ body {
   color: var(--color-terracotta);
   margin-bottom: 0;
 }
+
 /* ==========================================================================
-   MÚSICA & PLAYLIST - ESTRUCTURA VERTICAL
+   MÚSICA & PLAYLIST
    ========================================================================== */
 
 .spotify-section {
@@ -696,7 +655,7 @@ body {
 }
 
 .spotify-container {
-  max-width: 600px; /* Limitamos el ancho para que el texto sea fácil de leer */
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -704,7 +663,7 @@ body {
   font-family: var(--font-title);
   font-size: 2.4rem;
   color: var(--color-burgundy);
-  text-transform: uppercase;
+  
   margin-bottom: 2rem;
 }
 
@@ -714,7 +673,7 @@ body {
 
 .spotify-illus {
   width: 100%;
-  max-width: 300px; /* Ajusta según el tamaño de tu ilustración */
+  max-width: 300px;
   height: auto;
   border-radius: 12px;
 }
@@ -750,6 +709,7 @@ body {
 .spotify-player-wrapper {
   width: 100%;
 }
+
 /* ==========================================================================
    REGALOS / DETALLES
    ========================================================================== */
@@ -757,9 +717,9 @@ body {
 .gifts-section {
   padding: 50px 20px;
   text-align: center;
-  background-color: transparent; /* Quitamos el fondo blanco de tarjeta */
-  border: none;                  /* Quitamos el borde */
-  border-radius: 0;              /* Quitamos los bordes redondeados */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   margin-bottom: 40px;
 }
 
@@ -787,8 +747,9 @@ body {
   color: var(--color-olive-dark, #555);
   line-height: 1.6;
 }
+
 /* =========================================
-   RSVP EDITORIAL (Adaptado a nueva paleta)
+   RSVP EDITORIAL
    ========================================= */
 .rsvp {
     background-color: #ffffff;
@@ -1016,7 +977,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* Modal de Agradecimiento */
 .modal {
     position: fixed;
     top: 0;
