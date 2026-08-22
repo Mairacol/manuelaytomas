@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicBtn = document.getElementById('musicToggleBtn');
     const musicIcon = document.getElementById('musicIcon');
     const vinyl = document.getElementById('vinylDisc');
+    const heroSection = document.querySelector('.hero-section');
 
     // Función encargada de actualizar la UI según el estado real del audio
     const syncUI = () => {
@@ -37,24 +38,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Reproducción suave con Fade-In progresivo de audio
+    const playWithFadeIn = () => {
+        if (!bgMusic) return;
+        bgMusic.volume = 0;
+        bgMusic.play()
+            .then(() => {
+                syncUI();
+                let vol = 0;
+                const fadeIn = setInterval(() => {
+                    if (vol < 0.85) {
+                        vol += 0.05;
+                        bgMusic.volume = Math.min(vol, 1);
+                    } else {
+                        clearInterval(fadeIn);
+                    }
+                }, 100);
+            })
+            .catch(err => {
+                console.warn('Autoplay bloqueado por el navegador:', err);
+                syncUI();
+            });
+    };
+
     // 1. Evento: Abrir Invitación
     if (openInviteBtn && overlay) {
         openInviteBtn.addEventListener('click', () => {
+            // Animación de salida de la portada
             overlay.style.opacity = '0';
+            overlay.style.transform = 'translateY(-20px)';
             overlay.style.pointerEvents = 'none';
             
+            // Disparar animación de entrada en la sección Hero
+            if (heroSection) {
+                heroSection.classList.add('is-animating');
+            }
+
             setTimeout(() => {
                 overlay.style.display = 'none';
-            }, 500);
+            }, 1000);
 
-            // Intentar reproducir al abrir
+            // Intentar reproducir música con fade-in al abrir
             if (bgMusic && bgMusic.paused) {
-                bgMusic.play()
-                    .then(() => syncUI())
-                    .catch(err => {
-                        console.warn('Autoplay bloqueado por el navegador:', err);
-                        syncUI();
-                    });
+                playWithFadeIn();
             }
         });
     }
@@ -75,11 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Lógica de URL, RSVP y Confirmación
 document.addEventListener("DOMContentLoaded", function () {
     // 1. Obtener parámetros de la URL (ej: ?id=familia-perez&inv=4)
     const urlParams = new URLSearchParams(window.location.search);
     
-    // Puedes ajustar estos nombres según cómo pases los datos en tus enlaces
     const familyNameParam = urlParams.get("nombre") || urlParams.get("id") || "Invitado Especial";
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
 
@@ -106,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 3. Generar dinámicamente los campos para cada invitado
     if (guestsContainer) {
-        guestsContainer.innerHTML = ""; // Limpiar contenedor por si acaso
+        guestsContainer.innerHTML = ""; 
         
         for (let i = 1; i <= totalSlots; i++) {
             const guestCard = document.createElement("div");
@@ -159,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
 
-            // Ocultar error previo
             if (formError) formError.style.display = "none";
 
             const guestCards = document.querySelectorAll(".guest-editorial-card");
@@ -194,19 +219,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Deshabilitar botón para evitar múltiples envíos
             submitBtn.disabled = true;
             submitBtn.textContent = "ENVIANDO...";
 
-            // ==========================================
-            // AQUÍ PUEDES CONECTAR TU BACKEND O GOOGLE SHEETS
-            // ==========================================
             console.log("Datos listos para enviar:", {
                 familia: familyNameParam,
                 invitados: rsvpData
             });
 
-            // Simulación de envío exitoso (puedes reemplazar esto con tu lógica real de fetch)
             setTimeout(() => {
                 mostrarModalAgradecimiento();
                 submitBtn.disabled = false;
@@ -217,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 5. Función para mostrar el Modal de Agradecimiento
     function mostrarModalAgradecimiento() {
-        // Verificar si ya existe el modal en el DOM, si no, crearlo dinámicamente
         let modal = document.getElementById("thankYouModal");
         
         if (!modal) {
@@ -236,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("closeModalBtn").addEventListener("click", function () {
                 modal.classList.add("hidden");
-                window.location.reload(); // Opcional: recarga o redirige
+                window.location.reload();
             });
         }
         
