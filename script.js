@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------------
+    // 1. MÚSICA Y OVERLAY DE ENTRADA
+    // -------------------------------------------------------------
     const overlay = document.getElementById('intro-overlay');
-    const openInviteBtn = document.getElementById('openInvitationBtn'); 
+    // Soporta 'intro-enter-btn' o 'openInvitationBtn'
+    const openInviteBtn = document.getElementById('intro-enter-btn') || document.getElementById('openInvitationBtn'); 
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggleBtn');
     const musicIcon = document.getElementById('musicIcon');
     const vinyl = document.getElementById('vinylDisc');
     const heroSection = document.querySelector('.hero-section');
 
-    // Función encargada de actualizar la UI según el estado real del audio
     const syncUI = () => {
         if (!bgMusic) return;
         const isPlaying = !bgMusic.paused;
@@ -21,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para alternar reproducción/pausa de forma segura
     const toggleAudio = () => {
         if (!bgMusic) return;
 
@@ -38,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Reproducción suave con Fade-In progresivo de audio
     const playWithFadeIn = () => {
         if (!bgMusic) return;
         bgMusic.volume = 0;
@@ -61,15 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    // 1. Evento: Abrir Invitación
+    // Evento Abrir Invitación
     if (openInviteBtn && overlay) {
         openInviteBtn.addEventListener('click', () => {
-            // Animación de salida de la portada
             overlay.style.opacity = '0';
             overlay.style.transform = 'translateY(-20px)';
             overlay.style.pointerEvents = 'none';
             
-            // Disparar animación de entrada en la sección Hero
             if (heroSection) {
                 heroSection.classList.add('is-animating');
             }
@@ -78,14 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.style.display = 'none';
             }, 1000);
 
-            // Intentar reproducir música con fade-in al abrir
             if (bgMusic && bgMusic.paused) {
                 playWithFadeIn();
             }
         });
     }
 
-    // 2. Evento: Clic en el botón flotante del vinilo
     if (musicBtn) {
         musicBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -93,23 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Escuchar eventos nativos del elemento <audio> para mantener la UI 100% sincronizada
     if (bgMusic) {
         bgMusic.addEventListener('play', syncUI);
         bgMusic.addEventListener('pause', syncUI);
         bgMusic.addEventListener('ended', syncUI);
     }
-});
 
-// Lógica de URL, RSVP y Confirmación
-document.addEventListener("DOMContentLoaded", function () {
-    // 1. Obtener parámetros de la URL (ej: ?id=familia-perez&inv=4)
+    // -------------------------------------------------------------
+    // 2. RSVP Y FORMULARIO DINÁMICO EDITORIAL
+    // -------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
-    
     const familyNameParam = urlParams.get("nombre") || urlParams.get("id") || "Invitado Especial";
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
 
-    // 2. Elementos del DOM
     const rsvpSection = document.getElementById("rsvpSection");
     const familyNameEl = document.getElementById("familyName");
     const slotsEl = document.getElementById("slots");
@@ -117,32 +110,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitBtn = document.getElementById("submitBtn");
     const formError = document.getElementById("formError");
 
-    // Mostrar la sección si estaba oculta
+    // Mantiene la visibilidad sin romper la maquetación flex/snap scroll
     if (rsvpSection) {
-        rsvpSection.style.display = "block";
+        rsvpSection.style.display = "flex";
     }
 
-    // Rellenar datos principales en la tarjeta
     if (familyNameEl) {
         familyNameEl.textContent = familyNameParam.replace(/-/g, " ").toUpperCase();
     }
+    
     if (slotsEl) {
-        slotsEl.textContent = totalSlots === 1 ? "1 Pase disponible" : `${totalSlots} Pases disponibles`;
+        slotsEl.textContent = totalSlots === 1 ? "1 Lugar reservado" : `${totalSlots} Lugares reservados`;
     }
 
-    // 3. Generar dinámicamente los campos para cada invitado
     if (guestsContainer) {
         guestsContainer.innerHTML = ""; 
-        
+
         for (let i = 1; i <= totalSlots; i++) {
             const guestCard = document.createElement("div");
             guestCard.className = "guest-editorial-card";
-            
+
             guestCard.innerHTML = `
                 <div class="guest-card-top">
                     <span class="guest-number">Invitado 0${i}</span>
                 </div>
-                
+
                 <div class="field-block">
                     <label class="editorial-label">Nombre y Apellido</label>
                     <input type="text" class="editorial-input guest-name" placeholder="Nombre completo" required>
@@ -151,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="field-block">
                     <label class="editorial-label">¿Asistirá?</label>
                     <div class="editorial-radio-group">
-                        <label class="radio-pill">
+                        <label class="radio-pill active">
                             <input type="radio" name="attendance_${i}" value="Sí" checked> Sí asistirá
                         </label>
                         <label class="radio-pill">
@@ -160,9 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </div>
 
-                <div class="field-block">
+                <div class="field-block menu-block" id="menuBlock_${i}" style="transition: all 0.4s ease; max-height: 120px; overflow: hidden;">
                     <label class="editorial-label">Menú / Preferencia</label>
-                    <select class="editorial-select guest-menu" required>
+                    <select class="editorial-select guest-menu">
                         <option value="" disabled selected>Seleccioná una opción de menú</option>
                         <option value="General">Menú General</option>
                         <option value="Vegetariano">Vegetariano</option>
@@ -172,15 +164,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
                 <div class="field-block">
-                    <label class="editorial-label">Mensaje (Opcional)</label>
-                    <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios...">
+                    <label class="editorial-label">Mensaje para los novios</label>
+                    <input type="text" class="editorial-input guest-diet" placeholder="Escribí unas palabras o aclaración...">
                 </div>
             `;
+            
             guestsContainer.appendChild(guestCard);
+
+            const radioNo = guestCard.querySelector(`input[name="attendance_${i}"][value="No"]`);
+            const radioSi = guestCard.querySelector(`input[name="attendance_${i}"][value="Sí"]`);
+            const menuBlock = guestCard.querySelector(`#menuBlock_${i}`);
+            const menuSelect = guestCard.querySelector(".guest-menu");
+            const radioPills = guestCard.querySelectorAll(".radio-pill");
+
+            // Alternar clase activa en radios
+            guestCard.querySelectorAll(`input[name="attendance_${i}"]`).forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    radioPills.forEach(pill => pill.classList.remove('active'));
+                    e.target.closest('.radio-pill').classList.add('active');
+                });
+            });
+
+            // Ocultar bloque de menú suavemente si indica que "No"
+            radioNo.addEventListener('change', () => {
+                menuSelect.disabled = true;
+                menuBlock.style.opacity = '0.3';
+                menuBlock.style.maxHeight = '0px';
+                menuBlock.style.marginBottom = '0px';
+            });
+
+            radioSi.addEventListener('change', () => {
+                menuSelect.disabled = false;
+                menuBlock.style.opacity = '1';
+                menuBlock.style.maxHeight = '120px';
+                menuBlock.style.marginBottom = '24px';
+            });
         }
     }
 
-    // 4. Manejar el evento de envío (Submit)
+    // Procesamiento y submit
     if (submitBtn) {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -197,30 +219,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 const menuSelect = card.querySelector(".guest-menu");
                 const dietInput = card.querySelector(".guest-diet");
 
-                if (!nameInput.value.trim() || !menuSelect.value) {
+                const isAttending = attendanceInput ? attendanceInput.value === "Sí" : true;
+
+                let nameValid = !!nameInput.value.trim();
+                let menuValid = isAttending ? !!menuSelect.value : true;
+
+                if (!nameValid || !menuValid) {
                     allValid = false;
-                    if (!nameInput.value.trim()) nameInput.style.borderBottomColor = "#b53737";
-                    if (!menuSelect.value) menuSelect.style.borderBottomColor = "#b53737";
+                    nameInput.style.borderBottomColor = nameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
+                    if (isAttending) {
+                        menuSelect.style.borderBottomColor = menuValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
+                    }
                 } else {
-                    nameInput.style.borderBottomColor = "#cab87b";
-                    menuSelect.style.borderBottomColor = "#cab87b";
+                    nameInput.style.borderBottomColor = "var(--color-corn-gold)";
+                    menuSelect.style.borderBottomColor = "var(--color-corn-gold)";
                 }
 
                 rsvpData.push({
                     invitado: nameInput.value.trim(),
                     asistencia: attendanceInput ? attendanceInput.value : "Sí",
-                    menu: menuSelect.value,
+                    menu: isAttending ? menuSelect.value : "N/A",
                     restricciones: dietInput ? dietInput.value.trim() : ""
                 });
             });
 
             if (!allValid) {
-                if (formError) formError.style.display = "block";
+                if (formError) {
+                    formError.style.display = "block";
+                    formError.textContent = "Por favor, completá los campos requeridos.";
+                }
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = "ENVIANDO...";
+            submitBtn.textContent = "ENVIANDO CONFIRMACIÓN...";
 
             console.log("Datos listos para enviar:", {
                 familia: familyNameParam,
@@ -230,15 +262,14 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 mostrarModalAgradecimiento();
                 submitBtn.disabled = false;
-                submitBtn.textContent = "ENVIAR CONFIRMACIÓN";
-            }, 1000);
+                submitBtn.textContent = "CONFIRMAR ASISTENCIA";
+            }, 800);
         });
     }
 
-    // 5. Función para mostrar el Modal de Agradecimiento
     function mostrarModalAgradecimiento() {
         let modal = document.getElementById("thankYouModal");
-        
+
         if (!modal) {
             modal = document.createElement("div");
             modal.id = "thankYouModal";
@@ -247,8 +278,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="modal-content">
                     <div class="modal-icon">✓</div>
                     <h3>¡Gracias!</h3>
-                    <p>Tu confirmación ha sido registrada con éxito. ¡Te esperamos para celebrar juntos!</p>
-                    <button class="modal-btn" id="closeModalBtn">Cerrar</button>
+                    <p>Tu confirmación ha sido registrada con éxito. ¡Nos vemos muy pronto para celebrar!</p>
+                    <button class="modal-btn" id="closeModalBtn">CERRAR</button>
                 </div>
             `;
             document.body.appendChild(modal);
@@ -258,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.reload();
             });
         }
-        
+
         modal.classList.remove("hidden");
     }
 });
