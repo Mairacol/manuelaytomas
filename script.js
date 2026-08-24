@@ -293,3 +293,26 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove("hidden");
     }
 });
+// Desplegar/ocultar los datos bancarios
+function toggleDatos() {
+    const card = document.getElementById("giftsBankCard");
+    const btn = document.querySelector(".btn-underline");
+    
+    if (card.style.display === "none") {
+        card.style.display = "block";
+        btn.innerText = "Ocultar datos bancarios";
+    } else {
+        card.style.display = "none";
+        btn.innerText = "Ver datos bancarios";
+    }
+}
+
+// Copiar CBU al portapapeles
+function copiarCBU() {
+    const cbu = document.getElementById("cbuText").innerText;
+    navigator.clipboard.writeText(cbu).then(() => {
+        alert("¡CBU copiado al portapapeles!");
+    }).catch(err => {
+        console.error("Error al copiar: ", err);
+    });
+}
