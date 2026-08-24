@@ -88,34 +88,35 @@ body {
   max-width: var(--max-width-content);
   margin: 0 auto;
 }
-
 /* PLACAS DE PANTALLA COMPLETA CON AIRE Y PRESENCIA */
 .section-block,
 .date-full-screen,
 .full-screen-section,
 .party-full-screen,
 .phrase-section,
-.dresscode-section,
+.dresscode-section,       /* Asegúrate de que tu <section> de Dress Code tenga esta clase */
 .spotify-section,
+.trivia-section,          /* Asegúrate de que tu <section> de Trivia tenga esta clase */
 .gifts-section,
 .photo-upload-section,
 .reveal-section,
-.editorial-section {
+.editorial-section,
+.rsvp-section {           /* Agregada la de rsvp por las dudas */
   min-height: 100vh;
   min-height: 100dvh;
-  width: 100vw;
+  width: 100%;
   max-width: 100%;
   
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* Volvemos a centrar verticalmente de forma limpia */
   text-align: center;
   
   scroll-snap-align: start;
   scroll-snap-stop: always;
   
-  padding: 3rem 1.8rem;
+  padding: 4rem 1.5rem; 
   box-sizing: border-box;
   position: relative;
 }
@@ -811,6 +812,123 @@ body {
 .animated-playlist-svg path {
     fill: var(--color-burgundy, #520f19);
     transition: fill 0.3s ease;
+}
+/* ==========================================================================
+   ESTILOS DE LA TRIVIA - DINÁMICO Y LIMPIO (SIN ICONOS)
+   ========================================================================== */
+
+.trivia-section-wrapper {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+#triviaForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Tarjeta individual con movimiento sutil al pasar el mouse */
+.trivia-question {
+    background: transparent;
+    border: 1px solid rgba(202, 184, 123, 0.5);
+    border-radius: 4px;
+    padding: 22px 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trivia-question:hover {
+    border-color: var(--color-burgundy);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(82, 15, 25, 0.05);
+}
+
+/* Texto de la pregunta */
+.trivia-question p {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    color: var(--color-burgundy);
+    margin-bottom: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+/* Opciones de respuesta estilo botón interactivo */
+.trivia-question label {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(202, 184, 123, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-olive-dark);
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+.trivia-question label:last-child {
+    margin-bottom: 0;
+}
+
+/* Efecto hover al pasar el cursor */
+.trivia-question label:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+    background-color: rgba(202, 184, 123, 0.12);
+    transform: scale(1.01);
+}
+
+/* Ocultar radio nativo y estilizar como un selector moderno */
+.trivia-question input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-corn-gold);
+    border-radius: 50%;
+    margin-right: 12px;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    background-color: transparent;
+}
+
+/* Punto central animado con rebote */
+.trivia-question input[type="radio"]::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 200ms transform cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: var(--color-burgundy);
+}
+
+.trivia-question input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.trivia-question input[type="radio"]:checked {
+    border-color: var(--color-burgundy);
+}
+
+/* Estado cuando seleccionas una opción */
+.trivia-question label:has(input[type="radio"]:checked) {
+    background-color: rgba(82, 15, 25, 0.08);
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(82, 15, 25, 0.1);
 }
 /* ==========================================================================
    REGALOS

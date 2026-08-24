@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 4. LÓGICA DE LA TRIVIA
+    // 4. LÓGICA DE LA TRIVIA (3 PREGUNTAS)
     // -------------------------------------------------------------
     window.triviaPuntos = 0;
     
@@ -318,11 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const q2 = document.querySelector('input[name="q2"]:checked');
             const q3 = document.querySelector('input[name="q3"]:checked');
 
+            // Cada respuesta correcta suma 10 puntos (Máximo 30 puntos)
             if (q1 && q1.value === "correcta") puntos += 10;
             if (q2 && q2.value === "correcta") puntos += 10;
             if (q3 && q3.value === "correcta") puntos += 10;
 
             window.triviaPuntos = puntos;
+            console.log("Puntos actuales de la trivia:", window.triviaPuntos);
         });
     }
 });
