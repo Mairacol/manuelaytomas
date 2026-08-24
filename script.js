@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxM2ADI6ucvoWPhj9w2xNpK8X09PgP01V-cWB0AHVL0sHGdFaZ60rjz-XyLQeF5T1hs/exec";
+
     // -------------------------------------------------------------
     // 1. MÚSICA Y OVERLAY DE ENTRADA
     // -------------------------------------------------------------
     const overlay = document.getElementById('intro-overlay');
-    // Soporta 'intro-enter-btn' o 'openInvitationBtn'
     const openInviteBtn = document.getElementById('intro-enter-btn') || document.getElementById('openInvitationBtn'); 
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggleBtn');
@@ -62,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    // Evento Abrir Invitación
     if (openInviteBtn && overlay) {
         openInviteBtn.addEventListener('click', () => {
             overlay.style.opacity = '0';
@@ -97,11 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 2. RSVP Y FORMULARIO DINÁMICO EDITORIAL
+    // 2. PARÁMETROS DE LA URL
     // -------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
-    const familyNameParam = urlParams.get("nombre") || urlParams.get("id") || "Invitado Especial";
+    const familyNameParam = urlParams.get("nombre") || urlParams.get("familia") || "Invitado Especial";
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
+    const guestID = urlParams.get("id") || "SIN_ID";
 
     const rsvpSection = document.getElementById("rsvpSection");
     const familyNameEl = document.getElementById("familyName");
@@ -110,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById("submitBtn");
     const formError = document.getElementById("formError");
 
-    // Mantiene la visibilidad sin romper la maquetación flex/snap scroll
     if (rsvpSection) {
         rsvpSection.style.display = "flex";
     }
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slotsEl.textContent = totalSlots === 1 ? "1 Lugar reservado" : `${totalSlots} Lugares reservados`;
     }
 
+    // Generar formularios individuales por invitado con Nombre y Apellido separados
     if (guestsContainer) {
         guestsContainer.innerHTML = ""; 
 
@@ -136,8 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="field-block">
-                    <label class="editorial-label">Nombre y Apellido</label>
-                    <input type="text" class="editorial-input guest-name" placeholder="Nombre completo" required>
+                    <label class="editorial-label">Nombre</label>
+                    <input type="text" class="editorial-input guest-firstname" placeholder="Nombre" required>
+                </div>
+
+                <div class="field-block">
+                    <label class="editorial-label">Apellido</label>
+                    <input type="text" class="editorial-input guest-lastname" placeholder="Apellido" required>
                 </div>
 
                 <div class="field-block">
@@ -177,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const menuSelect = guestCard.querySelector(".guest-menu");
             const radioPills = guestCard.querySelectorAll(".radio-pill");
 
-            // Alternar clase activa en radios
             guestCard.querySelectorAll(`input[name="attendance_${i}"]`).forEach(radio => {
                 radio.addEventListener('change', (e) => {
                     radioPills.forEach(pill => pill.classList.remove('active'));
@@ -185,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Ocultar bloque de menú suavemente si indica que "No"
             radioNo.addEventListener('change', () => {
                 menuSelect.disabled = true;
                 menuBlock.style.opacity = '0.3';
@@ -202,7 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Procesamiento y submit
+    // -------------------------------------------------------------
+    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    // -------------------------------------------------------------
     if (submitBtn) {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -214,29 +221,34 @@ document.addEventListener('DOMContentLoaded', () => {
             let rsvpData = [];
 
             guestCards.forEach((card, index) => {
-                const nameInput = card.querySelector(".guest-name");
+                const firstNameInput = card.querySelector(".guest-firstname");
+                const lastNameInput = card.querySelector(".guest-lastname");
                 const attendanceInput = card.querySelector(`input[name="attendance_${index + 1}"]:checked`);
                 const menuSelect = card.querySelector(".guest-menu");
                 const dietInput = card.querySelector(".guest-diet");
 
                 const isAttending = attendanceInput ? attendanceInput.value === "Sí" : true;
 
-                let nameValid = !!nameInput.value.trim();
+                let firstNameValid = !!firstNameInput.value.trim();
+                let lastNameValid = !!lastNameInput.value.trim();
                 let menuValid = isAttending ? !!menuSelect.value : true;
 
-                if (!nameValid || !menuValid) {
+                if (!firstNameValid || !lastNameValid || !menuValid) {
                     allValid = false;
-                    nameInput.style.borderBottomColor = nameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
+                    firstNameInput.style.borderBottomColor = firstNameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
+                    lastNameInput.style.borderBottomColor = lastNameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
                     if (isAttending) {
                         menuSelect.style.borderBottomColor = menuValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
                     }
                 } else {
-                    nameInput.style.borderBottomColor = "var(--color-corn-gold)";
-                    menuSelect.style.borderBottomColor = "var(--color-corn-gold)";
+                    firstNameInput.style.borderBottomColor = "var(--color-corn-gold)";
+                    lastNameInput.style.borderBottomColor = "var(--color-corn-gold)";
+                    if (menuSelect) menuSelect.style.borderBottomColor = "var(--color-corn-gold)";
                 }
 
                 rsvpData.push({
-                    invitado: nameInput.value.trim(),
+                    nombre: firstNameInput.value.trim(),
+                    apellido: lastNameInput.value.trim(),
                     asistencia: attendanceInput ? attendanceInput.value : "Sí",
                     menu: isAttending ? menuSelect.value : "N/A",
                     restricciones: dietInput ? dietInput.value.trim() : ""
@@ -254,65 +266,96 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.textContent = "ENVIANDO CONFIRMACIÓN...";
 
-            console.log("Datos listos para enviar:", {
-                familia: familyNameParam,
+            const payload = {
+                familia: familyNameParam.replace(/-/g, " ").toUpperCase(),
+                id: guestID,
+                puntos: window.triviaPuntos || 0,
                 invitados: rsvpData
-            });
+            };
 
-            setTimeout(() => {
+            // Se envía mediante URLSearchParams para evitar problemas con CORS en Google Apps Script
+            fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ payload: JSON.stringify(payload) })
+            })
+            .then(() => {
                 mostrarModalAgradecimiento();
                 submitBtn.disabled = false;
                 submitBtn.textContent = "CONFIRMAR ASISTENCIA";
-            }, 800);
+            })
+            .catch(err => {
+                console.error("Error al enviar respuesta:", err);
+                if (formError) {
+                    formError.style.display = "block";
+                    formError.textContent = "Ocurrió un error al guardar. Intentá nuevamente.";
+                }
+                submitBtn.disabled = false;
+                submitBtn.textContent = "CONFIRMAR ASISTENCIA";
+            });
         });
     }
 
     function mostrarModalAgradecimiento() {
-        let modal = document.getElementById("thankYouModal");
-
-        if (!modal) {
-            modal = document.createElement("div");
-            modal.id = "thankYouModal";
-            modal.className = "modal";
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-icon">✓</div>
-                    <h3>¡Gracias!</h3>
-                    <p>Tu confirmación ha sido registrada con éxito. ¡Nos vemos muy pronto para celebrar!</p>
-                    <button class="modal-btn" id="closeModalBtn">CERRAR</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
-
-            document.getElementById("closeModalBtn").addEventListener("click", function () {
-                modal.classList.add("hidden");
-                window.location.reload();
-            });
+        let modal = document.getElementById("thanksModal");
+        if (modal) {
+            modal.classList.remove("hidden");
+            modal.style.display = "flex";
         }
+    }
 
-        modal.classList.remove("hidden");
+    // -------------------------------------------------------------
+    // 4. LÓGICA DE LA TRIVIA
+    // -------------------------------------------------------------
+    window.triviaPuntos = 0;
+    
+    const triviaForm = document.getElementById('triviaForm');
+    if (triviaForm) {
+        triviaForm.addEventListener('change', () => {
+            let puntos = 0;
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+
+            if (q1 && q1.value === "correcta") puntos += 10;
+            if (q2 && q2.value === "correcta") puntos += 10;
+            if (q3 && q3.value === "correcta") puntos += 10;
+
+            window.triviaPuntos = puntos;
+        });
     }
 });
-// Desplegar/ocultar los datos bancarios
+
+function closeThanksModal() {
+    let modal = document.getElementById("thanksModal");
+    if (modal) {
+        modal.classList.add("hidden");
+        modal.style.display = "none";
+        window.location.reload();
+    }
+}
+
 function toggleDatos() {
     const card = document.getElementById("giftsBankCard");
     const btn = document.querySelector(".btn-underline");
     
-    if (card.style.display === "none") {
+    if (card && card.style.display === "none") {
         card.style.display = "block";
         btn.innerText = "Ocultar datos bancarios";
-    } else {
+    } else if (card) {
         card.style.display = "none";
         btn.innerText = "Ver datos bancarios";
     }
 }
 
-// Copiar CBU al portapapeles
 function copiarCBU() {
-    const cbu = document.getElementById("cbuText").innerText;
-    navigator.clipboard.writeText(cbu).then(() => {
-        alert("¡CBU copiado al portapapeles!");
-    }).catch(err => {
-        console.error("Error al copiar: ", err);
-    });
+    const cbu = document.getElementById("cbuText")?.innerText;
+    if (cbu) {
+        navigator.clipboard.writeText(cbu).then(() => {
+            alert("¡CBU copiado al portapapeles!");
+        }).catch(err => {
+            console.error("Error al copiar: ", err);
+        });
+    }
 }
