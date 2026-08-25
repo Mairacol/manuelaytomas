@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxM2ADI6ucvoWPhj9w2xNpK8X09PgP01V-cWB0AHVL0sHGdFaZ60rjz-XyLQeF5T1hs/exec";
 
     // -------------------------------------------------------------
+    // 0. OCULTAR SECCIONES POR DEFECTO AL CARGAR LA PÁGINA
+    // -------------------------------------------------------------
+    const rsvpSection = document.getElementById("rsvpSection");
+    const triviaSection = document.getElementById("trivia");
+    const giftsCard = document.getElementById("giftsBankCard");
+
+    if (rsvpSection) rsvpSection.style.display = "none";
+    if (triviaSection) triviaSection.style.display = "none";
+    if (giftsCard) giftsCard.style.display = "none"; // Oculta los datos bancarios por defecto
+
+    // -------------------------------------------------------------
     // 1. MÚSICA Y OVERLAY DE ENTRADA
     // -------------------------------------------------------------
     const overlay = document.getElementById('intro-overlay');
@@ -103,16 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
     
-    const rsvpSection = document.getElementById("rsvpSection");
-    const triviaSection = document.getElementById("trivia"); // ID de tu sección de trivia
-    const giftsSection = document.getElementById("giftsSection"); // Si tienes un contenedor general de regalos (opcional)
-
-    // Si entran a la raíz sin parámetros, las secciones interactivas se ocultan.
-    // Si entran con un link personalizado, se muestran.
+    // SI HAY PARÁMETRO EN EL LINK: Mostramos las secciones interactivas
     if (rawParam) {
         if (rsvpSection) rsvpSection.style.display = "flex";
         if (triviaSection) triviaSection.style.display = "block";
-        if (giftsSection) giftsSection.style.display = "block";
+        // Nota: Los datos de regalos (giftsBankCard) siguen dependiendo del botón "Ver datos bancarios", 
+        // pero la sección de trivia y el RSVP ya se muestran completos.
     }
 
     let displayTitle = "INVITADO ESPECIAL";
