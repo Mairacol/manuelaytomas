@@ -70,7 +70,6 @@ html {
   font-size: 16px;
   background-color: var(--color-bg-light);
 }
-
 body {
   height: 100%;
   font-family: var(--font-body);
@@ -81,27 +80,35 @@ body {
   background: linear-gradient(rgba(250, 248, 245, 0.5), rgba(250, 248, 245, 0.5)), 
               url('images/fondo.webp') no-repeat center center fixed;
   background-size: cover;
+  
+  /* Evita el parpadeo inicial de renderizado */
+  opacity: 0;
+  animation: fadeInBody 0.4s ease forwards;
 }
 
+@keyframes fadeInBody {
+  to { opacity: 1; }
+}
 .main-container {
   width: 100%;
   max-width: var(--max-width-content);
   margin: 0 auto;
 }
-/* PLACAS DE PANTALLA COMPLETA CON AIRE Y PRESENCIA */
+/* PLACAS DE PANTALLA COMPLETA UNIFICADAS (Estructura de aire simétrica) */
 .section-block,
 .date-full-screen,
 .full-screen-section,
 .party-full-screen,
 .phrase-section,
-.dresscode-section,       /* Asegúrate de que tu <section> de Dress Code tenga esta clase */
+.dresscode-section,
 .spotify-section,
-.trivia-section,          /* Asegúrate de que tu <section> de Trivia tenga esta clase */
+.playlist-section,      
+.trivia-section,
 .gifts-section,
 .photo-upload-section,
 .reveal-section,
 .editorial-section,
-.rsvp-section {           /* Agregada la de rsvp por las dudas */
+.rsvp-section {
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
@@ -110,13 +117,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Volvemos a centrar verticalmente de forma limpia */
+  justify-content: center; /* <--- Centrado uniforme para que todas mantengan la misma lógica */
+  gap: 1.5rem;             /* <--- Espaciado interno consistente entre elementos */
   text-align: center;
   
   scroll-snap-align: start;
   scroll-snap-stop: always;
   
-  padding: 4rem 1.5rem; 
+  padding: 2.5rem 1.5rem; 
   box-sizing: border-box;
   position: relative;
 }
@@ -133,6 +141,7 @@ body {
 .intro-overlay {
   position: fixed;
   inset: 0;
+  background-color: var(--color-bg-light); /* Fondo base sólido inmediato para evitar flashes */
   background-image: url('images/fondo.webp');
   background-repeat: no-repeat;
   background-position: center;
@@ -143,7 +152,7 @@ body {
   z-index: 99999;
   opacity: 1;
   visibility: visible;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-overlay.fade-out {
@@ -341,7 +350,7 @@ body {
 /* Ilustración combinada del Hero ajustada */
 .hero-combined-svg {
     width: 100%;
-    max-width: 240px; /* Reducido de 340px/400px a 240px */
+    max-width: 240px; 
     height: auto;
     display: block;
     margin: 0 auto;
@@ -499,9 +508,6 @@ body {
 }
 
 /* ==========================================================================
-   CEREMONIA & FIESTA (AUMENTADAS EN TAMAÑO Y ESPACIO)
-   ========================================================================== */
-/* ==========================================================================
    CEREMONIA & FIESTA (ESCALA EDITORIAL AMPLIADA)
    ========================================================================== */
 
@@ -512,8 +518,8 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 540px; /* Aumentado de 500px a 540px */
-  gap: 2.2rem; /* Mayor separación vertical entre título, SVG y detalles */
+  max-width: 540px; 
+  gap: 2.2rem; 
   margin: auto 0;
 }
 
@@ -527,7 +533,7 @@ body {
 
 .editorial-tag,
 .editorial-tag-sub {
-  font-size: 1.5rem; /* Aumentado de 1.35rem */
+  font-size: 1.5rem; 
   letter-spacing: 7px;
   text-transform: uppercase;
   opacity: 0.65;
@@ -537,7 +543,7 @@ body {
 .editorial-title,
 .party-editorial-title,
 .editorial-section-title {
-  font-size: clamp(2.8rem, 8.5vw, 3.8rem); /* Título protagónico más grande */
+  font-size: clamp(2.8rem, 8.5vw, 3.8rem); 
   font-weight: 300;
   letter-spacing: 6px;
   text-transform: uppercase;
@@ -547,13 +553,12 @@ body {
   line-height: 1.05;
 }
 
-/* Ilustraciones escaladas generosamente */
 .svg-container-editorial,
 .party-svg-container,
 .editorial-svg-wrapper {
   width: 100%;
-  max-width: 380px; /* Aumentado de 320px a 380px */
-  height: 220px;    /* Aumentado de 180px a 220px */
+  max-width: 380px; 
+  height: 220px;    
   margin: 0.8rem 0;
   display: flex;
   justify-content: center;
@@ -565,7 +570,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* Fuerza a que el gráfico vectorizado ocupe todo el espacio disponible */
   transform: scale(1.15); 
   transform-origin: center;
 }
@@ -586,7 +590,7 @@ body {
 .venue-location,
 .party-location,
 .editorial-venue-name {
-  font-size: 2rem; /* Aumentado de 1.7rem a 2rem */
+  font-size: 2rem; 
   font-weight: 500;
   color: #2b2b2b;
   margin: 0;
@@ -597,7 +601,7 @@ body {
 .venue-time,
 .party-time,
 .editorial-venue-time {
-  font-size: 1.4rem; /* Aumentado de 1.25rem a 1.4rem */
+  font-size: 1.4rem; 
   letter-spacing: 5px;
   color: var(--color-burgundy);
   font-weight: 600;
@@ -607,11 +611,22 @@ body {
 /* ==========================================================================
    DRESS CODE
    ========================================================================== */
+.dresscode-section > div,
+.dresscode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  gap: 0.5rem;
+}
 
 .dresscode-svg-container {
   width: 100%;
-  max-width: 220px;
-  margin: 0 auto 1rem;
+  max-width: 160px; /* Reducido para dejar aire */
+  margin: 0 auto 0.2rem;
 }
 
 .dresscode-illustration path {
@@ -620,49 +635,49 @@ body {
 
 .dresscode-title-script {
   font-family: var(--font-title);
-  font-size: clamp(2.4rem, 7vw, 3rem);
-  color: var(--color-burgundy);
-  margin-bottom: 0.5rem;
+  font-size: clamp(2.2rem, 6vw, 2.8rem);
+  color: var(--color-olive-dark);
+  margin-bottom: 0.2rem;
   text-transform: uppercase;
 }
 
 .dresscode-main-type {
   font-family: var(--font-title);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--color-terracotta);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .dresscode-note {
   font-family: var(--font-body);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: var(--color-burgundy);
   letter-spacing: 0.5px;
   max-width: 360px;
-  margin: 1.2rem auto;
-  line-height: 1.4;
+  margin: 0.5rem auto;
+  line-height: 1.3;
   border-top: 1px solid rgba(66, 65, 35, 0.15);
   border-bottom: 1px solid rgba(66, 65, 35, 0.15);
-  padding: 12px 0;
+  padding: 8px 0;
 }
 
 .dresscode-note-title {
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: 1px;
   color: var(--color-terracotta);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .dresscode-inspo-label {
   font-family: var(--font-title);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-terracotta);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: 1.2rem auto 0.6rem;
+  margin: 0.5rem auto 0.2rem;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -670,13 +685,13 @@ body {
 
 .dresscode-inspo-label::after {
   content: "↓";
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .pinterest-compact-wrapper {
-  width: 300px;
-  height: 180px;
-  margin: 0.5rem auto 0;
+  width: 280px;
+  height: 130px; /* Reducido para evitar desbordes */
+  margin: 0.2rem auto 0;
   overflow: hidden;
   border-radius: 12px;
   display: flex;
@@ -688,27 +703,43 @@ body {
    MÚSICA & PLAYLIST
    ========================================================================== */
 .spotify-section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  text-align: center;
+  
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  
+  padding: 2.5rem 1.5rem; 
+  box-sizing: border-box;
+  position: relative;
 }
+
 .spotify-container {
     width: 100%;
     max-width: 500px;
-    height: 100%;                
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;      
+    justify-content: center;
     text-align: center;
-    margin: 0 auto;               
-    gap: 1rem;                      
+    margin: 0 auto; 
+    gap: 0.6rem;
 }
 
 .spotify-title-script {
     font-family: var(--font-title);
-    font-size: clamp(2.4rem, 7vw, 3rem);
-    color: var(--color-burgundy);
-    margin-bottom: 0.5rem;
+    font-size: clamp(2.2rem, 6vw, 2.8rem);
+    color: var(--color-olive-dark);
+    margin-bottom: 0.2rem;
     text-transform: uppercase;
 }
 
@@ -716,21 +747,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.2rem;
     width: 100%;
+}
+
+.spotify-header-illustration svg.animated-playlist-svg {
+    width: 100%;
+    max-width: 160px; 
+    height: auto;
 }
 
 /* --- ESTILOS GENERALES Y BOTÓN --- */
 .spotify-desc {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--color-olive-dark);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .spotify-player-wrapper {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .editorial-spotify-link {
@@ -740,7 +777,7 @@ body {
     color: var(--color-burgundy, #520f19);
     padding: 0;
     font-family: var(--font-title);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     cursor: pointer;
@@ -757,15 +794,16 @@ body {
     transform: translateY(-2px);
     box-shadow: none;
 }
+
 /* ==========================================================================
    ANIMACIÓN BOLA DISCO (OPCIÓN 1: BALANCEO)
    ========================================================================== */
 
-/* Animación para todo el sistema de la bola disco */
 #discoSystem {
-    transform-origin: 300px 100px; /* Punto superior de anclaje del cable */
+    transform-origin: 300px 100px; 
     animation: swingDisco 4s ease-in-out infinite alternate;
 }
+
 /* ==========================================================================
    BAILARINES: ACERCAMIENTO INTERACTIVO
    ========================================================================== */
@@ -785,7 +823,7 @@ body {
         transform: translateX(0) rotate(0deg);
     }
     100% {
-        transform: translateX(15px) rotate(2deg) scale(1.02); /* Se desliza hacia el centro */
+        transform: translateX(15px) rotate(2deg) scale(1.02); 
     }
 }
 
@@ -794,11 +832,10 @@ body {
         transform: translateX(0) rotate(0deg);
     }
     100% {
-        transform: translateX(-15px) rotate(-2deg) scale(1.02); /* Se desliza hacia el centro */
+        transform: translateX(-15px) rotate(-2deg) scale(1.02); 
     }
 }
 
-/* Balanceo suave de lado a lado */
 @keyframes swingDisco {
     0% {
         transform: rotate(-3deg);
@@ -808,7 +845,6 @@ body {
     }
 }
 
-/* Cambia todo el trazo/relleno del SVG */
 .animated-playlist-svg path {
     fill: var(--color-burgundy, #520f19);
     transition: fill 0.3s ease;
@@ -820,24 +856,29 @@ body {
 .trivia-section-wrapper {
     width: 100%;
     max-width: 480px;
-    margin: 0 auto;
-    padding: 20px 0;
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    gap: 0.8rem;
 }
 
 #triviaForm {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
     width: 100%;
 }
 
-/* Tarjeta individual con movimiento sutil al pasar el mouse */
 .trivia-question {
     background: transparent;
     border: 1px solid rgba(202, 184, 123, 0.5);
     border-radius: 4px;
-    padding: 22px 20px;
+    padding: 14px 16px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: left;
 }
 
 .trivia-question:hover {
@@ -846,23 +887,21 @@ body {
     box-shadow: 0 6px 20px rgba(82, 15, 25, 0.05);
 }
 
-/* Texto de la pregunta */
 .trivia-question p {
     font-family: var(--font-title);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--color-burgundy);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
-/* Opciones de respuesta estilo botón interactivo */
 .trivia-question label {
     display: flex;
     align-items: center;
-    padding: 14px 16px;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
     background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(202, 184, 123, 0.3);
     border-radius: 4px;
@@ -879,7 +918,6 @@ body {
     margin-bottom: 0;
 }
 
-/* Efecto hover al pasar el cursor */
 .trivia-question label:hover {
     border-color: var(--color-burgundy);
     color: var(--color-burgundy);
@@ -887,15 +925,14 @@ body {
     transform: scale(1.01);
 }
 
-/* Ocultar radio nativo y estilizar como un selector moderno */
 .trivia-question input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border: 2px solid var(--color-corn-gold);
     border-radius: 50%;
-    margin-right: 12px;
+    margin-right: 10px;
     display: grid;
     place-content: center;
     transition: all 0.2s ease;
@@ -903,11 +940,10 @@ body {
     background-color: transparent;
 }
 
-/* Punto central animado con rebote */
 .trivia-question input[type="radio"]::before {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     transform: scale(0);
     transition: 200ms transform cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -922,7 +958,6 @@ body {
     border-color: var(--color-burgundy);
 }
 
-/* Estado cuando seleccionas una opción */
 .trivia-question label:has(input[type="radio"]:checked) {
     background-color: rgba(82, 15, 25, 0.08);
     border-color: var(--color-burgundy);
@@ -930,6 +965,7 @@ body {
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(82, 15, 25, 0.1);
 }
+
 /* ==========================================================================
    REGALOS
    ========================================================================== */
@@ -941,14 +977,13 @@ body {
   color: var(--color-terracotta);
   display: block;
   margin-bottom: 0.5rem;
-    font-family: var(--font-title);
-
+  font-family: var(--font-title);
 }
 
 .gifts-title-script {
   font-family: var(--font-title);
   font-size: clamp(2.4rem, 7vw, 3rem);
-  color: var(--color-burgundy);
+  color: var(--color-olive-dark);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
@@ -961,7 +996,6 @@ body {
   line-height: 1.6;
 }
 
-/* Ilustración SVG */
 .gifts-icon {
   width: 180px;
   max-width: 80%;
@@ -976,14 +1010,12 @@ body {
   fill: currentColor;
 }
 
-/* Botón como texto subrayado */
 .btn-underline {
   background: none;
   border: none;
   padding: 0;
   margin-top: 1.5rem;
   color: var(--color-burgundy);
-  font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: underline;
@@ -992,19 +1024,18 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
-    font-family: var(--font-title);
-
+  font-family: var(--font-title);
 }
 
 .btn-underline:hover {
   opacity: 0.75;
 }
-/* Tarjeta de datos bancarios - Estilo Editorial / Minimalista */
+
 .gifts-bank-card {
   margin-top: 2rem;
   padding: 2.5rem 1.5rem 1.5rem 1.5rem;
-  background-color: transparent; /* Sin fondos pesados */
-  border-top: 1px solid var(--color-terracotta); /* Líneas finas superior e inferior */
+  background-color: transparent; 
+  border-top: 1px solid var(--color-terracotta); 
   border-bottom: 1px solid var(--color-terracotta);
   max-width: 420px;
   margin-left: auto;
@@ -1012,15 +1043,14 @@ body {
   text-align: center;
 }
 
-/* Filas de información */
 .gifts-bank-card p {
   margin-bottom: 1.2rem;
   font-size: 0.95rem;
   color: var(--color-olive-dark);
+    text-transform: uppercase;
   line-height: 1.4;
 }
 
-/* Etiquetas principales (Titular, CBU, etc.) */
 .gifts-bank-card strong {
   display: block;
   font-family: var(--font-title, inherit);
@@ -1032,15 +1062,14 @@ body {
   margin-bottom: 0.25rem;
 }
 
-/* Valores (Datos reales) */
 .gifts-bank-card span {
-  font-family: var(--font-title); /* Tipografía elegante para los datos */
+  font-family: var(--font-title); 
+    text-transform: uppercase;
   font-size: 1.15rem;
   color: var(--color-burgundy);
   letter-spacing: 0.5px;
 }
 
-/* Botón copiar integrado elegantemente */
 .btn-copy {
   display: inline-block;
   background: none;
@@ -1048,7 +1077,6 @@ body {
   padding: 0;
   margin-top: 1rem;
   color: var(--color-burgundy);
-  font-family: inherit;
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: underline;
@@ -1063,12 +1091,13 @@ body {
 .btn-copy:hover {
   opacity: 0.6;
 }
+
 /* ==========================================================================
    RSVP (ESTILO EDITORIAL TRANSPARENTE)
    ========================================================================== */
 
 .rsvp, .rsvp-section {
-  background-color: transparent; /* Fondo transparente para integrar el wallpaper */
+  background-color: transparent; 
   min-height: 100dvh;
   height: auto;
   padding: 4rem 1.5rem;
@@ -1089,11 +1118,10 @@ body {
   text-align: center;
 }
 
-/* Tarjeta informativa sin fondo con borde sutil */
 .rsvp-inner .card {
   background: transparent;
   padding: 28px 20px;
-  border: 1px solid rgba(202, 184, 123, 0.747); 
+  border: 1px solid var(--color-corn-gold); 
   border-radius: 2px;
   margin-bottom: 30px;
   text-align: center;
@@ -1103,6 +1131,7 @@ body {
   background: transparent;
   border: 1px solid var(--color-corn-gold);
   font-family: var(--font-title);
+  text-transform: uppercase;
   border-radius: 0px;
   padding: 28px 24px;
   margin-bottom: 30px;
@@ -1115,7 +1144,6 @@ body {
   width: 100%;
 }
 
-/* Tipografías internas para que respiren dentro de la tarjeta */
 .rsvp-guest-info .guest-label {
   font-family: var(--font-title);
   font-size: 0.65rem;
@@ -1126,7 +1154,8 @@ body {
 }
 
 .rsvp-guest-info .guest-name-title {
-  font-family: var(--font-title); /* O tu fuente script correspondiente */
+  font-family: var(--font-title); 
+  text-transform: uppercase;
   font-size: 2rem;
   color: var(--color-burgundy);
   margin: 0;
@@ -1135,6 +1164,7 @@ body {
 
 .rsvp-guest-info .guest-slots-text {
   font-family: var(--font-title);
+  text-transform: uppercase;
   font-size: 1.1rem;
   color: var(--color-olive-dark);
   margin-top: 4px;
@@ -1152,6 +1182,7 @@ body {
 
 .rsvp-inner .card h3 {
   font-family: var(--font-title);
+    text-transform: uppercase;
   font-size: 1.8rem;
   color: var(--color-burgundy);
   margin-bottom: 6px;
@@ -1187,7 +1218,7 @@ body {
 .rsvp-inner .title-script {
   font-family: var(--font-title);
   font-size: clamp(2.4rem, 7vw, 3.2rem);
-  color: var(--color-burgundy);
+  color: var(--color-olive-dark);
   margin-bottom: 8px;
   letter-spacing: 3px;
 }
@@ -1201,7 +1232,6 @@ body {
   font-weight: 300;
 }
 
-/* Tarjeta del invitado transparente */
 .guest-editorial-card {
   background: transparent;
   padding: 20px 0;
@@ -1247,6 +1277,7 @@ body {
   border-bottom: 1px solid var(--color-corn-gold);
   border-radius: 0;
   font-family: var(--font-title);
+    text-transform: uppercase;
   font-size: 0.95rem;
   color: var(--color-burgundy);
   letter-spacing: 1px;
@@ -1284,6 +1315,7 @@ body {
 .radio-pill {
   font-family: var(--font-title);
   font-size: 0.85rem;
+    text-transform: uppercase;
   color: var(--color-olive-dark);
   cursor: pointer;
   display: flex;
@@ -1299,7 +1331,6 @@ body {
   cursor: pointer;
 }
 
-/* Botón principal de confirmación sin bloque sólido rígido */
 .editorial-submit-btn {
   width: 100%;
   background-color: var(--color-burgundy);
@@ -1331,7 +1362,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* Modal de confirmación sin fondo blanco plano */
 .modal {
   position: fixed;
   inset: 0;
@@ -1362,6 +1392,7 @@ body {
 
 .modal-content h3 {
   font-family: var(--font-title);
+    text-transform: uppercase;
   font-size: 1.8rem;
   margin-bottom: 12px;
   color: var(--color-burgundy);
@@ -1432,4 +1463,24 @@ footer a:hover { text-decoration: underline; }
     max-width: 280px;
     height: 160px;
   }
+}
+/* ==========================================================================
+   ANIMACIÓN CINEMATOGRÁFICA DE ENTRADA (FADE-IN & SLIDE-UP)
+   ========================================================================== */
+
+/* Estado inicial: Oculto y desplazado ligeramente hacia abajo */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  visibility: hidden;
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Estado activo: Al entrar en el viewport de la pantalla */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }

@@ -98,10 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 2. PARÁMETROS DE LA URL
+    // 2. PARÁMETROS DE LA URL (TÍTULO PRINCIPAL DINÁMICO)
     // -------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
-    const familyNameParam = urlParams.get("nombre") || urlParams.get("familia") || "Invitado Especial";
+    
+    // Capturamos el parámetro 'nombre', 'familia' o 'invitados'
+    let rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
+    let displayTitle = "INVITADO ESPECIAL";
+
+    if (rawParam) {
+        // Reemplazamos los guiones por espacios y las comas por " y " o " + " según prefieras, o dejamos que el link traiga el texto exacto
+        displayTitle = rawParam.replace(/-/g, " ").replace(/,/g, " y ").toUpperCase();
+    }
+
+    // Determinamos la cantidad de pases por URL o por defecto en 1
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
     const guestID = urlParams.get("id") || "SIN_ID";
 
@@ -116,15 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
         rsvpSection.style.display = "flex";
     }
 
+    // Asignamos el texto dinámico al recuadro superior
     if (familyNameEl) {
-        familyNameEl.textContent = familyNameParam.replace(/-/g, " ").toUpperCase();
+        familyNameEl.textContent = displayTitle;
     }
     
     if (slotsEl) {
-        slotsEl.textContent = totalSlots === 1 ? "1 Lugar reservado" : `${totalSlots} Lugares reservados`;
+        slotsEl.textContent = totalSlots === 1 ? "1 LUGAR RESERVADO" : `${totalSlots} LUGARES RESERVADOS`;
     }
 
-    // Generar formularios individuales por invitado con Nombre y Apellido separados
+    // Generar formularios individuales por invitado
     if (guestsContainer) {
         guestsContainer.innerHTML = ""; 
 
@@ -134,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             guestCard.innerHTML = `
                 <div class="guest-card-top">
-                    <span class="guest-number">Invitado 0${i}</span>
+                    <span class="guest-number">Invitado ${i}</span>
                 </div>
 
                 <div class="field-block">
@@ -267,13 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = "ENVIANDO CONFIRMACIÓN...";
 
             const payload = {
-                familia: familyNameParam.replace(/-/g, " ").toUpperCase(),
+                familia: displayTitle,
                 id: guestID,
                 puntos: window.triviaPuntos || 0,
                 invitados: rsvpData
             };
 
-            // Se envía mediante URLSearchParams para evitar problemas con CORS en Google Apps Script
             fetch(APPS_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
@@ -318,13 +328,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const q2 = document.querySelector('input[name="q2"]:checked');
             const q3 = document.querySelector('input[name="q3"]:checked');
 
-            // Cada respuesta correcta suma 10 puntos (Máximo 30 puntos)
             if (q1 && q1.value === "correcta") puntos += 10;
             if (q2 && q2.value === "correcta") puntos += 10;
             if (q3 && q3.value === "correcta") puntos += 10;
 
             window.triviaPuntos = puntos;
-            console.log("Puntos actuales de la trivia:", window.triviaPuntos);
         });
     }
 });
@@ -361,3 +369,26 @@ function copiarCBU() {
         });
     }
 }
+
+// -------------------------------------------------------------
+// 5. REVEAL
+// -------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.25 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(section => {
+      observer.observe(section);
+    });
+});
