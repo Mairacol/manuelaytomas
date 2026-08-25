@@ -98,14 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 2. PARÁMETROS DE LA URL (TÍTULO PRINCIPAL DINÁMICO)
+    // 2. DETECCIÓN DE PARÁMETROS Y VISIBILIDAD DE SECCIONES
     // -------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
+    const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
     
-    // Captura familias, parejas, nombres o acompañantes enviados por link
-    let rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
-    let displayTitle = "INVITADO ESPECIAL";
+    const rsvpSection = document.getElementById("rsvpSection");
+    const triviaSection = document.getElementById("trivia"); // ID de tu sección de trivia
+    const giftsSection = document.getElementById("giftsSection"); // Si tienes un contenedor general de regalos (opcional)
 
+    // Si entran a la raíz sin parámetros, las secciones interactivas se ocultan.
+    // Si entran con un link personalizado, se muestran.
+    if (rawParam) {
+        if (rsvpSection) rsvpSection.style.display = "flex";
+        if (triviaSection) triviaSection.style.display = "block";
+        if (giftsSection) giftsSection.style.display = "block";
+    }
+
+    let displayTitle = "INVITADO ESPECIAL";
     if (rawParam) {
         displayTitle = rawParam.replace(/-/g, " ").replace(/,/g, " y ").toUpperCase();
     }
@@ -113,16 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
     const guestID = urlParams.get("id") || "SIN_ID";
 
-    const rsvpSection = document.getElementById("rsvpSection");
     const familyNameEl = document.getElementById("familyName");
     const slotsEl = document.getElementById("slots");
     const guestsContainer = document.getElementById("guests");
     const submitBtn = document.getElementById("submitBtn");
     const formError = document.getElementById("formError");
-
-    if (rsvpSection) {
-        rsvpSection.style.display = "flex";
-    }
 
     if (familyNameEl) {
         familyNameEl.textContent = displayTitle;
@@ -222,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
 
-            // 🛡️ Protección contra Bots (Honeypot)
             const botCheck = document.getElementById("validationCode").value;
             if (botCheck !== "") {
                 console.warn("Actividad de bot detectada y bloqueada.");
