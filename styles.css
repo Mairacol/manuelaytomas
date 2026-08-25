@@ -1483,9 +1483,3 @@ footer a:hover { text-decoration: underline; }
   transform: translateY(0);
   visibility: visible;
 }
-/* ============================================================= */
-/* OCULTAR SECCIONES INTERACTIVAS POR DEFECTO (SIN PARÁMETROS)    */
-/* ============================================================= */
-#rsvpSection, #trivia, #giftsBankCard {
-    display: none !important;
-}
