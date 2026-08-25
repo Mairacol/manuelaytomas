@@ -102,16 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
     
-    // Capturamos el parámetro 'nombre', 'familia' o 'invitados'
+    // Captura familias, parejas, nombres o acompañantes enviados por link
     let rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
     let displayTitle = "INVITADO ESPECIAL";
 
     if (rawParam) {
-        // Reemplazamos los guiones por espacios y las comas por " y " o " + " según prefieras, o dejamos que el link traiga el texto exacto
         displayTitle = rawParam.replace(/-/g, " ").replace(/,/g, " y ").toUpperCase();
     }
 
-    // Determinamos la cantidad de pases por URL o por defecto en 1
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
     const guestID = urlParams.get("id") || "SIN_ID";
 
@@ -126,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rsvpSection.style.display = "flex";
     }
 
-    // Asignamos el texto dinámico al recuadro superior
     if (familyNameEl) {
         familyNameEl.textContent = displayTitle;
     }
@@ -219,11 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS (Con protección Honeypot)
     // -------------------------------------------------------------
     if (submitBtn) {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
+
+            // 🛡️ Protección contra Bots (Honeypot)
+            const botCheck = document.getElementById("validationCode").value;
+            if (botCheck !== "") {
+                console.warn("Actividad de bot detectada y bloqueada.");
+                return; 
+            }
 
             if (formError) formError.style.display = "none";
 
