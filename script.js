@@ -3,15 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxM2ADI6ucvoWPhj9w2xNpK8X09PgP01V-cWB0AHVL0sHGdFaZ60rjz-XyLQeF5T1hs/exec";
 
     // -------------------------------------------------------------
-    // 0. OCULTAR SECCIONES POR DEFECTO AL CARGAR LA PÁGINA
+    // 0. DETECCIÓN DE PARÁMETROS Y VISIBILIDAD INICIAL
     // -------------------------------------------------------------
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
+
     const rsvpSection = document.getElementById("rsvpSection");
     const triviaSection = document.getElementById("trivia");
-    const giftsCard = document.getElementById("giftsBankCard");
+    const giftsContainerSection = document.getElementById("giftsSection"); // Si tienes un contenedor general para la sección de regalos
 
-    if (rsvpSection) rsvpSection.style.display = "none";
-    if (triviaSection) triviaSection.style.display = "none";
-    if (giftsCard) giftsCard.style.display = "none"; // Oculta los datos bancarios por defecto
+    // Si NO hay parámetros (entran a la web limpia), ocultamos RSVP, Trivia y Regalos
+    if (!rawParam) {
+        if (rsvpSection) rsvpSection.style.display = "none";
+        if (triviaSection) triviaSection.style.display = "none";
+        if (giftsContainerSection) giftsContainerSection.style.display = "none";
+    } else {
+        // Si SÍ hay parámetros, los mostramos correctamente
+        if (rsvpSection) rsvpSection.style.display = "flex";
+        if (triviaSection) triviaSection.style.display = "block";
+        if (giftsContainerSection) giftsContainerSection.style.display = "block";
+    }
 
     // -------------------------------------------------------------
     // 1. MÚSICA Y OVERLAY DE ENTRADA
@@ -109,19 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 2. DETECCIÓN DE PARÁMETROS Y VISIBILIDAD DE SECCIONES
+    // 2. PARÁMETROS DE LA URL (TÍTULO PRINCIPAL DINÁMICO)
     // -------------------------------------------------------------
-    const urlParams = new URLSearchParams(window.location.search);
-    const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
-    
-    // SI HAY PARÁMETRO EN EL LINK: Mostramos las secciones interactivas
-    if (rawParam) {
-        if (rsvpSection) rsvpSection.style.display = "flex";
-        if (triviaSection) triviaSection.style.display = "block";
-        // Nota: Los datos de regalos (giftsBankCard) siguen dependiendo del botón "Ver datos bancarios", 
-        // pero la sección de trivia y el RSVP ya se muestran completos.
-    }
-
     let displayTitle = "INVITADO ESPECIAL";
     if (rawParam) {
         displayTitle = rawParam.replace(/-/g, " ").replace(/,/g, " y ").toUpperCase();
@@ -362,15 +362,24 @@ function closeThanksModal() {
 }
 
 function toggleDatos() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
+
+    // Seguridad: Si entran sin parámetros, bloqueamos la visualización de los datos bancarios
+    if (!rawParam) {
+        alert("Esta sección está disponible únicamente mediante invitación personalizada.");
+        return;
+    }
+
     const card = document.getElementById("giftsBankCard");
     const btn = document.querySelector(".btn-underline");
     
     if (card && card.style.display === "none") {
         card.style.display = "block";
-        btn.innerText = "Ocultar datos bancarios";
+        if (btn) btn.innerText = "Ocultar datos bancarios";
     } else if (card) {
         card.style.display = "none";
-        btn.innerText = "Ver datos bancarios";
+        if (btn) btn.innerText = "Ver datos bancarios";
     }
 }
 
