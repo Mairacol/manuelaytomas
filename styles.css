@@ -133,131 +133,147 @@ body {
   opacity: 1;
   transition: var(--transition-smooth);
 }
-
 /* ==========================================
    OVERLAY DE ENTRADA (COVER INTRO)
    ========================================== */
 
 .intro-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: var(--color-bg-light); /* Fondo base sólido inmediato para evitar flashes */
-  background-image: url('images/fondo.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed;
+    inset: 0;
+    background-color: #EFECE6;
+    background-image: url('images/fondo.webp'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-overlay.fade-out {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
+/* Contenedor principal */
 .intro-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  max-width: 100vw !important;
-  height: 100dvh;
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 480px; 
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
 }
 
+/* Contenedor genérico para los SVGs */
 .intro-svg-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-.intro-svg-1 {
-  width: 85vw;
-  max-width: 420px;
-  height: auto;
-  display: block;
-  fill: var(--color-burgundy);
-  margin-bottom: 16px;
-  z-index: 2;
+/* --- 1. PRIMERA IMAGEN (Nombres) --- */
+.intro-content > .intro-svg-container:first-child {
+    width: 120vw;             
+    max-width: 540px;         /* Tamaño de los nombres que te gustó */
+    padding: 0 20px;          
+    box-sizing: border-box; 
+    position: absolute;       
+    top: 15%;                 /* Altura de los nombres en la pantalla */
+    left: 50%;
+    transform: translateX(-50%); 
 }
 
-.intro-svg-container > svg:nth-child(2),
-.intro-svg:not(.intro-svg-1) {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw !important;
-  max-width: 100vw !important;
-  height: auto;
-  max-height: 85vh;
-  overflow: visible;
-  z-index: 1;
-  pointer-events: none;
+.intro-content > .intro-svg-container:first-child svg.intro-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;         
 }
 
-.botanica-izq { transform: translateX(-480px); transition: transform 0.6s ease; }
-.botanica-der { transform: translateX(480px); transition: transform 0.6s ease; }
-
-.intro-svg-container > svg:nth-child(2) path { fill: var(--color-olive-dark) !important; }
-.intro-svg-couple { display: none !important; }
-
-.intro-subtitle {
-  font-family: var(--font-title);
-  font-size: 1.1rem;
-  letter-spacing: 0.35em;
-  color: var(--color-terracotta);
-  margin: 12px 0 24px 0;
-  font-weight: 400;
-  text-transform: uppercase;
-  z-index: 2;
+/* Pinta las formas del SVG de los nombres */
+.intro-svg path,
+.intro-svg polygon,
+.intro-svg rect,
+.intro-svg circle {
+    fill: #592B2A; 
 }
+
+/* --- FECHA (Justo debajo y pegada a los nombres) --- */
+.intro-date {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: var(--color-terracotta); 
+    text-align: center;
+    font-weight: 400;
+    font-family: var(--font-title);
+    position: absolute;
+    top: 30%;                
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+/* --- 2. SEGUNDA IMAGEN (Ilustración del campo) --- */
+.intro-content > .intro-svg-container:nth-of-type(2) {
+    max-width: 360px;       
+    margin-top: 140px;        /* Espacio para la ilustración del medio */
+    margin-bottom: 35px;    
+}
+
+.intro-svg-2 path {
+    fill: var(--color-corn-gold); 
+}
+
+.intro-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- 3. BOTÓN INGRESAR CON SUBRAYADO DE IMAGEN --- */
 .intro-enter-btn {
     background: transparent;
     border: none;
-    color: var(--color-burgundy, #520f19);
-    padding: 0;
-    font-family: var(--font-title);
-    font-size: 0.95rem;
-    letter-spacing: 0.35em;
+    color: #592B2A; 
+    font-size: 0.95rem; 
     text-transform: uppercase;
+    text-decoration: none;
     cursor: pointer;
+    padding: 6px 16px 20px 16px; /* Espacio inferior para que la imagen respire */
     position: relative;
-    z-index: 2;
-    outline: none;
-    
-    /* Subrayado editorial */
-    text-decoration: underline;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 1.5px;
-    
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    font-family: var(--font-title);
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+    margin-top: -30px;        
+}
+
+/* Imagen de subrayado personalizada */
+.intro-enter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;             /* Ancho de tu adorno (puedes subirlo a 150px si lo quieres más largo) */
+    height: 180px;             /* Altura del adorno */
+    background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg'); /* ➔ ASEGÚRATE de poner aquí la ruta real de tu archivo */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .intro-enter-btn:hover {
-    background: transparent;
-    color: var(--color-terracotta, #9e4139);
-    opacity: 0.75;
-    transform: translateY(-2px);
-    box-shadow: none;
-}
-
-.intro-enter-btn:active {
-    transform: translateY(0);
+    opacity: 0.7;
 }
 /* ==========================================================================
    REPRODUCTOR FLOTANTE
@@ -346,22 +362,20 @@ body {
   max-width: 500px;
   margin: auto 0;
 }
-
-/* Ilustración combinada del Hero ajustada */
-.hero-combined-svg {
+.hero-svg-container {
     width: 100%;
-    max-width: 240px; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-combined-img {
+    width: 100%;
+    max-width: 270px; /* Ajusta este ancho máximo según lo que necesites en pantalla */
     height: auto;
     display: block;
     margin: 0 auto;
-    overflow: visible;
 }
-
-/* Color uniforme borgoña para el trazo */
-.hero-combined-svg path {
-    fill: var(--color-burgundy, #520f19);
-}
-
 
 
 .scroll-indicator {
@@ -376,40 +390,44 @@ body {
 #txtScroll {
   font-family: var(--font-title);
   font-size: 0.8rem;
-  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--color-burgundy);
 }
 
-.scroll-line {
-  width: 1px;
-  height: 28px;
-  background-color: var(--color-burgundy);
-  animation: scrollPulse 2.2s ease-in-out infinite;
+.scroll-arrow-img {
+  width: 54px;                  
+  height: auto;
+  display: block;
+  opacity: 1;                     
+  margin-top: -8px;             /* ➔ Sube la flecha acercándola al texto "DESLIZAR" */
+  animation: scrollPulse 4s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {
-  0%, 100% { transform: scaleY(0.4); opacity: 0.3; }
-  50% { transform: scaleY(1); opacity: 1; }
+  0%, 100% { 
+    transform: scale(0.9);        
+  } 
+  50% { 
+    transform: scale(1.1);        
+  }
 }
-
 /* ==========================================================================
    FRASE / MANIFIESTO
    ========================================================================== */
 
 .hero-concept-main {
-  font-family: var(--font-featured), sans-serif;
+  font-family: var(--font-featured);
   color: var(--color-burgundy);
-  font-size: clamp(3.2rem, 10vw, 5rem);
+  font-size: clamp(4.5rem, 14vw, 7rem); 
   font-weight: normal;
   text-align: center;
-  line-height: 1;
+  line-height: 0.85;
   margin-bottom: 0.8rem;
 }
 
 .hero-concept-sub {
   font-family: var(--font-body);
-  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-size: clamp(2.1rem, 7vw, 3rem); 
   color: var(--color-olive-dark);
   line-height: 1.25;
   max-width: 600px;
@@ -422,64 +440,121 @@ body {
   transform: translateX(-20px);
 }
 
+
+
 /* ==========================================================================
    FECHA & AGENDAR
    ========================================================================== */
 
+.date-full-screen {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 60px 20px;
+}
+
+/* Contenido central intacto */
 .date-editorial-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 500px;
-  gap: 1.8rem;
-  margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    gap: 1.8rem;
+    position: relative;
+    z-index: 2;
+    margin: auto;
+
 }
 
 .date-editorial-tag {
-  font-size: clamp(2.4rem, 8vw, 3.5rem);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--color-burgundy);
-  opacity: 0.7;
-  font-family: var(--font-featured);
-}
+    font-size: clamp(2.8rem, 9vw, 4.2rem); /* Subimos los valores para que se vea más grande y protagonista */
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    opacity: 0.7;
+    font-family: var(--font-featured);
+    margin-top: 45px;
 
-.date-svg-container {
-  width: 100%;
-  max-width: 320px;
-  margin: 0.5rem auto;
-}
-
-.date-illustration {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.date-illustration path {
-  fill: var(--color-olive-dark);
 }
 
 .date-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .date-editorial-script {
-  font-family: var(--font-title);
-  font-size: clamp(2rem, 6vw, 2.8rem);
-  color: #2b2b2b;
-  letter-spacing: 6px;
-  font-weight: 300;
-  line-height: 1;
+    font-family: var(--font-title);
+    font-size: clamp(1.7rem, 4.8vw, 2.3rem);
+    color: var(--color-olive-dark);
+    letter-spacing: 4px;
+    font-weight: 200;
+    line-height: 1;
+    margin-top: -35px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.toast-arm {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    z-index: 10;
+}
+
+.toast-img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: block;
+}
+/* Posiciones exactas de cada copa */
+.arm-top-left { 
+    top: 120px; 
+    left: 5px; 
+}
+
+.arm-top-right { 
+    top: 140px; 
+    right: 5px; 
+}
+
+.arm-mid-left { 
+    top: 48%; 
+    left: 5px; 
+}
+
+.arm-mid-right { 
+    top: 55%; 
+    right: 5px; 
+    width: 90px;   /* Ajustá este valor para que coincida con el tamaño de las otras */
+    height: 90px; 
+}
+
+.arm-bottom-left { 
+    bottom: 30px; 
+    left: 5px; 
+}
+
+.arm-bottom-center { 
+    bottom: -15px; /* Cambialo de 25px a 10px (o 5px) para que baje */
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 110px; 
+    height: 110px; 
+}
+
+.arm-bottom-right { 
+    bottom: 30px; 
+    right: 5px; 
 }
 
 /* BOTONES EDITORIALES GRANDES */
-.date-editorial-btn,
 .editorial-btn,
 .party-editorial-btn,
 .editorial-link-btn {
@@ -499,14 +574,49 @@ body {
   transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
-.date-editorial-btn:hover,
 .editorial-btn:hover,
 .party-editorial-btn:hover,
 .editorial-link-btn:hover {
   opacity: 0.75;
   transform: translateY(-2px);
 }
+/* BOTÓN EXCLUSIVO DE LA SECCIÓN FECHA */
+.date-editorial-btn {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  color: var(--color-olive-dark);
+  text-decoration: none;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  cursor: pointer;
+  margin-top: 90px; /* Aumentá este número (ej. 30px o 40px) para bajarlo más */
+  position: relative;
+  padding-bottom: 10px;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
 
+.date-editorial-btn:hover {
+  opacity: 0.75;
+  transform: translateY(-2px);
+}
+
+.date-editorial-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -105px;
+  left: 50%;
+  transform: translateX(-55%);
+  width: 250px; /* Ponéle un ancho fijo en píxeles para probar */
+  height: 250px; /* Ponéle una altura fija */
+  background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  
+}
 /* ==========================================================================
    CEREMONIA & FIESTA (ESCALA EDITORIAL AMPLIADA)
    ========================================================================== */
