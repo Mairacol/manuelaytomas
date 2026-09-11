@@ -738,37 +738,47 @@ body {
 .dresscode-illustration path {
   fill: var(--color-burgundy);
 }
+.dresscode-image-container {
+  width: 100%;
+  max-width: 160px; /* Ajustá este ancho según cómo se vea tu PNG */
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.dresscode-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 .dresscode-title-script {
   font-family: var(--font-title);
-  font-size: clamp(2.2rem, 6vw, 2.8rem);
-  color: var(--color-olive-dark);
+  font-size: 2rem;
+  color: var(--color-terracotta);
   margin-bottom: 0.2rem;
   text-transform: uppercase;
 }
 
 .dresscode-main-type {
-  font-family: var(--font-title);
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 1.7rem;
   color: var(--color-terracotta);
   margin-bottom: 0.5rem;
-  text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .dresscode-note {
   font-family: var(--font-body);
-  font-size: 1.4rem;
+  font-size: 1.3rem;               
   color: var(--color-burgundy);
   letter-spacing: 0.5px;
-  max-width: 360px;
-  margin: 0.5rem auto;
-  line-height: 1.3;
-  border-top: 1px solid rgba(66, 65, 35, 0.15);
-  border-bottom: 1px solid rgba(66, 65, 35, 0.15);
-  padding: 8px 0;
+  max-width: 220px;                
+  margin: 0.2rem 2rem 1rem auto;   /* El 'auto' a la izquierda lo empuja hacia la derecha */
+  text-align: right;               /* Alinea las líneas hacia la derecha */
+  line-height: 1.2;
+  padding: 4px 0;
 }
-
 .dresscode-note-title {
   display: block;
   font-size: 1.4rem;
