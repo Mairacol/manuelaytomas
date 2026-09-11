@@ -859,21 +859,37 @@ body {
     text-transform: uppercase;
 }
 
-.spotify-header-illustration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.2rem;
-    width: 100%;
+/* Contenedor e ilustración con efecto de baile */
+.spotify-image-container {
+  width: 100%;
+  max-width: 150px; 
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.spotify-header-illustration svg.animated-playlist-svg {
-    width: 100%;
-    max-width: 160px; 
-    height: auto;
+.spotify-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Animación que simula un movimiento de baile sutil y continuo */
+  animation: floatDance 3s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
-/* --- ESTILOS GENERALES Y BOTÓN --- */
+@keyframes floatDance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
 .spotify-desc {
     font-size: 1.1rem;
     color: var(--color-olive-dark);
@@ -886,84 +902,37 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Enlace / Botón de Spotify */
 .editorial-spotify-link {
-    display: inline-block;
-    background-color: transparent;
-    border: none;
-    color: var(--color-burgundy, #520f19);
-    padding: 0;
-    font-family: var(--font-title);
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 1.5px;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 3px;    /* Reducido para subir el espacio del subrayado */
+  margin-top: 1rem;
+  margin-bottom: 25px;
+  font-family: var(--font-title);
+  color: var(--color-burgundy);
+}
+
+/* Imagen de subrayado personalizada en PNG (Subida y ajustada) */
+.editorial-spotify-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-55%);
+  bottom: -70px;            /* ➔ Subido para que quede más cerca del texto */
+  width: 260px;            
+  height: 160px;            
+  background-image: url('/images/subrayado.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .editorial-spotify-link:hover {
-    background-color: transparent;
-    color: var(--color-terracotta, #9e4139);
-    opacity: 0.75;
-    transform: translateY(-2px);
-    box-shadow: none;
-}
-
-/* ==========================================================================
-   ANIMACIÓN BOLA DISCO (OPCIÓN 1: BALANCEO)
-   ========================================================================== */
-
-#discoSystem {
-    transform-origin: 300px 100px; 
-    animation: swingDisco 4s ease-in-out infinite alternate;
-}
-
-/* ==========================================================================
-   BAILARINES: ACERCAMIENTO INTERACTIVO
-   ========================================================================== */
-
-.left-dancer {
-    transform-origin: center bottom;
-    animation: approachLeft 4s ease-in-out infinite alternate;
-}
-
-.right-dancer {
-    transform-origin: center bottom;
-    animation: approachRight 4s ease-in-out infinite alternate;
-}
-
-@keyframes approachLeft {
-    0% {
-        transform: translateX(0) rotate(0deg);
-    }
-    100% {
-        transform: translateX(15px) rotate(2deg) scale(1.02); 
-    }
-}
-
-@keyframes approachRight {
-    0% {
-        transform: translateX(0) rotate(0deg);
-    }
-    100% {
-        transform: translateX(-15px) rotate(-2deg) scale(1.02); 
-    }
-}
-
-@keyframes swingDisco {
-    0% {
-        transform: rotate(-3deg);
-    }
-    100% {
-        transform: rotate(3deg);
-    }
-}
-
-.animated-playlist-svg path {
-    fill: var(--color-burgundy, #520f19);
-    transition: fill 0.3s ease;
+  opacity: 0.7;
 }
 /* ==========================================================================
    ESTILOS DE LA TRIVIA - VERSIÓN FINAL PULIDA Y ELEGANTE
