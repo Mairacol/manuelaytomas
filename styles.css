@@ -519,7 +519,7 @@ body {
 .date-editorial-script {
     font-family: var(--font-title);
     font-size: clamp(1.7rem, 4.8vw, 2.3rem);
-    color: var(--color-olive-dark);
+    color: #111111;
     letter-spacing: 4px;
     font-weight: 200;
     line-height: 1;
@@ -691,7 +691,7 @@ body {
   display: inline-block;
   background-color: transparent;
   border: none;
-  color: var(--color-olive-dark);
+  color: #111111;
   text-decoration: none;
   font-size: clamp(1.1rem, 3.5vw, 1.4rem);
   letter-spacing: 2px;
@@ -717,7 +717,7 @@ body {
   transform: translateX(-55%);
   width: 250px; /* Ponéle un ancho fijo en píxeles para probar */
   height: 250px; /* Ponéle una altura fija */
-  background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg');
+  background-image: url('/images/subrayadonegro.webp');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -769,6 +769,7 @@ body {
   letter-spacing: 2px;
   margin: 0;
   font-family: var(--font-title);
+  color:var(--color-burgundy);
 }
 
 /* Nombres de los lugares (Parroquia / Campo) */
@@ -877,7 +878,7 @@ body {
 .dresscode-note {
   font-family: var(--font-body);
   font-size: 1.3rem;               
-  color: var(--color-burgundy);
+  color: var(--color-olive-dark);
   letter-spacing: 0.5px;
   max-width: 220px;                
   margin: 0.2rem 2rem 1rem auto;   /* El 'auto' a la izquierda lo empuja hacia la derecha */
@@ -1019,7 +1020,7 @@ body {
   margin-top: 1rem;
   margin-bottom: 25px;
   font-family: var(--font-title);
-  color: var(--color-burgundy);
+  color: var(--color-terracotta);
 }
 
 /* Imagen de subrayado personalizada en PNG (Subida y ajustada) */
@@ -1031,7 +1032,7 @@ body {
   bottom: -70px;            /* ➔ Subido para que quede más cerca del texto */
   width: 260px;            
   height: 160px;            
-  background-image: url('/images/subrayado.png');
+  background-image: url('/images/subrayadoterracota.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
