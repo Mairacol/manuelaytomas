@@ -620,104 +620,100 @@ body {
 /* ==========================================================================
    CEREMONIA & FIESTA (ESCALA EDITORIAL AMPLIADA)
    ========================================================================== */
-
-.venue-editorial-content,
-.party-editorial-content {
+.venue-editorial-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 540px; 
-  gap: 2.2rem; 
-  margin: auto 0;
+  max-width: 480px; 
+  gap: 0.6rem; /* Espaciado compacto y armónico */
+  margin: auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
 }
 
-.editorial-header,
-.party-editorial-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.editorial-tag,
-.editorial-tag-sub {
-  font-size: 1.5rem; 
-  letter-spacing: 7px;
-  text-transform: uppercase;
-  opacity: 0.65;
-  font-family: var(--font-featured);
-}
-
-.editorial-title,
-.party-editorial-title,
-.editorial-section-title {
-  font-size: clamp(2.8rem, 8.5vw, 3.8rem); 
-  font-weight: 300;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin: 0;
-  font-family: var(--font-title);
-  color: #2b2b2b;
-  line-height: 1.05;
-}
-
-.svg-container-editorial,
-.party-svg-container,
-.editorial-svg-wrapper {
+/* Contenedor de las imágenes (agrandado y unificado) */
+.image-container-editorial,
+.party-image-container {
   width: 100%;
-  max-width: 380px; 
-  height: 220px;    
-  margin: 0.8rem 0;
+  max-width: 110px; /* Tamaño aumentado (antes 75px) */
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.map-illustration,
+/* Espaciado superior para separar el bloque de la Fiesta de la Ceremonia */
+.party-image-container {
+  margin-top: 1.2rem; 
+}
+
+.section-illustration,
 .party-illustration {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transform: scale(1.15); 
-  transform-origin: center;
+  height: auto;
+  display: block;
 }
 
-.map-illustration path,
-.party-illustration path {
-  fill: var(--color-burgundy);
+/* Títulos principales (CEREMONIA / FIESTA) */
+.editorial-title,
+.party-editorial-title {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin: 0;
+  font-family: var(--font-title);
 }
 
-.venue-details,
-.party-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
+/* Nombres de los lugares (Parroquia / Campo) */
 .venue-location,
-.party-location,
-.editorial-venue-name {
-  font-size: 2rem; 
-  font-weight: 500;
-  color: #2b2b2b;
+.party-location {
+  font-size: 1.25rem;
   margin: 0;
-  text-align: center;
-  line-height: 1.2;
-}
-
-.venue-time,
-.party-time,
-.editorial-venue-time {
-  font-size: 1.4rem; 
-  letter-spacing: 5px;
   color: var(--color-burgundy);
-  font-weight: 600;
-  margin: 0;
 }
 
+/* Horarios (17:00HS / 18:30HS) */
+.venue-time,
+.party-time {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--color-burgundy);
+  font-family: var(--font-title);
+}
+
+/* Botones de enlace VER MAPA */
+.editorial-btn,
+.party-editorial-btn {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 30px;    /* Espacio interno mayor para que la imagen grande respire */
+  margin-bottom: 40px;     
+}
+
+/* Imagen de subrayado personalizada (Aún más grande) */
+.editorial-btn::after,
+.party-editorial-btn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-52%);
+  bottom: -2px;           /* Distancia ajustada para el nuevo tamaño */
+  width: 260px;            /* ➔ Ancho bien amplio (probá con 280px si querés que abarque más) */
+  height: 75px;            /* ➔ Altura mayor para que se luzca con todo el detalle */
+  background-image: url('/images/subrayado.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.editorial-btn:hover,
+.party-editorial-btn:hover {
+  opacity: 0.7;
+}
 /* ==========================================================================
    DRESS CODE
    ========================================================================== */
