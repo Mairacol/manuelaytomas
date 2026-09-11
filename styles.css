@@ -7,7 +7,11 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
-
+/* Bloqueo temporal para evitar que el snap scroll devuelva la vista a la intro */
+html.no-snap, body.no-snap {
+    scroll-snap-type: none !important;
+    overflow-y: auto !important;
+}
 /* Quita el borde/contorno de enfoque azul al hacer clic en botones y enlaces */
 button:focus,
 a:focus,
@@ -1175,16 +1179,15 @@ body {
 .btn-copy:hover {
   opacity: 0.6;
 }
-
 /* ==========================================================================
-   RSVP (ESTILO EDITORIAL TRANSPARENTE)
+   RSVP (ESTILO EDITORIAL MINIMALISTA & ELEGANTE)
    ========================================================================== */
 
 .rsvp, .rsvp-section {
   background-color: transparent; 
   min-height: 100dvh;
   height: auto;
-  padding: 4rem 1.5rem;
+  padding: 5rem 1.5rem;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -1202,88 +1205,54 @@ body {
   text-align: center;
 }
 
-.rsvp-inner .card {
-  background: transparent;
-  padding: 28px 20px;
-  border: 1px solid var(--color-corn-gold); 
-  border-radius: 2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
+/* ==========================================
+   TARJETA EXCLUSIVA DE INVITADOS (FAMILIA)
+   ========================================== */
 .rsvp-guest-info {
-  background: transparent;
-  border: 1px solid var(--color-corn-gold);
-  font-family: var(--font-title);
-  text-transform: uppercase;
-  border-radius: 0px;
-  padding: 28px 24px;
-  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.35); /* <--- Acá está el 0.35 actual */
+  border: 1px solid rgba(202, 184, 123, 0.5); 
+  border-radius: 3px;
+  padding: 30px 20px;
+  margin-bottom: 40px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  box-sizing: border-box;
+  gap: 8px;
   width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02); 
 }
 
-.rsvp-guest-info .guest-label {
+.rsvp-guest-info #txtGuestLabel {
   font-family: var(--font-title);
-  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  font-size: 1rem;
   color: var(--color-terracotta);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.rsvp-guest-info .guest-name-title {
+.rsvp-guest-info #familyName {
   font-family: var(--font-title); 
-  text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1.8rem; 
   color: var(--color-burgundy);
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
-.rsvp-guest-info .guest-slots-text {
-  font-family: var(--font-title);
-  text-transform: uppercase;
-  font-size: 1.1rem;
+.rsvp-guest-info #slots {
+  font-family: var(--font-body); 
+  font-size: 1rem;
   color: var(--color-olive-dark);
+  letter-spacing: 1.5px;
   margin-top: 4px;
 }
-.guest-label {
-  font-family: var(--font-title);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  color: var(--color-terracotta);
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 300;
-}
 
-.rsvp-inner .card h3 {
-  font-family: var(--font-title);
-    text-transform: uppercase;
-  font-size: 1.8rem;
-  color: var(--color-burgundy);
-  margin-bottom: 6px;
-  letter-spacing: 4px;
-  font-weight: 400;
-}
-
-.rsvp-inner .card p {
-  font-family: var(--font-title);
-  font-size: 0.75rem;
-  color: var(--color-olive-dark);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: 400;
-  margin: 0;
-}
-
+/* ==========================================
+   ENCABEZADO DE RSVP
+   ========================================== */
 .rsvp-header-block { 
   margin-bottom: 35px; 
 }
@@ -1316,18 +1285,28 @@ body {
   font-weight: 300;
 }
 
+/* ==========================================
+   TARJETAS DE INVITADOS INDIVIDUALES
+   ========================================== */
 .guest-editorial-card {
-  background: transparent;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(202, 184, 123, 0.4);
-  margin-bottom: 25px;
+  background: transparent;          
+  padding: 10px 0 30px 0;           
+  border: none;                     
+  border-bottom: 1px solid rgba(202, 184, 123, 0.3); /* Línea divisoria fina */
+  margin-bottom: 30px;
   text-align: left;
 }
 
+.rsvp-inner .card {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
 .guest-card-top {
-  margin-bottom: 18px;
-  border-bottom: 1px solid rgba(202, 184, 123, 0.4);
-  padding-bottom: 6px;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
 }
 
 .guest-number {
@@ -1340,44 +1319,53 @@ body {
 }
 
 .field-block { 
-  margin-bottom: 24px; 
+  margin-bottom: 25px; 
 }
 
 .editorial-label {
   font-family: var(--font-title);
-  font-size: 0.75rem;
-  letter-spacing: 2.5px;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
   color: var(--color-olive-dark);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
+/* ==========================================
+   CAMPOS DE ENTRADA (INPUTS, SELECTS Y TEXTAREAS)
+   ========================================== */
 .editorial-input, .editorial-select, .editorial-textarea {
   width: 100%;
-  padding: 10px 0;
+  padding: 12px 0;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--color-corn-gold);
   border-radius: 0;
   font-family: var(--font-title);
-    text-transform: uppercase;
+  text-transform: uppercase;
   font-size: 0.95rem;
-  color: var(--color-burgundy);
+  color: var(--color-burgundy); 
   letter-spacing: 1px;
   box-sizing: border-box;
-  transition: border-color 0.3s ease;
+}
+
+.editorial-input::placeholder, .editorial-textarea::placeholder {
+  color: var(--color-burgundy); 
+  opacity: 0.5; 
+  letter-spacing: 1px;
 }
 
 .editorial-select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
   background-position: right 0px center;
   background-size: 14px;
   padding-right: 20px;
   cursor: pointer;
+  color: var(--color-burgundy);
 }
 
 .editorial-input:focus, .editorial-select:focus, .editorial-textarea:focus {
@@ -1385,56 +1373,84 @@ body {
   border-bottom-color: var(--color-burgundy);
 }
 
-.editorial-input::placeholder, .editorial-textarea::placeholder {
-  color: var(--color-terracotta);
-  opacity: 0.6;
-  letter-spacing: 1px;
-}
-
+/* ==========================================
+   RADIO BUTTONS (ASISTENCIA)
+   ========================================== */
 .editorial-radio-group { 
   display: flex; 
-  gap: 24px; 
+  gap: 30px; 
+  margin-top: 6px;
 }
 
 .radio-pill {
   font-family: var(--font-title);
   font-size: 0.85rem;
-    text-transform: uppercase;
+  text-transform: uppercase;
   color: var(--color-olive-dark);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .radio-pill input[type="radio"] {
   accent-color: var(--color-burgundy);
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
+/* ==========================================
+   BOTÓN DE ENVÍO Y ERRORES
+   ========================================== */
 .editorial-submit-btn {
-  width: 100%;
-  background-color: var(--color-burgundy);
-  color: var(--color-bg-light);
-  border: 1px solid var(--color-burgundy);
-  padding: 16px;
+  width: auto;                  /* Para que no ocupe todo el ancho si es un botón de texto */
+  display: inline-block;
+  background-color: transparent; /* Sin fondo sólido pesado */
+  color: var(--color-burgundy);  /* Texto color borravino */
+  border: none;                  /* Sin bordes de caja */
+  padding: 0 0 25px 0;           /* Espacio interno para que respire el subrayado */
   font-family: var(--font-title);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  letter-spacing: 4px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 15px;
-  border-radius: 0px;
+  transition: opacity 0.3s ease;
+  margin-top: 2rem;
+  margin-bottom: 40px;         /* Espacio libre para que la imagen no se superponga con lo que sigue */
+  position: relative;          /* Necesario para posicionar el subrayado */
+}
+
+/* Imagen de subrayado personalizada en PNG para el botón de enviar */
+.editorial-submit-btn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-55%);
+  bottom: -55px;               /* Posición ajustada para que quede cerquita del texto */
+  width: 300px;                /* Ancho del subrayado */
+  height: 175px;                /* Altura de la imagen */
+  background-image: url('/images/subrayado.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;        /* Para que no interfiera con los clics */
 }
 
 .editorial-submit-btn:hover {
+  opacity: 0.7;                /* Efecto suave al pasar el cursor */
   background-color: transparent;
   color: var(--color-burgundy);
+}
+
+.form-error {
+  color: var(--color-terracotta);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 .form-error {

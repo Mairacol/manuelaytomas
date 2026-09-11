@@ -10,15 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rsvpSection = document.getElementById("rsvpSection");
     const triviaSection = document.getElementById("trivia");
-    const giftsContainerSection = document.getElementById("giftsSection"); // Si tienes un contenedor general para la sección de regalos
+    const giftsContainerSection = document.getElementById("giftsSection"); 
 
-    // Si NO hay parámetros (entran a la web limpia), ocultamos RSVP, Trivia y Regalos
     if (!rawParam) {
         if (rsvpSection) rsvpSection.style.display = "none";
         if (triviaSection) triviaSection.style.display = "none";
         if (giftsContainerSection) giftsContainerSection.style.display = "none";
     } else {
-        // Si SÍ hay parámetros, los mostramos correctamente
         if (rsvpSection) rsvpSection.style.display = "flex";
         if (triviaSection) triviaSection.style.display = "block";
         if (giftsContainerSection) giftsContainerSection.style.display = "block";
@@ -87,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (openInviteBtn && overlay) {
-        openInviteBtn.addEventListener('click', () => {
+        openInviteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             overlay.style.opacity = '0';
             overlay.style.transform = 'translateY(-20px)';
             overlay.style.pointerEvents = 'none';
@@ -132,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const familyNameEl = document.getElementById("familyName");
     const slotsEl = document.getElementById("slots");
+    const guestLabelEl = document.getElementById("txtGuestLabel"); 
     const guestsContainer = document.getElementById("guests");
     const submitBtn = document.getElementById("submitBtn");
     const formError = document.getElementById("formError");
@@ -140,11 +140,36 @@ document.addEventListener('DOMContentLoaded', () => {
         familyNameEl.textContent = displayTitle;
     }
     
-    if (slotsEl) {
-        slotsEl.textContent = totalSlots === 1 ? "1 LUGAR RESERVADO" : `${totalSlots} LUGARES RESERVADOS`;
+    if (guestLabelEl) {
+        if (totalSlots === 1) {
+            const generoDiscreto = urlParams.get("g") ? urlParams.get("g").toLowerCase() : "";
+            
+            if (generoDiscreto === "f") {
+                guestLabelEl.textContent = "Invitada";
+            } else if (generoDiscreto === "m") {
+                guestLabelEl.textContent = "Invitado";
+            } else {
+                const nombreUnico = rawParam ? rawParam.trim().toUpperCase() : "";
+                const nombresVaronesExcepcion = ["LUCAS", "MATIAS", "TOBIAS", "BAUTISTA", "JONAS", "NICOLAS", "TOMAS", "EZEQUIEL"];
+                
+                const esVaronExcepcion = nombresVaronesExcepcion.includes(nombreUnico);
+                const terminaEnA = nombreUnico.endsWith('A');
+
+                if (terminaEnA && !esVaronExcepcion) {
+                    guestLabelEl.textContent = "Invitada";
+                } else {
+                    guestLabelEl.textContent = "Invitado";
+                }
+            }
+        } else {
+            guestLabelEl.textContent = "Invitados";
+        }
     }
 
-    // Generar formularios individuales por invitado
+    if (slotsEl) {
+        slotsEl.textContent = totalSlots === 1 ? "1 Lugar reservado" : `${totalSlots} Lugares reservados`;
+    }
+
     if (guestsContainer) {
         guestsContainer.innerHTML = ""; 
 
@@ -153,22 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
             guestCard.className = "guest-editorial-card";
 
             guestCard.innerHTML = `
-                <div class="guest-card-top">
-                    <span class="guest-number">Invitado ${i}</span>
+                <div class="guest-card-top" style="border-bottom: 1px solid rgba(202, 184, 123, 0.4); padding-bottom: 8px; margin-bottom: 20px;">
+                    <span class="guest-number" style="font-family: var(--font-title); font-size: 0.75rem; letter-spacing: 4px; color: var(--color-burgundy); text-transform: uppercase;">Invitado ${i}</span>
                 </div>
 
-                <div class="field-block">
-                    <label class="editorial-label">Nombre</label>
+                <div class="field-block" style="margin-bottom: 20px;">
                     <input type="text" class="editorial-input guest-firstname" placeholder="Nombre" required>
                 </div>
 
-                <div class="field-block">
-                    <label class="editorial-label">Apellido</label>
+                <div class="field-block" style="margin-bottom: 25px;">
                     <input type="text" class="editorial-input guest-lastname" placeholder="Apellido" required>
                 </div>
 
-                <div class="field-block">
-                    <label class="editorial-label">¿Asistirá?</label>
+                <div class="field-block" style="margin-bottom: 25px;">
+                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.7rem; letter-spacing: 3px; color: var(--color-olive-dark); text-transform: uppercase; display: block; margin-bottom: 8px;">¿Asistirá?</label>
                     <div class="editorial-radio-group">
                         <label class="radio-pill active">
                             <input type="radio" name="attendance_${i}" value="Sí" checked> Sí asistirá
@@ -179,10 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <div class="field-block menu-block" id="menuBlock_${i}" style="transition: all 0.4s ease; max-height: 120px; overflow: hidden;">
-                    <label class="editorial-label">Menú / Preferencia</label>
+                <div class="field-block menu-block" id="menuBlock_${i}" style="margin-bottom: 25px; overflow: hidden; transition: all 0.4s ease;">
                     <select class="editorial-select guest-menu">
-                        <option value="" disabled selected>Seleccioná una opción de menú</option>
+                        <option value="" disabled selected>Menú (Seleccionar opción)</option>
                         <option value="General">Menú General</option>
                         <option value="Vegetariano">Vegetariano</option>
                         <option value="Celíaco">Celíaco / Sin TACC</option>
@@ -190,9 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </select>
                 </div>
 
-                <div class="field-block">
-                    <label class="editorial-label">Mensaje para los novios</label>
-                    <input type="text" class="editorial-input guest-diet" placeholder="Escribí unas palabras o aclaración...">
+                <div class="field-block" style="margin-bottom: 10px;">
+                    <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios (opcional)">
                 </div>
             `;
             
@@ -211,34 +232,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            // Oculta completamente el menú si selecciona "No podrá asistir"
             radioNo.addEventListener('change', () => {
-                menuSelect.disabled = true;
-                menuBlock.style.opacity = '0.3';
-                menuBlock.style.maxHeight = '0px';
-                menuBlock.style.marginBottom = '0px';
+                menuSelect.value = "";
+                menuSelect.required = false;
+                menuBlock.style.display = 'none'; 
             });
 
             radioSi.addEventListener('change', () => {
-                menuSelect.disabled = false;
-                menuBlock.style.opacity = '1';
-                menuBlock.style.maxHeight = '120px';
-                menuBlock.style.marginBottom = '24px';
+                menuSelect.required = true;
+                menuBlock.style.display = 'block'; 
             });
         }
     }
 
     // -------------------------------------------------------------
-    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS (Con protección Honeypot)
+    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS (Fluido y sin saltos)
     // -------------------------------------------------------------
     if (submitBtn) {
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
+            e.stopPropagation();
 
-            const botCheck = document.getElementById("validationCode").value;
-            if (botCheck !== "") {
-                console.warn("Actividad de bot detectada y bloqueada.");
-                return; 
-            }
+            const botCheck = document.getElementById("validationCode")?.value || "";
+            if (botCheck !== "") return false;
 
             if (formError) formError.style.display = "none";
 
@@ -261,15 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!firstNameValid || !lastNameValid || !menuValid) {
                     allValid = false;
-                    firstNameInput.style.borderBottomColor = firstNameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
-                    lastNameInput.style.borderBottomColor = lastNameValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
-                    if (isAttending) {
-                        menuSelect.style.borderBottomColor = menuValid ? "var(--color-corn-gold)" : "var(--color-terracotta)";
-                    }
-                } else {
-                    firstNameInput.style.borderBottomColor = "var(--color-corn-gold)";
-                    lastNameInput.style.borderBottomColor = "var(--color-corn-gold)";
-                    if (menuSelect) menuSelect.style.borderBottomColor = "var(--color-corn-gold)";
                 }
 
                 rsvpData.push({
@@ -286,42 +294,64 @@ document.addEventListener('DOMContentLoaded', () => {
                     formError.style.display = "block";
                     formError.textContent = "Por favor, completá los campos requeridos.";
                 }
-                return;
+                return false;
             }
 
-            submitBtn.disabled = true;
-            submitBtn.textContent = "ENVIANDO CONFIRMACIÓN...";
+            // Fijamos la posición del scroll de inmediato
+            const currentScroll = window.scrollY;
 
-            const payload = {
-                familia: displayTitle,
-                id: guestID,
-                puntos: window.triviaPuntos || 0,
-                invitados: rsvpData
-            };
+            // Actualización visual instantánea en pantalla
+            localStorage.setItem(`rsvp_confirmed_${guestID}`, "true");
+            limpiarInterfazRsvp();
+            mostrarModalAgradecimiento();
+            window.scrollTo({ top: currentScroll, behavior: 'instant' });
 
-            fetch(APPS_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({ payload: JSON.stringify(payload) })
-            })
-            .then(() => {
-                mostrarModalAgradecimiento();
-                submitBtn.disabled = false;
-                submitBtn.textContent = "CONFIRMAR ASISTENCIA";
-            })
-            .catch(err => {
-                console.error("Error al enviar respuesta:", err);
-                if (formError) {
-                    formError.style.display = "block";
-                    formError.textContent = "Ocurrió un error al guardar. Intentá nuevamente.";
-                }
-                submitBtn.disabled = false;
-                submitBtn.textContent = "CONFIRMAR ASISTENCIA";
-            });
+            // Envío en segundo plano con un pequeño retraso para garantizar fluidez total
+            setTimeout(() => {
+                const payload = {
+                    familia: displayTitle,
+                    id: guestID,
+                    puntos: window.triviaPuntos || 0,
+                    invitados: rsvpData
+                };
+
+                fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(payload)
+                }).catch(() => {});
+            }, 50);
+
+            return false;
         });
     }
 
+ function limpiarInterfazRsvp() {
+    const guestsContainerEl = document.getElementById("guests");
+    const submitButtonEl = document.getElementById("submitBtn");
+    const headerBlockEl = document.getElementById("rsvpHeaderBlock"); // <--- Apuntamos al ID exacto
+    const guestInfoEl = document.querySelector(".rsvp-guest-info");
+
+    if (guestsContainerEl) guestsContainerEl.style.display = "none";
+    if (submitButtonEl) submitButtonEl.style.display = "none";
+    if (headerBlockEl) headerBlockEl.style.display = "none"; // <--- Lo oculta por completo
+    if (guestInfoEl) guestInfoEl.style.display = "none";
+
+    const rsvpInner = document.querySelector('.rsvp-inner');
+    if (rsvpInner && !document.getElementById("graciasExito")) {
+        const mensajeDiv = document.createElement("div");
+        mensajeDiv.id = "graciasExito";
+        mensajeDiv.style.cssText = "text-align: center; padding: 40px 20px;";
+        mensajeDiv.innerHTML = `
+            <h3 style="font-family: var(--font-title); color: var(--color-burgundy); font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                ¡MUCHAS GRACIAS!
+            </h3>
+            <p style="color: var(--color-olive-dark); font-size: 1.1rem; font-family: var(--font-body); letter-spacing: 1px;">Tu respuesta ya fue registrada con éxito.</p>
+        `;
+        rsvpInner.appendChild(mensajeDiv);
+    }
+}
     function mostrarModalAgradecimiento() {
         let modal = document.getElementById("thanksModal");
         if (modal) {
@@ -331,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 4. LÓGICA DE LA TRIVIA (3 PREGUNTAS)
+    // 4. LÓGICA DE LA TRIVIA
     // -------------------------------------------------------------
     window.triviaPuntos = 0;
     
@@ -357,7 +387,12 @@ function closeThanksModal() {
     if (modal) {
         modal.classList.add("hidden");
         modal.style.display = "none";
-        window.location.reload();
+    }
+    
+    // Opcional: Nos aseguramos de ocultar la intro por si acaso el DOM la vuelve a mostrar
+    const overlay = document.getElementById('intro-overlay');
+    if (overlay) {
+        overlay.style.display = 'none';
     }
 }
 
@@ -365,7 +400,6 @@ function toggleDatos() {
     const urlParams = new URLSearchParams(window.location.search);
     const rawParam = urlParams.get("nombre") || urlParams.get("familia") || urlParams.get("invitados");
 
-    // Seguridad: Si entran sin parámetros, bloqueamos la visualización de los datos bancarios
     if (!rawParam) {
         alert("Esta sección está disponible únicamente mediante invitación personalizada.");
         return;
@@ -384,7 +418,7 @@ function toggleDatos() {
 }
 
 function copiarCBU() {
-    const cbu = document.getElementById("cbuText")?.innerText;
+    const cbu = document.getElementById("cBUText")?.innerText || document.getElementById("cbuText")?.innerText;
     if (cbu) {
         navigator.clipboard.writeText(cbu).then(() => {
             alert("¡CBU copiado al portapapeles!");

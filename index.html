@@ -348,24 +348,27 @@ Te dejamos una idea…</span>
  <!-- =========================================
        SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
        ========================================= -->
+<!-- ==========================================================================
+     SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
+     ========================================================================== -->
 <section class="rsvp reveal" id="rsvpSection" style="display: none;">
   <div class="container">
     <div class="rsvp-inner">
       
-      <!-- Información del invitado (limpia, sin tarjeta tipo caja) -->
+      <!-- Información del invitado -->
       <div class="rsvp-guest-info">
           <span class="guest-label" id="txtGuestLabel">Invitados</span>
           <h3 id="familyName"></h3>
           <p id="slots"></p>
       </div>
 
-      <div class="rsvp-header-block">
+<div class="rsvp-header-block" id="rsvpHeaderBlock">
         <span class="rsvp-subtitle" id="txtRsvpSub">ASISTENCIA</span>
         <h2 class="title-script">RSVP</h2>
         <p class="limit" id="txtRsvpLimit">Confirmar antes del 15 de Febrero 2027</p>
       </div>
 
-      <!-- Contenedor donde el script genera dinámicamente los campos y selects de cada invitado -->
+      <!-- Contenedor dinámico de invitados -->
       <div id="guests"></div>
       
       <p id="formError" class="form-error hidden" style="display: none;">Por favor completá los campos obligatorios.</p>
@@ -374,7 +377,8 @@ Te dejamos una idea…</span>
         <input type="text" id="validationCode" name="validation_code" tabindex="-1" autocomplete="off">
       </div>
       
-      <button id="submitBtn" class="intro-enter-btn">ENVIAR CONFIRMACIÓN</button>
+      <button type="button" id="submitBtn" class="editorial-submit-btn">ENVIAR CONFIRMACIÓN</button>
+      
     </div>
   </div>
 </section>
@@ -401,5 +405,7 @@ Te dejamos una idea…</span>
     </p>
 
     <script src="script.js"></script>
+    <!-- Iframe oculto para atrapar la respuesta de Google sin recargar la página -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { /* opcional */ }"></iframe>
 </body>
 </html>
