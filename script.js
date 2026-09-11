@@ -242,7 +242,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+document.addEventListener("DOMContentLoaded", function() {
+    const section = document.querySelector('.date-full-screen');
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Cuando el usuario baja y ve la sección, añadimos la clase que dispara las animaciones
+                section.classList.add('is-visible');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.2 // Se dispara cuando el 20% de la sección entra en pantalla
+    });
+
+    if (section) {
+        observer.observe(section);
+    }
+});
     // -------------------------------------------------------------
     // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS (Fluido y sin saltos)
     // -------------------------------------------------------------
