@@ -140,24 +140,51 @@ body {
 .intro-overlay {
     position: fixed;
     inset: 0;
-    background-color: #EFECE6;
-    background-image: url('images/fondo.webp'); 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro-overlay.fade-out {
-    opacity: 0;
-    visibility: hidden;
+/* Las dos cortinas de apertura lenta (3.5 segundos) */
+.intro-overlay::before,
+.intro-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: #EFECE6;
+    background-image: url('images/fondo.webp');
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    z-index: 10000;
     pointer-events: none;
+    opacity: 1;
+    transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.intro-overlay::before {
+    left: 0;
+    background-position: left center;
+}
+
+.intro-overlay::after {
+    right: 0;
+    background-position: right center;
+}
+
+/* Animación de apertura al hacer clic */
+.intro-overlay.fade-out {
+    pointer-events: none;
+}
+
+.intro-overlay.fade-out::before {
+    transform: translateX(-100%);
+}
+
+.intro-overlay.fade-out::after {
+    transform: translateX(100%);
 }
 
 /* Contenedor principal */
@@ -171,6 +198,12 @@ body {
     padding: 20px;
     box-sizing: border-box;
     position: relative;
+    z-index: 10001;
+    transition: opacity 0.3s ease;
+}
+
+.intro-overlay.fade-out .intro-content {
+    opacity: 0;
 }
 
 /* Contenedor genérico para los SVGs */
@@ -183,12 +216,12 @@ body {
 
 /* --- 1. PRIMERA IMAGEN (Nombres) --- */
 .intro-content > .intro-svg-container:first-child {
-    width: 120vw;             
-    max-width: 540px;         /* Tamaño de los nombres que te gustó */
+    width: 120vw;            
+    max-width: 540px;        
     padding: 0 20px;          
     box-sizing: border-box; 
     position: absolute;       
-    top: 15%;                 /* Altura de los nombres en la pantalla */
+    top: 15%;                
     left: 50%;
     transform: translateX(-50%); 
 }
@@ -200,7 +233,6 @@ body {
     margin: 0 auto;         
 }
 
-/* Pinta las formas del SVG de los nombres */
 .intro-svg path,
 .intro-svg polygon,
 .intro-svg rect,
@@ -208,7 +240,7 @@ body {
     fill: #592B2A; 
 }
 
-/* --- FECHA (Justo debajo y pegada a los nombres) --- */
+/* --- FECHA --- */
 .intro-date {
     font-size: 1rem;
     letter-spacing: 1.5px;
@@ -226,7 +258,7 @@ body {
 /* --- 2. SEGUNDA IMAGEN (Ilustración del campo) --- */
 .intro-content > .intro-svg-container:nth-of-type(2) {
     max-width: 360px;       
-    margin-top: 140px;        /* Espacio para la ilustración del medio */
+    margin-top: 140px;        
     margin-bottom: 35px;    
 }
 
@@ -240,7 +272,7 @@ body {
     display: block;
 }
 
-/* --- 3. BOTÓN INGRESAR CON SUBRAYADO DE IMAGEN --- */
+/* --- 3. BOTÓN INGRESAR CON SUBRAYADO (INTACTO) --- */
 .intro-enter-btn {
     background: transparent;
     border: none;
@@ -249,7 +281,7 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    padding: 6px 16px 20px 16px; /* Espacio inferior para que la imagen respire */
+    padding: 6px 16px 20px 16px; 
     position: relative;
     font-family: var(--font-title);
     font-weight: 400;
@@ -257,16 +289,15 @@ body {
     margin-top: -30px;        
 }
 
-/* Imagen de subrayado personalizada */
 .intro-enter-btn::after {
     content: '';
     position: absolute;
     bottom: -65px;
     left: 50%;
     transform: translateX(-50%);
-    width: 130px;             /* Ancho de tu adorno (puedes subirlo a 150px si lo quieres más largo) */
-    height: 180px;             /* Altura del adorno */
-    background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg'); /* ➔ ASEGÚRATE de poner aquí la ruta real de tu archivo */
+    width: 130px;            
+    height: 180px;            
+    background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg'); 
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -1459,7 +1490,7 @@ body {
   left: 50%;
   transform: translateX(-55%);
   bottom: -55px;               /* Posición ajustada para que quede cerquita del texto */
-  width: 3000px;                /* Ancho del subrayado */
+  width: 300px;                /* Ancho del subrayado */
   height: 175px;                /* Altura de la imagen */
   background-image: url('/images/subrayado.png');
   background-repeat: no-repeat;
@@ -1495,7 +1526,6 @@ body {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(82, 15, 25, 0.45);
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;

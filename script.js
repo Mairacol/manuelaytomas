@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (giftsContainerSection) giftsContainerSection.style.display = "block";
     }
 
+   // -------------------------------------------------------------
+    // 1. MÚSICA Y OVERLAY DE ENTRADA (EFECTO CORTINA)
     // -------------------------------------------------------------
-    // 1. MÚSICA Y OVERLAY DE ENTRADA
-    // -------------------------------------------------------------
-    const overlay = document.getElementById('intro-overlay');
-    const openInviteBtn = document.getElementById('intro-enter-btn') || document.getElementById('openInvitationBtn'); 
+    const overlay = document.getElementById('intro-overlay') || document.querySelector('.intro-overlay');
+    const openInviteBtn = document.getElementById('intro-enter-btn') || document.getElementById('openInvitationBtn') || document.querySelector('.intro-enter-btn'); 
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggleBtn');
     const musicIcon = document.getElementById('musicIcon');
@@ -84,27 +84,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    if (openInviteBtn && overlay) {
-        openInviteBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            overlay.style.opacity = '0';
-            overlay.style.transform = 'translateY(-20px)';
-            overlay.style.pointerEvents = 'none';
-            
-            if (heroSection) {
-                heroSection.classList.add('is-animating');
-            }
+   if (openInviteBtn && overlay) {
+    openInviteBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        overlay.classList.add('fade-out');
+        
+        if (heroSection) {
+            heroSection.classList.add('is-animating');
+        }
 
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 1000);
+        if (bgMusic && bgMusic.paused) {
+            playWithFadeIn();
+        }
 
-            if (bgMusic && bgMusic.paused) {
-                playWithFadeIn();
-            }
-        });
-    }
-
+       setTimeout(() => {
+    overlay.remove();
+}, 6000);
+    });
+}
     if (musicBtn) {
         musicBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -117,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bgMusic.addEventListener('pause', syncUI);
         bgMusic.addEventListener('ended', syncUI);
     }
-
     // -------------------------------------------------------------
     // 2. PARÁMETROS DE LA URL (TÍTULO PRINCIPAL DINÁMICO)
     // -------------------------------------------------------------
