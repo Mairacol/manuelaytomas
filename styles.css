@@ -7,11 +7,7 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
-/* Bloqueo temporal para evitar que el snap scroll devuelva la vista a la intro */
-html.no-snap, body.no-snap {
-    scroll-snap-type: none !important;
-    overflow-y: auto !important;
-}
+
 /* Quita el borde/contorno de enfoque azul al hacer clic en botones y enlaces */
 button:focus,
 a:focus,
@@ -1099,26 +1095,43 @@ body {
 }
 
 .btn-underline {
+  display: inline-block;
   background: none;
   border: none;
   padding: 0;
   margin-top: 1.5rem;
+  margin-bottom: 35px;         /* Espacio libre para que respire la imagen */
   color: var(--color-burgundy);
   font-size: 1rem;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;       /* Quitamos el subrayado nativo */
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
   font-family: var(--font-title);
+  position: relative;          /* Necesario para posicionar el subrayado */
+}
+
+/* Imagen de subrayado personalizada en PNG */
+.btn-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-55%);
+  bottom: -105px;               /* Distancia respecto al texto */
+  width: 400px;                /* Ancho de la imagen (podés ajustarlo a tu medida) */
+  height: 230px;                /* Altura de la imagen */
+  background-image: url('/images/subrayado.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;        /* Evita interferir con los clics */
 }
 
 .btn-underline:hover {
   opacity: 0.75;
 }
-
 .gifts-bank-card {
   margin-top: 2rem;
   padding: 2.5rem 1.5rem 1.5rem 1.5rem;
@@ -1164,16 +1177,33 @@ body {
   border: none;
   padding: 0;
   margin-top: 1rem;
+  margin-bottom: 35px;        /* Espacio para que respire la imagen de subrayado */
   color: var(--color-burgundy);
   font-size: 0.8rem;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 5px;
+  text-decoration: none;      /* Quitamos el subrayado nativo del navegador */
   cursor: pointer;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: opacity 0.3s ease;
   font-family: var(--font-title);
+  position: relative;         /* Necesario para posicionar el subrayado */
+}
+
+/* Imagen de subrayado personalizada en PNG para el botón de copiar */
+.btn-copy::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -72px;              /* Ajustá esta distancia según necesites */
+  width: 180px;               /* Ancho del subrayado (podés ajustarlo a gusto) */
+  height: 160px;               /* Altura de la imagen */
+  background-image: url('/images/subrayado.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;       /* Para que no interfiera con los clics */
 }
 
 .btn-copy:hover {
@@ -1429,7 +1459,7 @@ body {
   left: 50%;
   transform: translateX(-55%);
   bottom: -55px;               /* Posición ajustada para que quede cerquita del texto */
-  width: 300px;                /* Ancho del subrayado */
+  width: 3000px;                /* Ancho del subrayado */
   height: 175px;                /* Altura de la imagen */
   background-image: url('/images/subrayado.png');
   background-repeat: no-repeat;
