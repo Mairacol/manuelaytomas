@@ -420,9 +420,9 @@ body {
 
 #txtScroll {
   font-family: var(--font-title);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  color: var(--color-burgundy);
+  color: var(--color-terracotta);
 }
 
 .scroll-arrow-img {
@@ -430,7 +430,7 @@ body {
   height: auto;
   display: block;
   opacity: 1;                     
-  margin-top: -8px;             /* ➔ Sube la flecha acercándola al texto "DESLIZAR" */
+  margin-top: -20px;             /* ➔ Sube la flecha acercándola al texto "DESLIZAR" */
   animation: scrollPulse 4s ease-in-out infinite;
 }
 
