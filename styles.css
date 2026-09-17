@@ -242,9 +242,9 @@ body {
 
 /* --- FECHA --- */
 .intro-date {
-    font-size: 1rem;
+    font-size: 1.3rem;
     letter-spacing: 1.5px;
-    color: var(--color-terracotta); 
+    color: var(--color-olive-dark); 
     text-align: center;
     font-weight: 400;
     font-family: var(--font-title);
@@ -276,7 +276,7 @@ body {
 .intro-enter-btn {
     background: transparent;
     border: none;
-    color: #592B2A; 
+    color: var(--color-terracotta); 
     font-size: 0.95rem; 
     text-transform: uppercase;
     text-decoration: none;
@@ -297,7 +297,7 @@ body {
     transform: translateX(-50%);
     width: 130px;            
     height: 180px;            
-    background-image: url('/images/ELEMENTOSGRÁFICOS_subrayado.svg'); 
+    background-image: url('/images/subrayadoterracota.svg'); 
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
