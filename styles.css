@@ -1,14 +1,9 @@
-/* ==========================================================================
-   ATELIER INVITACIONES - MANUELA & TOMÁS
-   Aesthetic: Editorial Luxury / Minimalist Field & Party
-   Format: Full Screen Snap Scroll (Proporciones Ampliadas)
-   ========================================================================== */
-/* Quita el resalte sombreado azul al tocar en pantallas táctiles (móviles) */
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Quita el borde/contorno de enfoque azul al hacer clic en botones y enlaces */
+
 button:focus,
 a:focus,
 summary:focus,
@@ -94,7 +89,7 @@ body {
   max-width: var(--max-width-content);
   margin: 0 auto;
 }
-/* PLACAS DE PANTALLA COMPLETA UNIFICADAS (Estructura de aire simétrica) */
+
 .section-block,
 .date-full-screen,
 .full-screen-section,
@@ -118,8 +113,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* <--- Centrado uniforme para que todas mantengan la misma lógica */
-  gap: 1.5rem;             /* <--- Espaciado interno consistente entre elementos */
+  justify-content: center; 
+  gap: 1.5rem;             
   text-align: center;
   
   scroll-snap-align: start;
@@ -147,7 +142,6 @@ body {
     z-index: 99999;
 }
 
-/* Las dos cortinas de apertura lenta (3.5 segundos) */
 .intro-overlay::before,
 .intro-overlay::after {
     content: '';
@@ -175,7 +169,7 @@ body {
     background-position: right center;
 }
 
-/* Animación de apertura al hacer clic */
+
 .intro-overlay.fade-out {
     pointer-events: none;
 }
@@ -207,7 +201,7 @@ body {
     opacity: 0;
 }
 
-/* Contenedor genérico para los SVGs */
+
 .intro-svg-container {
     width: 100%;
     display: flex;
@@ -403,7 +397,7 @@ body {
 
 .hero-combined-img {
     width: 100%;
-    max-width: 270px; /* Ajusta este ancho máximo según lo que necesites en pantalla */
+    max-width: 270px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -431,7 +425,7 @@ body {
   height: auto;
   display: block;
   opacity: 1;                     
-  margin-top: -20px;             /* ➔ Sube la flecha acercándola al texto "DESLIZAR" */
+  margin-top: -20px;            
   animation: scrollPulse 4s ease-in-out infinite;
 }
 
@@ -487,7 +481,7 @@ body {
     padding: 60px 20px;
 }
 
-/* Contenido central intacto */
+
 .date-editorial-content {
     display: flex;
     flex-direction: column;
@@ -529,7 +523,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Estado inicial: ocultas por defecto */
+
 .toast-arm {
     position: absolute;
     width: 130px;
@@ -538,7 +532,7 @@ body {
     opacity: 0;
 }
 
-/* Definición de las direcciones desde donde se asoman */
+
 @keyframes peekFromLeft {
     from {
         opacity: 0;
@@ -572,14 +566,13 @@ body {
     }
 }
 
-/* Cuando la sección recibe la clase 'active', se activan las animaciones más lentas (1.4s) */
 .date-full-screen.active .toast-arm {
-    animation-duration: 1.4s; /* <--- Cambiado de 0.8s a 1.4s para que vayan más lento */
+    animation-duration: 1.4s; 
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
     animation-fill-mode: forwards;
 }
 
-/* Asignación de animaciones y tiempos con mayor espacio entre ellas */
+
 .date-full-screen.active .arm-top-left {
     animation-name: peekFromLeft;
     animation-delay: 0.2s;
@@ -587,32 +580,32 @@ body {
 
 .date-full-screen.active .arm-top-right {
     animation-name: peekFromRight;
-    animation-delay: 0.4s; /* <--- Ajustado */
+    animation-delay: 0.4s;
 }
 
 .date-full-screen.active .arm-mid-left {
     animation-name: peekFromLeft;
-    animation-delay: 0.6s; /* <--- Ajustado */
+    animation-delay: 0.6s; 
 }
 
 .date-full-screen.active .arm-mid-right {
     animation-name: peekFromRight;
-    animation-delay: 0.8s; /* <--- Ajustado */
+    animation-delay: 0.8s; 
 }
 
 .date-full-screen.active .arm-bottom-left {
     animation-name: peekFromLeft;
-    animation-delay: 1.0s; /* <--- Ajustado */
+    animation-delay: 1.0s; 
 }
 
 .date-full-screen.active .arm-bottom-right {
     animation-name: peekFromRight;
-    animation-delay: 1.2s; /* <--- Ajustado */
+    animation-delay: 1.2s;
 }
 
 .date-full-screen.active .arm-bottom-center {
     animation-name: peekFromBottom;
-    animation-delay: 1.4s; /* <--- Ajustado */
+    animation-delay: 1.4s; 
 }
 .toast-img {
     width: 80%;
@@ -621,7 +614,7 @@ body {
     display: block;
 }
 
-/* Posiciones exactas de cada copa */
+
 .arm-top-left { 
     top: 120px; 
     left: 5px; 
@@ -661,7 +654,7 @@ body {
     bottom: 30px; 
     right: 5px; 
 }
-/* BOTONES EDITORIALES GRANDES */
+
 .editorial-btn,
 .party-editorial-btn,
 .editorial-link-btn {
@@ -687,7 +680,7 @@ body {
   opacity: 0.75;
   transform: translateY(-2px);
 }
-/* BOTÓN EXCLUSIVO DE LA SECCIÓN FECHA */
+
 .date-editorial-btn {
   display: inline-block;
   background-color: transparent;
@@ -699,7 +692,7 @@ body {
   text-transform: uppercase;
   font-family: var(--font-title);
   cursor: pointer;
-  margin-top: 90px; /* Aumentá este número (ej. 30px o 40px) para bajarlo más */
+  margin-top: 90px;
   position: relative;
   padding-bottom: 10px;
   transition: opacity 0.3s ease, transform 0.2s ease;
@@ -716,8 +709,8 @@ body {
   bottom: -105px;
   left: 50%;
   transform: translateX(-55%);
-  width: 250px; /* Ponéle un ancho fijo en píxeles para probar */
-  height: 250px; /* Ponéle una altura fija */
+  width: 250px; 
+  height: 250px; 
   background-image: url('/images/subrayadoterracota.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -734,24 +727,24 @@ body {
   justify-content: center;
   width: 100%;
   max-width: 480px; 
-  gap: 0.6rem; /* Espaciado compacto y armónico */
+  gap: 0.6rem; 
   margin: auto;
   padding: 1.5rem 1rem;
   text-align: center;
 }
 
-/* Contenedor de las imágenes (agrandado y unificado) */
+
 .image-container-editorial,
 .party-image-container {
   width: 100%;
-  max-width: 110px; /* Tamaño aumentado (antes 75px) */
+  max-width: 110px;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Espaciado superior para separar el bloque de la Fiesta de la Ceremonia */
+
 .party-image-container {
   margin-top: 1.2rem; 
 }
@@ -763,7 +756,7 @@ body {
   display: block;
 }
 
-/* Títulos principales (CEREMONIA / FIESTA) */
+
 .editorial-title,
 .party-editorial-title {
   font-size: 1.1rem;
@@ -773,7 +766,7 @@ body {
   color:var(--color-terracotta);
 }
 
-/* Nombres de los lugares (Parroquia / Campo) */
+
 .venue-location,
 .party-location {
   font-size: 1.25rem;
@@ -781,7 +774,6 @@ body {
   color: var(--color-olive-dark);
 }
 
-/* Horarios (17:00HS / 18:30HS) */
 .venue-time,
 .party-time {
   font-size: 0.9rem;
@@ -798,21 +790,21 @@ body {
   text-decoration: none;
   position: relative;
   display: inline-block;
-  padding-bottom: 30px;    /* Espacio interno mayor para que la imagen grande respire */
+  padding-bottom: 30px;   
   margin-bottom: 40px;     
   color: var(--color-terracotta);
 }
 
-/* Imagen de subrayado personalizada (Aún más grande) */
+
 .editorial-btn::after,
 .party-editorial-btn::after {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-52%);
-  bottom: -2px;           /* Distancia ajustada para el nuevo tamaño */
-  width: 260px;            /* ➔ Ancho bien amplio (probá con 280px si querés que abarque más) */
-  height: 75px;            /* ➔ Altura mayor para que se luzca con todo el detalle */
+  bottom: -2px;          
+  width: 260px;        
+  height: 75px;           
   background-image: url('/images/subrayadoterracota.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -840,7 +832,7 @@ body {
 
 .dresscode-svg-container {
   width: 100%;
-  max-width: 160px; /* Reducido para dejar aire */
+  max-width: 160px; 
   margin: 0 auto 0.2rem;
 }
 
@@ -849,7 +841,7 @@ body {
 }
 .dresscode-image-container {
   width: 100%;
-  max-width: 160px; /* Ajustá este ancho según cómo se vea tu PNG */
+  max-width: 160px; 
   margin: 0.5rem auto;
   display: flex;
   justify-content: center;
@@ -883,8 +875,8 @@ body {
   color: var(--color-terracotta);
   letter-spacing: 0.5px;
   max-width: 220px;                
-  margin: 0.2rem 2rem 1rem auto;   /* El 'auto' a la izquierda lo empuja hacia la derecha */
-  text-align: right;               /* Alinea las líneas hacia la derecha */
+  margin: 0.2rem 2rem 1rem auto;  
+  text-align: right;               
   line-height: 1.2;
   padding: 4px 0;
 }
@@ -943,7 +935,7 @@ body {
     text-align: center;
 }
 
-/* Título superior en color borravino */
+
 .adults-title-script {
     font-family: var(--font-title);
     font-size: clamp(2rem, 5vw, 2.6rem);
@@ -953,7 +945,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* Contenedor de la ilustración */
+
 .adults-image-container {
     width: 100%;
     max-width: 130px; 
@@ -970,7 +962,7 @@ body {
     object-fit: contain;
 }
 
-/* Texto principal ("Para que todos puedan disfrutar...") */
+
 .adults-main-desc {
     font-family: var(--font-body);
     font-size: 1.5rem;
@@ -981,7 +973,7 @@ body {
     margin: 0.2rem auto;
 }
 
-/* Subtexto inferior ("(deja a tus pibes en casa)") */
+
 .adults-sub-desc {
     font-family: var(--font-body);
     font-size: 1.25rem;
@@ -1033,7 +1025,7 @@ body {
     text-transform: uppercase;
 }
 
-/* Contenedor e ilustración con efecto de baile */
+
 .spotify-image-container {
   width: 100%;
   max-width: 150px; 
@@ -1047,7 +1039,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  /* Animación que simula un movimiento de baile sutil y continuo */
+
   animation: floatDance 3s ease-in-out infinite;
   transform-origin: bottom center;
 }
@@ -1083,20 +1075,20 @@ body {
   text-decoration: none;
   position: relative;
   display: inline-block;
-  padding-bottom: 3px;    /* Reducido para subir el espacio del subrayado */
+  padding-bottom: 3px;   
   margin-top: 1rem;
   margin-bottom: 25px;
   font-family: var(--font-title);
   color: var(--color-terracotta);
 }
 
-/* Imagen de subrayado personalizada en PNG (Subida y ajustada) */
+
 .editorial-spotify-link::after {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-55%);
-  bottom: -70px;            /* ➔ Subido para que quede más cerca del texto */
+  bottom: -70px;           
   width: 260px;            
   height: 160px;            
   background-image: url('/images/subrayadoterracota.webp');
@@ -1124,7 +1116,7 @@ body {
     gap: 1rem;
 }
 
-/* Título principal de la Trivia (Color Borravino forzado) */
+/* Título principal de la Trivia  */
 .trivia-main-title {
     font-family: var(--font-title);
     font-size: clamp(2.4rem, 7vw, 3.2rem);
@@ -1257,17 +1249,17 @@ body {
   border: none;
   padding: 0;
   margin-top: 1.5rem;
-  margin-bottom: 35px;         /* Espacio libre para que respire la imagen */
+  margin-bottom: 35px;        
   color: var(--color-terracotta);
   font-size: 1rem;
   font-weight: 600;
-  text-decoration: none;       /* Quitamos el subrayado nativo */
+  text-decoration: none;       
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
   font-family: var(--font-title);
-  position: relative;          /* Necesario para posicionar el subrayado */
+  position: relative;       
 }
 
 /* Imagen de subrayado personalizada en PNG */
@@ -1276,14 +1268,14 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-55%);
-  bottom: -105px;               /* Distancia respecto al texto */
-  width: 400px;                /* Ancho de la imagen (podés ajustarlo a tu medida) */
-  height: 230px;                /* Altura de la imagen */
+  bottom: -105px;             
+  width: 400px;               
+  height: 230px;              
   background-image: url('/images/subrayadoterracota.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  pointer-events: none;        /* Evita interferir con los clics */
+  pointer-events: none;      
 }
 
 .btn-underline:hover {
@@ -1334,270 +1326,287 @@ body {
   border: none;
   padding: 0;
   margin-top: 1rem;
-  margin-bottom: 35px;        /* Espacio para que respire la imagen de subrayado */
+  margin-bottom: 35px;      
   color: var(--color-burgundy);
   font-size: 0.8rem;
   font-weight: 600;
-  text-decoration: none;      /* Quitamos el subrayado nativo del navegador */
+  text-decoration: none;     
   cursor: pointer;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: opacity 0.3s ease;
   font-family: var(--font-title);
-  position: relative;         /* Necesario para posicionar el subrayado */
+  position: relative;      
 }
 
-/* Imagen de subrayado personalizada en PNG para el botón de copiar */
+
 .btn-copy::after {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -72px;              /* Ajustá esta distancia según necesites */
-  width: 180px;               /* Ancho del subrayado (podés ajustarlo a gusto) */
-  height: 160px;               /* Altura de la imagen */
+  bottom: -72px;       
+  width: 180px;               
+  height: 160px;               
   background-image: url('/images/subrayado.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  pointer-events: none;       /* Para que no interfiera con los clics */
+  pointer-events: none;      
 }
 
 .btn-copy:hover {
   opacity: 0.6;
 }
 /* ==========================================================================
-   RSVP (ESTILO EDITORIAL MINIMALISTA & ELEGANTE)
+   RSVP (ESTILO EDITORIAL CON MARCO SVG)
    ========================================================================== */
 
 .rsvp, .rsvp-section {
-  background-color: transparent; 
-  min-height: 100dvh;
-  height: auto;
-  padding: 5rem 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+    background-color: transparent; 
+    min-height: 100dvh;
+    height: auto;
+    padding: 4rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
 }
 
 .rsvp-inner, .rsvp-container {
-  max-width: 480px;
-  width: 100%;
-  margin: 0 auto;
-  background: transparent;
-  text-align: center;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
+    background: transparent;
+    text-align: center;
 }
 
 /* ==========================================
-   TARJETA EXCLUSIVA DE INVITADOS (FAMILIA)
+   TARJETA EXCLUSIVA DE INVITADOS CON MARCO SVG
    ========================================== */
 .rsvp-guest-info {
-  background: rgba(255, 255, 255, 0.35); /* <--- Acá está el 0.35 actual */
-  border: 1px solid rgba(202, 184, 123, 0.5); 
-  border-radius: 3px;
-  padding: 30px 20px;
-  margin-bottom: 40px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02); 
+    width: 100%;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.rsvp-guest-info #txtGuestLabel {
-  font-family: var(--font-title);
-  text-transform: uppercase;
-  font-size: 1rem;
-  color: var(--color-terracotta);
-  margin-bottom: 2px;
+.rsvp-frame-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
-.rsvp-guest-info #familyName {
-  font-family: var(--font-title); 
-  font-size: 1.8rem; 
-  color: var(--color-burgundy);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.15;
+.rsvp-frame-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    pointer-events: none;
 }
 
-.rsvp-guest-info #slots {
-  font-family: var(--font-body); 
-  font-size: 1rem;
-  color: var(--color-olive-dark);
-  letter-spacing: 1.5px;
-  margin-top: 4px;
+.rsvp-frame-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px; 
+    text-align: center;
+    width: 100%;
+    padding: 15px 40px; 
+    box-sizing: border-box;
 }
 
+.rsvp-frame-content .guest-label {
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--color-terracotta);
+    margin: 0; 
+}
+
+.rsvp-frame-content #familyName {
+    font-family: var(--font-body); 
+    font-size: 2.2rem; 
+    color: var(--color-olive-dark);
+    margin: 0; 
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.rsvp-frame-content #slots {
+    font-family: var(--font-title); 
+    font-size: 0.75rem;
+    color: var(--color-terracotta);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0; 
+}
 /* ==========================================
    ENCABEZADO DE RSVP
    ========================================== */
 .rsvp-header-block { 
-  margin-bottom: 35px; 
-}
-
-.rsvp-subtitle {
-  font-family: var(--font-title);
-  font-size: 0.75rem;
-  letter-spacing: 6px;
-  color: var(--color-olive-dark);
-  text-transform: uppercase;
-  font-weight: 400;
-  margin-bottom: 8px;
-  display: block;
+    margin-bottom: 25px; 
 }
 
 .rsvp-inner .title-script {
-  font-family: var(--font-title);
-  font-size: clamp(2.4rem, 7vw, 3.2rem);
-  color: var(--color-olive-dark);
-  margin-bottom: 8px;
-  letter-spacing: 3px;
+    font-family: var(--font-title);
+    font-size: clamp(2.4rem, 7vw, 3rem);
+    color: var(--color-terracotta);
+    margin-bottom: 4px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
 .rsvp-inner .limit {
-  font-family: var(--font-title);
-  font-size: 0.8rem;
-  color: var(--color-terracotta);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 300;
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    color: var(--color-olive-dark);
+    line-height: 1.35;
+    letter-spacing: 0.5px;
 }
 
 /* ==========================================
-   TARJETAS DE INVITADOS INDIVIDUALES
+   FORMULARIO DE INVITADOS
    ========================================== */
 .guest-editorial-card {
-  background: transparent;          
-  padding: 10px 0 30px 0;           
-  border: none;                     
-  border-bottom: 1px solid rgba(202, 184, 123, 0.3); /* Línea divisoria fina */
-  margin-bottom: 30px;
-  text-align: left;
-}
-
-.rsvp-inner .card {
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-}
-
-.guest-card-top {
-  margin-bottom: 20px;
-  padding-bottom: 4px;
+    background: transparent;           
+    padding: 10px 0 20px 0;           
+    border: none;                     
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .guest-number {
-  font-family: var(--font-title);
-  font-size: 0.75rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--color-burgundy);
-  font-weight: 500;
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
+    margin-bottom: 12px;
 }
 
 .field-block { 
-  margin-bottom: 25px; 
+    margin-bottom: 20px; 
 }
 
 .editorial-label {
-  font-family: var(--font-title);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: var(--color-olive-dark);
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 8px;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-terracotta);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
 }
 
-/* ==========================================
-   CAMPOS DE ENTRADA (INPUTS, SELECTS Y TEXTAREAS)
-   ========================================== */
+/* Inputs y Selects limpios */
 .editorial-input, .editorial-select, .editorial-textarea {
-  width: 100%;
-  padding: 12px 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-corn-gold);
-  border-radius: 0;
-  font-family: var(--font-title);
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  color: var(--color-burgundy); 
-  letter-spacing: 1px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--color-burgundy);
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--color-olive-dark); 
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .editorial-input::placeholder, .editorial-textarea::placeholder {
-  color: var(--color-burgundy); 
-  opacity: 0.5; 
-  letter-spacing: 1px;
+    color: var(--color-olive-dark); 
+    opacity: 0.6; 
 }
 
 .editorial-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 0px center;
-  background-size: 14px;
-  padding-right: 20px;
-  cursor: pointer;
-  color: var(--color-burgundy);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    padding-right: 20px;
+    cursor: pointer;
+    color: var(--color-olive-dark);
 }
 
 .editorial-input:focus, .editorial-select:focus, .editorial-textarea:focus {
-  outline: none;
-  border-bottom-color: var(--color-burgundy);
+    outline: none;
+    border-bottom-color: var(--color-burgundy);
 }
 
 /* ==========================================
-   RADIO BUTTONS (ASISTENCIA)
+   BOTONES DE ASISTENCIA (ESTILO PÍLDORA)
    ========================================== */
 .editorial-radio-group { 
-  display: flex; 
-  gap: 30px; 
-  margin-top: 6px;
-}
-
-.radio-pill {
-  font-family: var(--font-title);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: var(--color-olive-dark);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: 1.5px;
+    display: flex; 
+    justify-content: center;
+    gap: 15px; 
+    margin-top: 8px;
 }
 
 .radio-pill input[type="radio"] {
-  accent-color: var(--color-burgundy);
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
+    display: none;
 }
 
+.radio-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    background-color: var(--color-burgundy);
+    border: 1.5px solid var(--color-burgundy);
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    color: var(--color-white);
+    font-weight: normal;
+    transition: all 0.3s ease;
+    user-select: none;
+    width: 100px;
+    text-align: center;
+}
+
+.radio-pill:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+
+.radio-pill.active,
+.radio-pill:has(input[type="radio"]:checked) {
+    background-color: #3d0a11;
+    border-color: var(--color-corn-gold);
+    box-shadow: 0 4px 12px rgba(82, 15, 25, 0.2);
+    transform: scale(1.02);
+}
 /* ==========================================
    BOTÓN DE ENVÍO Y ERRORES
    ========================================== */
 .editorial-submit-btn {
-  width: auto;                  /* Para que no ocupe todo el ancho si es un botón de texto */
+  width: auto;                  
   display: inline-block;
-  background-color: transparent; /* Sin fondo sólido pesado */
-  color: var(--color-burgundy);  /* Texto color borravino */
-  border: none;                  /* Sin bordes de caja */
-  padding: 0 0 25px 0;           /* Espacio interno para que respire el subrayado */
+  background-color: transparent; 
+  color: var(--color-terracotta);  
+  border: none;                 
+  padding: 0 0 25px 0;           
   font-family: var(--font-title);
   font-size: 0.9rem;
   font-weight: 500;
@@ -1605,28 +1614,28 @@ body {
   cursor: pointer;
   transition: opacity 0.3s ease;
   margin-top: 2rem;
-  margin-bottom: 40px;         /* Espacio libre para que la imagen no se superponga con lo que sigue */
-  position: relative;          /* Necesario para posicionar el subrayado */
+  margin-bottom: 40px;       
+  position: relative;         
 }
 
-/* Imagen de subrayado personalizada en PNG para el botón de enviar */
+
 .editorial-submit-btn::after {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-55%);
-  bottom: -55px;               /* Posición ajustada para que quede cerquita del texto */
-  width: 300px;                /* Ancho del subrayado */
-  height: 175px;                /* Altura de la imagen */
-  background-image: url('/images/subrayado.png');
+  bottom: -55px;           
+  width: 300px;              
+  height: 175px;              
+  background-image: url('/images/subrayadoterracota.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  pointer-events: none;        /* Para que no interfiera con los clics */
+  pointer-events: none;        
 }
 
 .editorial-submit-btn:hover {
-  opacity: 0.7;                /* Efecto suave al pasar el cursor */
+  opacity: 0.7;              
   background-color: transparent;
   color: var(--color-burgundy);
 }

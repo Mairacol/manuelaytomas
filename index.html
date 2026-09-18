@@ -371,9 +371,6 @@ Te dejamos una idea…</span>
            
     </div>
 </section>
- <!-- =========================================
-       SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
-       ========================================= -->
 <!-- ==========================================================================
      SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
      ========================================================================== -->
@@ -381,20 +378,26 @@ Te dejamos una idea…</span>
   <div class="container">
     <div class="rsvp-inner">
       
-      <!-- Información del invitado -->
+      <!-- Información del invitado (Tarjeta con marco SVG) -->
       <div class="rsvp-guest-info">
-          <span class="guest-label" id="txtGuestLabel">Invitados</span>
-          <h3 id="familyName"></h3>
-          <p id="slots"></p>
+          <!-- Aquí incorporas tu archivo SVG o el código SVG del marco -->
+          <div class="rsvp-frame-wrapper">
+              <img src="/images/ELEMENTOSGRÁFICOS_marco.webp" alt="Marco decorativo" class="rsvp-frame-svg">
+              <div class="rsvp-frame-content">
+                  <span class="guest-label" id="txtGuestLabel">INVITADA</span>
+                  <h3 id="familyName">Maria Sueldo</h3>
+                  <p id="slots">1 LUGAR RESERVADO</p>
+              </div>
+          </div>
       </div>
 
-<div class="rsvp-header-block" id="rsvpHeaderBlock">
-        <span class="rsvp-subtitle" id="txtRsvpSub">ASISTENCIA</span>
+      <!-- Encabezado RSVP -->
+      <div class="rsvp-header-block" id="rsvpHeaderBlock">
         <h2 class="title-script">RSVP</h2>
-        <p class="limit" id="txtRsvpLimit">Confirmar antes del 15 de Febrero 2027</p>
+        <p class="limit" id="txtRsvpLimit">Confirmar asistencia antes del <br>15 de febrero 2027</p>
       </div>
 
-      <!-- Contenedor dinámico de invitados -->
+      <!-- Contenedor dinámico de invitados (formulario) -->
       <div id="guests"></div>
       
       <p id="formError" class="form-error hidden" style="display: none;">Por favor completá los campos obligatorios.</p>

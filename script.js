@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (giftsContainerSection) giftsContainerSection.style.display = "block";
     }
 
-   // -------------------------------------------------------------
+    // -------------------------------------------------------------
     // 1. MÚSICA Y OVERLAY DE ENTRADA (EFECTO CORTINA)
     // -------------------------------------------------------------
     const overlay = document.getElementById('intro-overlay') || document.querySelector('.intro-overlay');
@@ -84,25 +84,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-   if (openInviteBtn && overlay) {
-    openInviteBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        overlay.classList.add('fade-out');
-        
-        if (heroSection) {
-            heroSection.classList.add('is-animating');
-        }
+    if (openInviteBtn && overlay) {
+        openInviteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            overlay.classList.add('fade-out');
+            
+            if (heroSection) {
+                heroSection.classList.add('is-animating');
+            }
 
-        if (bgMusic && bgMusic.paused) {
-            playWithFadeIn();
-        }
+            if (bgMusic && bgMusic.paused) {
+                playWithFadeIn();
+            }
 
-       setTimeout(() => {
-    overlay.remove();
-}, 6000);
-    });
-}
+            setTimeout(() => {
+                overlay.remove();
+            }, 6000);
+        });
+    }
+
     if (musicBtn) {
         musicBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -115,14 +116,20 @@ document.addEventListener('DOMContentLoaded', () => {
         bgMusic.addEventListener('pause', syncUI);
         bgMusic.addEventListener('ended', syncUI);
     }
+
     // -------------------------------------------------------------
     // 2. PARÁMETROS DE LA URL (TÍTULO PRINCIPAL DINÁMICO)
     // -------------------------------------------------------------
-    let displayTitle = "INVITADO ESPECIAL";
-    if (rawParam) {
-        displayTitle = rawParam.replace(/-/g, " ").replace(/,/g, " y ").toUpperCase();
-    }
 
+    let displayTitle = "Invitado Especial";
+    if (rawParam) {
+        // Limpiamos los guiones y comas
+        const cleaned = rawParam.replace(/-/g, " ").replace(/,/g, " y ").trim();
+        
+        // Forzamos la capitalización correcta palabra por palabra de forma segura
+        displayTitle = cleaned.toLowerCase().replace(/(^|\s)([a-zà-ÿ])/g, (match, space, letter) => space + letter.toUpperCase());
+    }
+    // Declaración explícita de variables necesarias
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
     const guestID = urlParams.get("id") || "SIN_ID";
 
@@ -142,9 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const generoDiscreto = urlParams.get("g") ? urlParams.get("g").toLowerCase() : "";
             
             if (generoDiscreto === "f") {
-                guestLabelEl.textContent = "Invitada";
+                guestLabelEl.textContent = "INVITADA";
             } else if (generoDiscreto === "m") {
-                guestLabelEl.textContent = "Invitado";
+                guestLabelEl.textContent = "INVITADO";
             } else {
                 const nombreUnico = rawParam ? rawParam.trim().toUpperCase() : "";
                 const nombresVaronesExcepcion = ["LUCAS", "MATIAS", "TOBIAS", "BAUTISTA", "JONAS", "NICOLAS", "TOMAS", "EZEQUIEL"];
@@ -153,18 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const terminaEnA = nombreUnico.endsWith('A');
 
                 if (terminaEnA && !esVaronExcepcion) {
-                    guestLabelEl.textContent = "Invitada";
+                    guestLabelEl.textContent = "INVITADA";
                 } else {
-                    guestLabelEl.textContent = "Invitado";
+                    guestLabelEl.textContent = "INVITADO";
                 }
             }
         } else {
-            guestLabelEl.textContent = "Invitados";
+            guestLabelEl.textContent = "INVITADOS";
         }
     }
 
     if (slotsEl) {
-        slotsEl.textContent = totalSlots === 1 ? "1 Lugar reservado" : `${totalSlots} Lugares reservados`;
+        slotsEl.textContent = totalSlots === 1 ? "1 LUGAR RESERVADO" : `${totalSlots} LUGARES RESERVADOS`;
     }
 
     if (guestsContainer) {
@@ -175,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
             guestCard.className = "guest-editorial-card";
 
             guestCard.innerHTML = `
-                <div class="guest-card-top" style="border-bottom: 1px solid rgba(202, 184, 123, 0.4); padding-bottom: 8px; margin-bottom: 20px;">
-                    <span class="guest-number" style="font-family: var(--font-title); font-size: 0.75rem; letter-spacing: 4px; color: var(--color-burgundy); text-transform: uppercase;">Invitado ${i}</span>
+                <div class="guest-card-top" style="margin-bottom: 15px;">
+                    <span class="guest-number" style="font-family: var(--font-title); font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase;">Invitado ${i}</span>
                 </div>
 
                 <div class="field-block" style="margin-bottom: 20px;">
@@ -188,20 +195,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="field-block" style="margin-bottom: 25px;">
-                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.7rem; letter-spacing: 3px; color: var(--color-olive-dark); text-transform: uppercase; display: block; margin-bottom: 8px;">¿Asistirá?</label>
+                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 10px;">¿Asistirá?</label>
                     <div class="editorial-radio-group">
                         <label class="radio-pill active">
-                            <input type="radio" name="attendance_${i}" value="Sí" checked> Sí asistirá
+                            <input type="radio" name="attendance_${i}" value="Sí" checked> Sí
                         </label>
                         <label class="radio-pill">
-                            <input type="radio" name="attendance_${i}" value="No"> No podrá asistir
+                            <input type="radio" name="attendance_${i}" value="No"> No
                         </label>
                     </div>
                 </div>
 
                 <div class="field-block menu-block" id="menuBlock_${i}" style="margin-bottom: 25px; overflow: hidden; transition: all 0.4s ease;">
+                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 6px;">Menú (Seleccionar opción)</label>
                     <select class="editorial-select guest-menu">
-                        <option value="" disabled selected>Menú (Seleccionar opción)</option>
+                        <option value="" disabled selected>Seleccionar...</option>
                         <option value="General">Menú General</option>
                         <option value="Vegetariano">Vegetariano</option>
                         <option value="Celíaco">Celíaco / Sin TACC</option>
@@ -229,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Oculta completamente el menú si selecciona "No podrá asistir"
             radioNo.addEventListener('change', () => {
                 menuSelect.value = "";
                 menuSelect.required = false;
@@ -242,27 +249,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-document.addEventListener("DOMContentLoaded", function() {
+
+    // Animación de intersección corregida
     const section = document.querySelector('.date-full-screen');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Cuando el usuario baja y ve la sección, añadimos la clase que dispara las animaciones
-                section.classList.add('is-visible');
-                observer.unobserve(entry.target); 
-            }
-        });
-    }, {
-        threshold: 0.2 // Se dispara cuando el 20% de la sección entra en pantalla
-    });
-
     if (section) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    section.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.2 });
+
         observer.observe(section);
     }
-});
+
     // -------------------------------------------------------------
-    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS (Fluido y sin saltos)
+    // 3. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     // -------------------------------------------------------------
     if (submitBtn) {
         submitBtn.addEventListener("click", function (e) {
@@ -312,16 +316,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 return false;
             }
 
-            // Fijamos la posición del scroll de inmediato
             const currentScroll = window.scrollY;
 
-            // Actualización visual instantánea en pantalla
             localStorage.setItem(`rsvp_confirmed_${guestID}`, "true");
             limpiarInterfazRsvp();
             mostrarModalAgradecimiento();
             window.scrollTo({ top: currentScroll, behavior: 'instant' });
 
-            // Envío en segundo plano con un pequeño retraso para garantizar fluidez total
             setTimeout(() => {
                 const payload = {
                     familia: displayTitle,
@@ -342,31 +343,32 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
- function limpiarInterfazRsvp() {
-    const guestsContainerEl = document.getElementById("guests");
-    const submitButtonEl = document.getElementById("submitBtn");
-    const headerBlockEl = document.getElementById("rsvpHeaderBlock"); // <--- Apuntamos al ID exacto
-    const guestInfoEl = document.querySelector(".rsvp-guest-info");
+    function limpiarInterfazRsvp() {
+        const guestsContainerEl = document.getElementById("guests");
+        const submitButtonEl = document.getElementById("submitBtn");
+        const headerBlockEl = document.getElementById("rsvpHeaderBlock");
+        const guestInfoEl = document.querySelector(".rsvp-guest-info");
 
-    if (guestsContainerEl) guestsContainerEl.style.display = "none";
-    if (submitButtonEl) submitButtonEl.style.display = "none";
-    if (headerBlockEl) headerBlockEl.style.display = "none"; // <--- Lo oculta por completo
-    if (guestInfoEl) guestInfoEl.style.display = "none";
+        if (guestsContainerEl) guestsContainerEl.style.display = "none";
+        if (submitButtonEl) submitButtonEl.style.display = "none";
+        if (headerBlockEl) headerBlockEl.style.display = "none";
+        if (guestInfoEl) guestInfoEl.style.display = "none";
 
-    const rsvpInner = document.querySelector('.rsvp-inner');
-    if (rsvpInner && !document.getElementById("graciasExito")) {
-        const mensajeDiv = document.createElement("div");
-        mensajeDiv.id = "graciasExito";
-        mensajeDiv.style.cssText = "text-align: center; padding: 40px 20px;";
-        mensajeDiv.innerHTML = `
-            <h3 style="font-family: var(--font-title); color: var(--color-burgundy); font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px;">
-                ¡MUCHAS GRACIAS!
-            </h3>
-            <p style="color: var(--color-olive-dark); font-size: 1.1rem; font-family: var(--font-body); letter-spacing: 1px;">Tu respuesta ya fue registrada con éxito.</p>
-        `;
-        rsvpInner.appendChild(mensajeDiv);
+        const rsvpInner = document.querySelector('.rsvp-inner');
+        if (rsvpInner && !document.getElementById("graciasExito")) {
+            const mensajeDiv = document.createElement("div");
+            mensajeDiv.id = "graciasExito";
+            mensajeDiv.style.cssText = "text-align: center; padding: 40px 20px;";
+            mensajeDiv.innerHTML = `
+                <h3 style="font-family: var(--font-title); color: var(--color-burgundy); font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                    ¡MUCHAS GRACIAS!
+                </h3>
+                <p style="color: var(--color-olive-dark); font-size: 1.1rem; font-family: var(--font-body); letter-spacing: 1px;">Tu respuesta ya fue registrada con éxito.</p>
+            `;
+            rsvpInner.appendChild(mensajeDiv);
+        }
     }
-}
+
     function mostrarModalAgradecimiento() {
         let modal = document.getElementById("thanksModal");
         if (modal) {
@@ -379,7 +381,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. LÓGICA DE LA TRIVIA
     // -------------------------------------------------------------
     window.triviaPuntos = 0;
-    
     const triviaForm = document.getElementById('triviaForm');
     if (triviaForm) {
         triviaForm.addEventListener('change', () => {
@@ -395,16 +396,38 @@ document.addEventListener("DOMContentLoaded", function() {
             window.triviaPuntos = puntos;
         });
     }
+
+    // -------------------------------------------------------------
+    // 5. REVEAL (INTERSECTION OBSERVER)
+    // -------------------------------------------------------------
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.25 
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(section => {
+        revealObserver.observe(section);
+    });
 });
 
+// -------------------------------------------------------------
+// FUNCIONES GLOBALES (FUERA DEL DOMCONTENTLOADED)
+// -------------------------------------------------------------
 function closeThanksModal() {
     let modal = document.getElementById("thanksModal");
     if (modal) {
         modal.classList.add("hidden");
         modal.style.display = "none";
     }
-    
-    // Opcional: Nos aseguramos de ocultar la intro por si acaso el DOM la vuelve a mostrar
     const overlay = document.getElementById('intro-overlay');
     if (overlay) {
         overlay.style.display = 'none';
@@ -442,26 +465,3 @@ function copiarCBU() {
         });
     }
 }
-
-// -------------------------------------------------------------
-// 5. REVEAL
-// -------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.25 
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(section => {
-      observer.observe(section);
-    });
-});
