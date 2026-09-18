@@ -448,7 +448,7 @@ body {
 
 .hero-concept-main {
   font-family: var(--font-featured);
-  color: var(--color-burgundy);
+  color: var(--color-terracotta);
   font-size: clamp(4.5rem, 14vw, 7rem); 
   font-weight: normal;
   text-align: center;
@@ -503,7 +503,7 @@ body {
 .date-editorial-tag {
     font-size: clamp(2.8rem, 9vw, 4.2rem);
     text-transform: uppercase;
-    color: var(--color-burgundy);
+    color: var(--color-terracotta);
     opacity: 0.7;
     font-family: var(--font-featured);
     margin-top: 45px;
@@ -519,7 +519,7 @@ body {
 .date-editorial-script {
     font-family: var(--font-title);
     font-size: clamp(1.7rem, 4.8vw, 2.3rem);
-    color: #111111;
+    color: var(--color-olive-dark);
     letter-spacing: 4px;
     font-weight: 200;
     line-height: 1;
@@ -691,7 +691,7 @@ body {
   display: inline-block;
   background-color: transparent;
   border: none;
-  color: #111111;
+  color: var(--color-terracotta);
   text-decoration: none;
   font-size: clamp(1.1rem, 3.5vw, 1.4rem);
   letter-spacing: 2px;
@@ -717,7 +717,7 @@ body {
   transform: translateX(-55%);
   width: 250px; /* Ponéle un ancho fijo en píxeles para probar */
   height: 250px; /* Ponéle una altura fija */
-  background-image: url('/images/subrayadonegro.webp');
+  background-image: url('/images/subrayadoterracota.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -769,7 +769,7 @@ body {
   letter-spacing: 2px;
   margin: 0;
   font-family: var(--font-title);
-  color:var(--color-burgundy);
+  color:var(--color-terracotta);
 }
 
 /* Nombres de los lugares (Parroquia / Campo) */
@@ -777,7 +777,7 @@ body {
 .party-location {
   font-size: 1.25rem;
   margin: 0;
-  color: var(--color-burgundy);
+  color: var(--color-olive-dark);
 }
 
 /* Horarios (17:00HS / 18:30HS) */
@@ -785,7 +785,7 @@ body {
 .party-time {
   font-size: 0.9rem;
   margin: 0;
-  color: var(--color-burgundy);
+  color: var(--color-olive-dark);
   font-family: var(--font-title);
 }
 
@@ -799,6 +799,7 @@ body {
   display: inline-block;
   padding-bottom: 30px;    /* Espacio interno mayor para que la imagen grande respire */
   margin-bottom: 40px;     
+  color: var(--color-terracotta);
 }
 
 /* Imagen de subrayado personalizada (Aún más grande) */
@@ -811,7 +812,7 @@ body {
   bottom: -2px;           /* Distancia ajustada para el nuevo tamaño */
   width: 260px;            /* ➔ Ancho bien amplio (probá con 280px si querés que abarque más) */
   height: 75px;            /* ➔ Altura mayor para que se luzca con todo el detalle */
-  background-image: url('/images/subrayado.png');
+  background-image: url('/images/subrayadoterracota.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -870,7 +871,7 @@ body {
 .dresscode-main-type {
   font-family: var(--font-body);
   font-size: 1.7rem;
-  color: var(--color-terracotta);
+  color: var(--color-olive-dark);
   margin-bottom: 0.5rem;
   letter-spacing: 2px;
 }
@@ -878,7 +879,7 @@ body {
 .dresscode-note {
   font-family: var(--font-body);
   font-size: 1.3rem;               
-  color: var(--color-olive-dark);
+  color: var(--color-terracotta);
   letter-spacing: 0.5px;
   max-width: 220px;                
   margin: 0.2rem 2rem 1rem auto;   /* El 'auto' a la izquierda lo empuja hacia la derecha */
@@ -961,7 +962,7 @@ body {
 .spotify-title-script {
     font-family: var(--font-title);
     font-size: clamp(2.2rem, 6vw, 2.8rem);
-    color: var(--color-olive-dark);
+    color: var(--color-terracotta);
     margin-bottom: 0.2rem;
     text-transform: uppercase;
 }
@@ -998,7 +999,7 @@ body {
 }
 
 .spotify-desc {
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     color: var(--color-olive-dark);
     margin-bottom: 0.5rem;
     line-height: 1.4;
@@ -1162,19 +1163,17 @@ body {
    ========================================================================== */
 
 .gifts-subtitle {
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--color-terracotta);
+  font-size: 1.7rem;
+  color: var(--color-olive-dark);
   display: block;
   margin-bottom: 0.5rem;
-  font-family: var(--font-title);
+  font-family: var(--font-body);
 }
 
 .gifts-title-script {
   font-family: var(--font-title);
   font-size: clamp(2.4rem, 7vw, 3rem);
-  color: var(--color-olive-dark);
+  color: var(--color-terracotta);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
@@ -1208,7 +1207,7 @@ body {
   padding: 0;
   margin-top: 1.5rem;
   margin-bottom: 35px;         /* Espacio libre para que respire la imagen */
-  color: var(--color-burgundy);
+  color: var(--color-terracotta);
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;       /* Quitamos el subrayado nativo */
@@ -1229,7 +1228,7 @@ body {
   bottom: -105px;               /* Distancia respecto al texto */
   width: 400px;                /* Ancho de la imagen (podés ajustarlo a tu medida) */
   height: 230px;                /* Altura de la imagen */
-  background-image: url('/images/subrayado.png');
+  background-image: url('/images/subrayadoterracota.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
