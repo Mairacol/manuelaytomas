@@ -1162,7 +1162,7 @@ body {
     border-radius: 30px;         
     cursor: pointer;
     font-family: var(--font-body);
-    font-size: 1.35rem;          
+    font-size: 1rem;          
     color: var(--color-white);
     font-weight: normal;      
     text-shadow: none;        
