@@ -1109,7 +1109,7 @@ body {
   opacity: 0.7;
 }
 /* ==========================================================================
-   ESTILOS DE LA TRIVIA - VERSIÓN FINAL PULIDA Y ELEGANTE
+   ESTILOS DE LA TRIVIA - VERSIÓN FINAL
    ========================================================================== */
 
 .trivia-section-wrapper {
@@ -1120,14 +1120,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 0;
-    gap: 2rem;
+    padding: 10px 0;
+    gap: 1rem;
+}
+
+/* Título principal de la Trivia (Color Borravino forzado) */
+.trivia-main-title {
+    font-family: var(--font-title);
+    font-size: clamp(2.4rem, 7vw, 3.2rem);
+    color: var(--color-terracotta) ;
+  
+    margin: 0;
+    text-transform: uppercase;
 }
 
 #triviaForm {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     width: 100%;
 }
 
@@ -1137,92 +1147,67 @@ body {
     padding: 0;
     box-shadow: none;
     text-align: center;
+    width: 100%;
 }
 
 .trivia-question p {
     font-family: var(--font-title);
     font-size: 1.05rem;
-    color: var(--color-burgundy);
-    margin-top: 15px; /* Mejora la separación respecto a la opción anterior */
-    margin-bottom: 12px;
+    color: var(--color-terracotta);
+    margin-top: 10px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
-    text-transform: uppercase; /* ¡Texto en mayúsculas aplicado! */
+    text-transform: uppercase;
     line-height: 1.4;
-    font-weight: 700;
+    font-weight: 400;
 }
 
-/* Opciones en formato píldora transparente con mejor margen interno */
+/* Contenedor en cuadrícula de 2 columnas para las opciones */
+.trivia-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Ocultar el círculo nativo del radio button */
+.trivia-question input[type="radio"] {
+    display: none;
+}
+
 .trivia-question label {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 13px 20px 13px 22px; /* Espacio izquierdo cómodo para el círculo */
-    margin-bottom: 8px;
-    background-color: transparent;
-    border: 1.5px solid rgba(202, 184, 123, 0.45);
-    border-radius: 50px;
+    justify-content: center;
+    padding: 10px 20px;          
+    background-color: var(--color-burgundy);
+    border: 1.5px solid var(--color-burgundy);
+    border-radius: 30px;         
     cursor: pointer;
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: var(--color-olive-dark); /* Color base nítido */
-    letter-spacing: 0.5px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1.35rem;          
+    color: var(--color-white);
+    font-weight: normal;      
+    text-shadow: none;        
+    transition: all 0.3s ease;
     user-select: none;
-}
-
-.trivia-question label:last-child {
-    margin-bottom: 0;
+    text-align: center;
+    width: 92%;                  
+    max-width: 210px;            
+    margin: 0 auto;              
+    white-space: nowrap;         
 }
 
 .trivia-question label:hover {
-    border-color: var(--color-burgundy);
-    color: var(--color-burgundy);
-    background-color: rgba(202, 184, 123, 0.08); 
+    opacity: 0.85;
     transform: translateY(-2px);
 }
 
-/* Radio button perfectamente posicionado */
-.trivia-question input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 1.5px solid var(--color-corn-gold);
-    border-radius: 50%;
-    margin-right: 14px;
-    display: grid;
-    place-content: center;
-    transition: all 0.25s ease;
-    flex-shrink: 0;
-    background-color: transparent;
-}
-
-.trivia-question input[type="radio"]::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-    background-color: var(--color-burgundy);
-}
-
-.trivia-question input[type="radio"]:checked::before {
-    transform: scale(1);
-}
-
-/* Estado seleccionado limpio y con presencia */
 .trivia-question label:has(input[type="radio"]:checked) {
-    background-color: transparent;
-    border: 2px solid var(--color-burgundy);
-    color: var(--color-burgundy);
-    font-weight: 600;
+    background-color: #3d0a11; 
+    border-color: var(--color-corn-gold);
+    box-shadow: 0 4px 12px rgba(82, 15, 25, 0.2);
     transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(82, 15, 25, 0.06);
-}
-
-.trivia-question input[type="radio"]:checked {
-    border-color: var(--color-burgundy);
 }
 /* ==========================================================================
    REGALOS

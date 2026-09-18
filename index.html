@@ -285,35 +285,41 @@
 </section>
 <section id="trivia" class="trivia-section reveal">
     <div class="trivia-section-wrapper">
-    <div class="rsvp-header-block" style="text-align: center; margin-bottom: 25px;">
-        <span class="rsvp-subtitle">¿Cuánto nos conocen realmente?</span>
-        <h2 class="title-script" style="font-family: var(--font-title); font-size: clamp(2.4rem, 7vw, 3.2rem); color: var(--color-olive-dark); letter-spacing: 3px; margin: 0;">TRIVIA!</h2>
-        <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--color-olive-dark); margin-top: 8px;">¡Demostrá cuánto sabés de nuestra historia antes de confirmar!</p>
+        <div class="rsvp-header-block" style="text-align: center; margin-bottom: 15px;">
+            <!-- Título principal con la clase CSS para que respete los estilos -->
+            <h2 class="trivia-main-title">TRIVIA</h2>
+            <p style="font-family: var(--font-body); font-size: 1.5rem; color: var(--color-olive-dark); margin-top: 5px;">¡Demostrá cuánto sabés de nuestra historia antes de confirmar!</p>
+        </div>
+
+        <form id="triviaForm">
+            <!-- Pregunta 1 -->
+            <div class="trivia-question">
+                <p>1. ¿Dónde nos conocimos?</p>
+                <div class="trivia-options-grid">
+                    <label><input type="radio" name="q1" value="incorrecta"> En el trabajo</label>
+                    <label><input type="radio" name="q1" value="correcta"> En un viaje</label>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="trivia-question">
+                <p>2. ¿Quién dio el primer paso?</p>
+                <div class="trivia-options-grid">
+                    <label><input type="radio" name="q2" value="correcta"> Manu</label>
+                    <label><input type="radio" name="q2" value="incorrecta"> Tomi</label>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="trivia-question">
+                <p>3. ¿Cuál es nuestra comida favorita?</p>
+                <div class="trivia-options-grid">
+                    <label><input type="radio" name="q3" value="incorrecta"> Asado</label>
+                    <label><input type="radio" name="q3" value="correcta"> Sushi</label>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <form id="triviaForm">
-        <!-- Pregunta 1 -->
-        <div class="trivia-question">
-            <p>1. ¿Dónde se conocieron los novios?</p>
-            <label><input type="radio" name="q1" value="incorrecta"> En el trabajo</label>
-            <label><input type="radio" name="q1" value="correcta"> En un viaje</label>
-        </div>
-
-        <!-- Pregunta 2 -->
-        <div class="trivia-question">
-            <p>2. ¿Quién dio el primer paso?</p>
-            <label><input type="radio" name="q2" value="correcta"> Ella</label>
-            <label><input type="radio" name="q2" value="incorrecta"> Él</label>
-        </div>
-
-        <!-- Pregunta 3 -->
-        <div class="trivia-question">
-            <p>3. ¿Cuál es la comida favorita de los dos?</p>
-            <label><input type="radio" name="q3" value="incorrecta"> Asado</label>
-            <label><input type="radio" name="q3" value="correcta"> Sushi</label>
-        </div>
-    </form>
-</div>
 </section>
 <!-- REGALOS -->
 <section class="gifts-section reveal">
@@ -345,7 +351,7 @@ Te dejamos una idea…</span>
         <div class="gifts-bank-card" id="giftsBankCard" style="display: none;">
     <p>
         <strong>Titular</strong>
-        <span>Nombre del Titular</span>
+        <span>Manuela Goñi </span>
     </p>
     <p>
         <strong>Banco</strong>
@@ -353,11 +359,11 @@ Te dejamos una idea…</span>
     </p>
     <p>
         <strong>CBU</strong>
-        <span id="cbuText">0000003100000000000000</span>
+        <span id="cbuText">0000003100005741056181</span>
     </p>
     <p>
         <strong>Alias</strong>
-        <span>novios.boda.2026</span>
+        <span>manuelaytomas</span>
     </p>
 
     <button class="btn-copy" onclick="copiarCBU(this)">Copiar CBU</button>
