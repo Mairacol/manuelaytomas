@@ -238,7 +238,6 @@ body {
 /* --- FECHA --- */
 .intro-date {
     font-size: 1.3rem;
-    letter-spacing: 1.5px;
     color: var(--color-olive-dark); 
     text-align: center;
     font-weight: 400;
@@ -515,7 +514,6 @@ body {
     font-family: var(--font-title);
     font-size: clamp(1.7rem, 4.8vw, 2.3rem);
     color: var(--color-olive-dark);
-    letter-spacing: 4px;
     font-weight: 200;
     line-height: 1;
     margin-top: -35px;
@@ -666,7 +664,6 @@ body {
   text-underline-offset: 8px;
   text-decoration-thickness: 1.5px;
   font-size: 1.05rem;
-  letter-spacing: 4px;
   text-transform: uppercase;
   font-family: var(--font-title);
   cursor: pointer;
@@ -688,7 +685,6 @@ body {
   color: var(--color-terracotta);
   text-decoration: none;
   font-size: clamp(1.1rem, 3.5vw, 1.4rem);
-  letter-spacing: 2px;
   text-transform: uppercase;
   font-family: var(--font-title);
   cursor: pointer;
@@ -760,7 +756,6 @@ body {
 .editorial-title,
 .party-editorial-title {
   font-size: 1.1rem;
-  letter-spacing: 2px;
   margin: 0;
   font-family: var(--font-title);
   color:var(--color-terracotta);
@@ -786,7 +781,6 @@ body {
 .editorial-btn,
 .party-editorial-btn {
   font-size: 0.8rem;
-  letter-spacing: 1px;
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -866,14 +860,12 @@ body {
   font-size: 1.7rem;
   color: var(--color-olive-dark);
   margin-bottom: 0.5rem;
-  letter-spacing: 2px;
 }
 
 .dresscode-note {
   font-family: var(--font-body);
   font-size: 1.3rem;               
   color: var(--color-terracotta);
-  letter-spacing: 0.5px;
   max-width: 220px;                
   margin: 0.2rem 2rem 1rem auto;  
   text-align: right;               
@@ -883,7 +875,6 @@ body {
 .dresscode-note-title {
   display: block;
   font-size: 1.4rem;
-  letter-spacing: 1px;
   color: var(--color-terracotta);
   margin-bottom: 2px;
 }
@@ -893,7 +884,6 @@ body {
   font-size: 0.8rem;
   color: var(--color-terracotta);
   text-transform: uppercase;
-  letter-spacing: 2px;
   margin: 0.5rem auto 0.2rem;
   display: inline-flex;
   align-items: center;
@@ -939,10 +929,9 @@ body {
 .adults-title-script {
     font-family: var(--font-title);
     font-size: clamp(2rem, 5vw, 2.6rem);
-    color: var(--color-burgundy);
+    color: var(--color-terracotta);
     margin-bottom: 0.2rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 
@@ -968,7 +957,6 @@ body {
     font-size: 1.5rem;
     color: var(--color-olive-dark);
     line-height: 1.35;
-    letter-spacing: 0.5px;
     max-width: 420px;
     margin: 0.2rem auto;
 }
@@ -978,7 +966,6 @@ body {
     font-family: var(--font-body);
     font-size: 1.25rem;
     color: var(--color-terracotta);
-    letter-spacing: 0.5px;
     margin-top: 0.2rem;
 }
 /* ==========================================================================
@@ -1071,7 +1058,6 @@ body {
 /* Enlace / Botón de Spotify */
 .editorial-spotify-link {
   font-size: 0.8rem;
-  letter-spacing: 1px;
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -1148,7 +1134,6 @@ body {
     color: var(--color-terracotta);
     margin-top: 10px;
     margin-bottom: 8px;
-    letter-spacing: 1px;
     text-transform: uppercase;
     line-height: 1.4;
     font-weight: 400;
@@ -1255,7 +1240,6 @@ body {
   font-weight: 600;
   text-decoration: none;       
   cursor: pointer;
-  letter-spacing: 1px;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
   font-family: var(--font-title);
@@ -1308,7 +1292,6 @@ body {
   font-weight: 400;
   text-transform: uppercase;
   font-size: 0.75rem;
-  letter-spacing: 2px;
   margin-bottom: 0.25rem;
 }
 
@@ -1317,7 +1300,6 @@ body {
     text-transform: uppercase;
   font-size: 1.15rem;
   color: var(--color-burgundy);
-  letter-spacing: 0.5px;
 }
 
 .btn-copy {
@@ -1332,7 +1314,6 @@ body {
   font-weight: 600;
   text-decoration: none;     
   cursor: pointer;
-  letter-spacing: 2px;
   text-transform: uppercase;
   transition: opacity 0.3s ease;
   font-family: var(--font-title);
@@ -1451,7 +1432,6 @@ body {
     font-family: var(--font-title); 
     font-size: 0.75rem;
     color: var(--color-terracotta);
-    letter-spacing: 2px;
     text-transform: uppercase;
     margin: 0; 
 }
@@ -1467,7 +1447,6 @@ body {
     font-size: clamp(2.4rem, 7vw, 3rem);
     color: var(--color-terracotta);
     margin-bottom: 4px;
-    letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 400;
 }
@@ -1477,7 +1456,6 @@ body {
     font-size: 1.35rem;
     color: var(--color-olive-dark);
     line-height: 1.35;
-    letter-spacing: 0.5px;
 }
 
 /* ==========================================
@@ -1494,7 +1472,6 @@ body {
 .guest-number {
     font-family: var(--font-title);
     font-size: 0.9rem;
-    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--color-terracotta);
     margin-bottom: 12px;
@@ -1507,7 +1484,6 @@ body {
 .editorial-label {
     font-family: var(--font-title);
     font-size: 0.85rem;
-    letter-spacing: 2px;
     color: var(--color-terracotta);
     text-transform: uppercase;
     display: block;
@@ -1646,7 +1622,6 @@ body {
   font-size: 0.8rem;
   margin-bottom: 20px;
   text-align: center;
-  letter-spacing: 1px;
 }
 
 .form-error {
@@ -1655,7 +1630,6 @@ body {
   font-size: 0.8rem;
   margin-bottom: 20px;
   text-align: center;
-  letter-spacing: 1px;
 }
 
 .modal {
@@ -1710,7 +1684,6 @@ body {
   font-family: var(--font-title);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 3px;
   font-size: 0.7rem;
   border-radius: 0px;
 }
