@@ -27,7 +27,11 @@ a:active {
   src: url('./images/Professor.ttf') format('truetype');
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'bakerie bold';
+  src: url('./images/BakerieRough-Bold.woff') format('truetype');
+  font-display: swap;
+}
 :root {
   --color-burgundy: #520f19;       
   --color-terracotta: #9e4139;     
@@ -42,7 +46,7 @@ a:active {
   --font-body: 'professor', serif;
   --font-heading: 'BAKERIE ROUGH HEAVY', sans-serif;
   --font-script: 'professor', serif;
-
+--font-bold: 'bakerie bold';
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --max-width-content: 580px;
 }
@@ -211,12 +215,12 @@ body {
 
 /* --- 1. PRIMERA IMAGEN (Nombres) --- */
 .intro-content > .intro-svg-container:first-child {
-    width: 120vw;            
+    width: 140vw;            
     max-width: 540px;        
     padding: 0 20px;          
     box-sizing: border-box; 
     position: absolute;       
-    top: 15%;                
+    top: 10%;                
     left: 50%;
     transform: translateX(-50%); 
 }
@@ -237,13 +241,14 @@ body {
 
 /* --- FECHA --- */
 .intro-date {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Tamaño achicado para que coincida con la proporción de la imagen */
     color: var(--color-olive-dark); 
     text-align: center;
-    font-weight: 400;
-    font-family: var(--font-title);
+    font-weight: 700; /* Tipografía bold (no heavy) */
+    letter-spacing: 0; /* Interletrado 0 */
+    font-family: var(--font-bold);
     position: absolute;
-    top: 30%;                
+    top: 30%;                   
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -251,8 +256,8 @@ body {
 
 /* --- 2. SEGUNDA IMAGEN (Ilustración del campo) --- */
 .intro-content > .intro-svg-container:nth-of-type(2) {
-    max-width: 360px;       
-    margin-top: 140px;        
+    max-width: 460px;       
+    margin-top: 160px;        
     margin-bottom: 35px;    
 }
 
@@ -280,7 +285,7 @@ body {
     font-family: var(--font-title);
     font-weight: 400;
     transition: opacity 0.3s ease;
-    margin-top: -30px;        
+    margin-top: 10px;        
 }
 
 .intro-enter-btn::after {
@@ -288,10 +293,10 @@ body {
     position: absolute;
     bottom: -65px;
     left: 50%;
-    transform: translateX(-50%);
-    width: 130px;            
+    transform: translateX(-52%);
+    width: 92px;            
     height: 180px;            
-    background-image: url('/images/subrayadoterracota.svg'); 
+    background-image: url('/images/subrayadost.webp'); 
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
