@@ -1177,7 +1177,7 @@ body {
     cursor: pointer;
     font-family: var(--font-body);
     font-size: 1rem;          
-    color: var(--color-white);
+    color: var(--color-bg-light);
     font-weight: normal;      
     text-shadow: none;        
     transition: all 0.3s ease;
@@ -1195,7 +1195,7 @@ body {
 }
 
 .trivia-question label:has(input[type="radio"]:checked) {
-    background-color: #3d0a11; 
+    background-color: var(--color-terracotta); 
     border-color: var(--color-corn-gold);
     box-shadow: 0 4px 12px rgba(82, 15, 25, 0.2);
     transform: scale(1.02);
@@ -1614,7 +1614,7 @@ body {
     cursor: pointer;
     font-family: var(--font-body);
     font-size: 1.35rem;
-    color: var(--color-white);
+    color: var(--color-bg-light);
     font-weight: normal;
     transition: all 0.3s ease;
     user-select: none;
@@ -1630,7 +1630,7 @@ body {
 
 .radio-pill.active,
 .radio-pill:has(input[type="radio"]:checked) {
-    background-color: #3d0a11;
+    background-color: var(--color-terracotta);
     border-color: var(--color-corn-gold);
     box-shadow: 0 4px 12px rgba(82, 15, 25, 0.2);
     transform: scale(1.02);
