@@ -181,46 +181,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const guestCard = document.createElement("div");
             guestCard.className = "guest-editorial-card";
 
-            guestCard.innerHTML = `
-                <div class="guest-card-top" style="margin-bottom: 15px;">
-                    <span class="guest-number" style="font-family: var(--font-title); font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase;">Invitado ${i}</span>
-                </div>
+          guestCard.innerHTML = `
+    <div class="guest-card-top" style="margin-bottom: 15px;">
+        <span class="guest-number" style="font-family: var(--font-title); font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase;">Invitado ${i}</span>
+    </div>
 
-                <div class="field-block" style="margin-bottom: 20px;">
-                    <input type="text" class="editorial-input guest-firstname" placeholder="Nombre" required>
-                </div>
+    <div class="field-block" style="margin-bottom: 20px;">
+        <input type="text" class="editorial-input guest-firstname" placeholder="Nombre" required>
+    </div>
 
-                <div class="field-block" style="margin-bottom: 25px;">
-                    <input type="text" class="editorial-input guest-lastname" placeholder="Apellido" required>
-                </div>
+    <div class="field-block" style="margin-bottom: 25px;">
+        <input type="text" class="editorial-input guest-lastname" placeholder="Apellido" required>
+    </div>
 
-                <div class="field-block" style="margin-bottom: 25px;">
-                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 10px;">¿Asistirá?</label>
-                    <div class="editorial-radio-group">
-                        <label class="radio-pill active">
-                            <input type="radio" name="attendance_${i}" value="Sí" checked> Sí
-                        </label>
-                        <label class="radio-pill">
-                            <input type="radio" name="attendance_${i}" value="No"> No
-                        </label>
-                    </div>
-                </div>
+    <div class="field-block" style="margin-bottom: 25px;">
+        <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 10px;">¿Asistirá?</label>
+        <div class="editorial-radio-group">
+            <label class="radio-pill">
+                <input type="radio" name="attendance_${i}" value="Sí"> Sí
+            </label>
+            <label class="radio-pill">
+                <input type="radio" name="attendance_${i}" value="No"> No
+            </label>
+        </div>
+    </div>
 
-                <div class="field-block menu-block" id="menuBlock_${i}" style="margin-bottom: 25px; overflow: hidden; transition: all 0.4s ease;">
-                    <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 6px;">Menú (Seleccionar opción)</label>
-                    <select class="editorial-select guest-menu">
-                        <option value="" disabled selected>Seleccionar...</option>
-                        <option value="General">Menú General</option>
-                        <option value="Vegetariano">Vegetariano</option>
-                        <option value="Celíaco">Celíaco / Sin TACC</option>
-                        <option value="Vegano">Vegano</option>
-                    </select>
-                </div>
+    <div class="field-block menu-block" id="menuBlock_${i}" style="margin-bottom: 25px; overflow: hidden; transition: all 0.4s ease;">
+        <label class="editorial-label" style="font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 2px; color: var(--color-terracotta); text-transform: uppercase; display: block; margin-bottom: 6px;">Menú (Seleccionar opción)</label>
+        <select class="editorial-select guest-menu">
+            <option value="" disabled selected>Seleccionar...</option>
+            <option value="General">Menú General</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Celíaco">Celíaco / Sin TACC</option>
+            <option value="Vegano">Vegano</option>
+        </select>
+    </div>
 
-                <div class="field-block" style="margin-bottom: 10px;">
-                    <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios (opcional)">
-                </div>
-            `;
+    <div class="field-block" style="margin-bottom: 10px;">
+        <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios (opcional)">
+    </div>
+`;
+          
             
             guestsContainer.appendChild(guestCard);
 
@@ -360,10 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
             mensajeDiv.id = "graciasExito";
             mensajeDiv.style.cssText = "text-align: center; padding: 40px 20px;";
             mensajeDiv.innerHTML = `
-                <h3 style="font-family: var(--font-title); color: var(--color-burgundy); font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                <h3 style=" display: none ; font-family: var(--font-title); color: var(--color-burgundy); font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px;">
                     ¡MUCHAS GRACIAS!
                 </h3>
-                <p style="color: var(--color-olive-dark); font-size: 1.1rem; font-family: var(--font-body); letter-spacing: 1px;">Tu respuesta ya fue registrada con éxito.</p>
+                <p style="display: none;color: var(--color-olive-dark); font-size: 1.1rem; font-family: var(--font-body); letter-spacing: 1px;">Tu respuesta ya fue registrada con éxito.</p>
             `;
             rsvpInner.appendChild(mensajeDiv);
         }
