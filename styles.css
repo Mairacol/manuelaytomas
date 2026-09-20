@@ -516,8 +516,8 @@ body {
 }
 
 .date-editorial-script {
-    font-family: var(--font-title);
-    font-size: clamp(1.7rem, 4.8vw, 2.3rem);
+    font-family: var(--font-bold);
+    font-size: clamp(2rem, 4.8vw, 2.3rem);
     color: var(--color-olive-dark);
     font-weight: 200;
     line-height: 1;
@@ -533,6 +533,11 @@ body {
     height: 130px;
     z-index: 10;
     opacity: 0;
+}
+
+.tam {
+  width:130px;
+  height: 130px;
 }
 
 
@@ -611,8 +616,8 @@ body {
     animation-delay: 1.4s; 
 }
 .toast-img {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     display: block;
 }
@@ -707,12 +712,12 @@ body {
 .date-editorial-btn::after {
   content: '';
   position: absolute;
-  bottom: -105px;
+  bottom: -110px;
   left: 50%;
   transform: translateX(-55%);
-  width: 250px; 
+  width: 157px; 
   height: 250px; 
-  background-image: url('/images/subrayadoterracota.svg');
+  background-image: url('/images/subrayadost.webp');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -728,10 +733,9 @@ body {
   justify-content: center;
   width: 100%;
   max-width: 480px; 
-  gap: 0.6rem; 
   margin: auto;
-  padding: 1.5rem 1rem;
   text-align: center;
+ 
 }
 
 
@@ -743,16 +747,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 
 .party-image-container {
-  margin-top: 1.2rem; 
+  margin-top: 0; 
 }
 
-.section-illustration,
+.section-illustration{
+  width: 130%;
+  height: auto;
+  display: block;
+}
 .party-illustration {
-  width: 100%;
+  width: 150%;
   height: auto;
   display: block;
 }
@@ -760,26 +769,27 @@ body {
 
 .editorial-title,
 .party-editorial-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin: 0;
-  font-family: var(--font-title);
+  font-family: var(--font-bold);
   color:var(--color-terracotta);
 }
 
 
 .venue-location,
 .party-location {
-  font-size: 1.25rem;
+  font-size: 1.7rem;
   margin: 0;
   color: var(--color-olive-dark);
 }
 
 .venue-time,
 .party-time {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0;
   color: var(--color-olive-dark);
   font-family: var(--font-title);
+  margin-top: -10px;
 }
 
 /* Botones de enlace VER MAPA */
@@ -790,8 +800,9 @@ body {
   position: relative;
   display: inline-block;
   padding-bottom: 30px;   
-  margin-bottom: 40px;     
+  margin-bottom: 10px;     
   color: var(--color-terracotta);
+  margin-top: 17px;
 }
 
 
@@ -826,13 +837,12 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
-  gap: 0.5rem;
 }
 
 .dresscode-svg-container {
   width: 100%;
   max-width: 160px; 
-  margin: 0 auto 0.2rem;
+
 }
 
 .dresscode-illustration path {
@@ -848,23 +858,22 @@ body {
 }
 
 .dresscode-illustration {
-  width: 100%;
+  width: 120%;
   height: auto;
   display: block;
 }
 .dresscode-title-script {
   font-family: var(--font-title);
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: var(--color-terracotta);
-  margin-bottom: 0.2rem;
   text-transform: uppercase;
 }
 
 .dresscode-main-type {
   font-family: var(--font-body);
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   color: var(--color-olive-dark);
-  margin-bottom: 0.5rem;
+  margin: 0;
 }
 
 .dresscode-note {
@@ -874,19 +883,19 @@ body {
   max-width: 220px;                
   margin: 0.2rem 2rem 1rem auto;  
   text-align: right;               
-  line-height: 1.2;
-  padding: 4px 0;
+  line-height: 0.8;
+ 
 }
 .dresscode-note-title {
   display: block;
   font-size: 1.4rem;
   color: var(--color-terracotta);
-  margin-bottom: 2px;
+
 }
 
 .dresscode-inspo-label {
   font-family: var(--font-title);
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--color-terracotta);
   text-transform: uppercase;
   margin: 0.5rem auto 0.2rem;
@@ -959,9 +968,9 @@ body {
 
 .adults-main-desc {
     font-family: var(--font-body);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--color-olive-dark);
-    line-height: 1.35;
+    line-height: 1;
     max-width: 420px;
     margin: 0.2rem auto;
 }
@@ -969,7 +978,7 @@ body {
 
 .adults-sub-desc {
     font-family: var(--font-body);
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: var(--color-terracotta);
     margin-top: 0.2rem;
 }
@@ -981,18 +990,15 @@ body {
   min-height: 100dvh;
   width: 100%;
   max-width: 100%;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
   text-align: center;
   
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  
-  padding: 2.5rem 1.5rem; 
+
   box-sizing: border-box;
   position: relative;
 }
@@ -1006,14 +1012,12 @@ body {
     justify-content: center;
     text-align: center;
     margin: 0 auto; 
-    gap: 0.6rem;
 }
 
 .spotify-title-script {
     font-family: var(--font-title);
     font-size: clamp(2.2rem, 6vw, 2.8rem);
     color: var(--color-terracotta);
-    margin-bottom: 0.2rem;
     text-transform: uppercase;
 }
 
@@ -1021,7 +1025,6 @@ body {
 .spotify-image-container {
   width: 100%;
   max-width: 150px; 
-  margin: 0.5rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1049,10 +1052,10 @@ body {
 }
 
 .spotify-desc {
-    font-size: 1.7rem;
+    font-size: 1.78em;
     color: var(--color-olive-dark);
     margin-bottom: 0.5rem;
-    line-height: 1.4;
+    line-height: 0.7;
 }
 
 .spotify-player-wrapper {
@@ -1062,7 +1065,7 @@ body {
 
 /* Enlace / Botón de Spotify */
 .editorial-spotify-link {
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -1080,9 +1083,9 @@ body {
   left: 50%;
   transform: translateX(-55%);
   bottom: -70px;           
-  width: 260px;            
-  height: 160px;            
-  background-image: url('/images/subrayadoterracota.webp');
+  width: 150px;            
+  height: 150px;            
+  background-image: url('/images/subrayadost.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1104,19 +1107,25 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-    gap: 1rem;
+   
 }
 
 /* Título principal de la Trivia  */
 .trivia-main-title {
     font-family: var(--font-title);
-    font-size: clamp(2.4rem, 7vw, 3.2rem);
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
     color: var(--color-terracotta) ;
-  
     margin: 0;
     text-transform: uppercase;
+    line-height: 1;
 }
-
+.trivia-desc{
+  font-family: var(--font-body); 
+  font-size: 1.5rem;
+   color: var(--color-olive-dark); 
+  margin-top: 5px;
+  line-height: 1;
+}
 #triviaForm {
     display: flex;
     flex-direction: column;
@@ -1201,11 +1210,12 @@ body {
   display: block;
   margin-bottom: 0.5rem;
   font-family: var(--font-body);
+  line-height: 0.8;
 }
 
 .gifts-title-script {
   font-family: var(--font-title);
-  font-size: clamp(2.4rem, 7vw, 3rem);
+  font-size: clamp(2.2rem, 7vw, 3rem);
   color: var(--color-terracotta);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
@@ -1216,7 +1226,7 @@ body {
   max-width: 500px;
   margin: 0 auto;
   color: var(--color-olive-dark);
-  line-height: 1.6;
+  line-height: -1;
 }
 
 .gifts-icon {
@@ -1257,10 +1267,10 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-55%);
-  bottom: -105px;             
-  width: 400px;               
-  height: 230px;              
-  background-image: url('/images/subrayadoterracota.webp');
+  bottom: -47px;             
+  width: 190px;               
+  height: 100px;              
+  background-image: url('/images/subrayadost.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1385,7 +1395,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 440px;
-    min-height: 120px;
+    min-height: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1419,7 +1429,7 @@ body {
 .rsvp-frame-content .guest-label {
     font-family: var(--font-title);
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--color-terracotta);
     margin: 0; 
 }
@@ -1435,7 +1445,7 @@ body {
 
 .rsvp-frame-content #slots {
     font-family: var(--font-title); 
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     color: var(--color-terracotta);
     text-transform: uppercase;
     margin: 0; 
@@ -1449,7 +1459,7 @@ body {
 
 .rsvp-inner .title-script {
     font-family: var(--font-title);
-    font-size: clamp(2.4rem, 7vw, 3rem);
+    font-size: clamp(2rem, 7vw, 3rem);
     color: var(--color-terracotta);
     margin-bottom: 4px;
     text-transform: uppercase;
@@ -1460,15 +1470,15 @@ body {
     font-family: var(--font-body);
     font-size: 1.35rem;
     color: var(--color-olive-dark);
-    line-height: 1.35;
+    line-height: 1;
 }
 
 /* ==========================================
-   FORMULARIO DE INVITADOS
+   FORMULARIO DE INVITADOS (Con subrayado de imagen)
    ========================================== */
 .guest-editorial-card {
-    background: transparent;           
-    padding: 10px 0 20px 0;           
+    background: transparent;            
+    padding: 10px 0 20px 0;          
     border: none;                     
     margin-bottom: 20px;
     text-align: center;
@@ -1494,15 +1504,22 @@ body {
     display: block;
     margin-bottom: 6px;
 }
+/* ==========================================
+   FORMULARIO DE INVITADOS (Subrayado SVG único y fluido)
+   ========================================== */
+.editorial-input, .editorial-select {
+    width: 40% !important;
+    padding: 10px 0 10px 0 !important; /* Reducimos el padding inferior para que la línea quede cerca */
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    
+    /* Usamos no-repeat y 100% de ancho para que se estire de lado a lado sin multiplicarse */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='300' height='10' viewBox='0 0 300 10'><path d='M0 5 Q 75 -2, 150 5 T 300 5' fill='none' stroke='%23520f19' stroke-width='2.5'/></svg>") !important;
+    background-repeat: no-repeat !important;    
+    background-position: bottom center !important; 
+    background-size: 100% 6px !important; /* Estira la línea exactamente al 100% del ancho y le da 6px de alto */
 
-/* Inputs y Selects limpios */
-.editorial-input, .editorial-select, .editorial-textarea {
-    width: 100%;
-    padding: 10px 0;
-    background: transparent;
-    border: none;
-    border-bottom: 1.5px solid var(--color-burgundy);
-    border-radius: 0;
     font-family: var(--font-body);
     font-size: 1.25rem;
     color: var(--color-olive-dark); 
@@ -1510,27 +1527,67 @@ body {
     box-sizing: border-box;
 }
 
+.guest-diet {
+  width: 82% !important;
+}
+.editorial-textarea{
+      width: 40% !important;
+    padding: 10px 0 10px 0 !important; /* Reducimos el padding inferior para que la línea quede cerca */
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+
+
+    
+    /* Usamos no-repeat y 100% de ancho para que se estire de lado a lado sin multiplicarse */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='300' height='10' viewBox='0 0 300 10'><path d='M0 5 Q 75 -2, 150 5 T 300 5' fill='none' stroke='%23520f19' stroke-width='2.5'/></svg>") !important;
+    background-repeat: no-repeat !important;    
+    background-position: bottom center !important; 
+    background-size: 100% 6px !important; /* Estira la línea exactamente al 100% del ancho y le da 6px de alto */
+
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--color-olive-dark); 
+    text-align: center;
+    box-sizing: border-box;
+  
+}
 .editorial-input::placeholder, .editorial-textarea::placeholder {
     color: var(--color-olive-dark); 
     opacity: 0.6; 
 }
 
+/* Select con la flecha SVG de la flechita y el subrayado estirado abajo */
 .editorial-select {
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 14px;
-    padding-right: 20px;
+    width: 80% !important;
+    padding: 10px 25px 10px 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    
+    background-image: 
+        url("data:image/svg+xml;utf8,<svg fill='%23520f19' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>"), 
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='300' height='10' viewBox='0 0 300 10'><path d='M0 5 Q 75 -2, 150 5 T 300 5' fill='none' stroke='%23520f19' stroke-width='2.5'/></svg>") !important;
+    
+    background-repeat: no-repeat, no-repeat !important;
+    background-position: right 8px center, bottom center !important;
+    background-size: 14px, 100% 6px !important;
+    
     cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
     color: var(--color-olive-dark);
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .editorial-input:focus, .editorial-select:focus, .editorial-textarea:focus {
-    outline: none;
-    border-bottom-color: var(--color-burgundy);
+    outline: none !important;
 }
+/* ==========================================
 
 /* ==========================================
    BOTONES DE ASISTENCIA (ESTILO PÍLDORA)
