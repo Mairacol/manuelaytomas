@@ -1554,7 +1554,7 @@ body {
 }
 .editorial-input::placeholder, .editorial-textarea::placeholder {
     color: var(--color-olive-dark); 
-    opacity: 0.6; 
+    
 }
 
 /* Select con la flecha SVG de la flechita y el subrayado estirado abajo */
@@ -1607,7 +1607,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 25px;
+    padding: 4px 0px;
     background-color: var(--color-burgundy);
     border: 1.5px solid var(--color-burgundy);
     border-radius: 30px;
@@ -1663,9 +1663,9 @@ body {
   left: 50%;
   transform: translateX(-55%);
   bottom: -55px;           
-  width: 300px;              
-  height: 175px;              
-  background-image: url('/images/subrayadoterracota.webp');
+  width: 160px;              
+  height: 165px;              
+  background-image: url('images/subrayadost.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
