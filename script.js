@@ -429,6 +429,13 @@ function closeThanksModal() {
         modal.classList.add("hidden");
         modal.style.display = "none";
     }
+    
+    // Oculta la sección de confirmación (RSVP)
+    const rsvpSection = document.getElementById("rsvpSection");
+    if (rsvpSection) {
+        rsvpSection.style.display = "none";
+    }
+
     const overlay = document.getElementById('intro-overlay');
     if (overlay) {
         overlay.style.display = 'none';
