@@ -1354,6 +1354,68 @@ body {
 .btn-copy:hover {
   opacity: 0.6;
 }
+/* SECCIÓN INFO ÚTIL */
+.info-util-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.info-util-container {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.info-util-desc {
+    font-family: var(--font-body);
+    font-size: 1.7rem;
+    color: var(--color-olive-dark);
+    line-height: 0.8;
+    margin: 0;
+}
+
+/* Contenedor e imagen de la flecha */
+.info-util-arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.info-util-arrow-img {
+    width: 44px; 
+    height: auto;
+    display: block;
+}
+
+/* Botón con imagen de subrayado */
+.info-util-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.info-util-underline-img {
+    width: 100%;
+    max-width: 90px;
+    height: auto;
+    margin-top: -25px;
+    display: block;
+}
+
+.info-util-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
 /* ==========================================================================
    RSVP (ESTILO EDITORIAL CON MARCO SVG)
    ========================================================================== */
@@ -1774,7 +1836,6 @@ body {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 0.75rem;
-  letter-spacing: 1px;
   border-radius: 0px;
   margin-top: 5px;
 }
