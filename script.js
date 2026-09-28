@@ -463,6 +463,19 @@ function toggleDatos() {
     }
 }
 
+function copiarCBUCustom(elementId) {
+    const el = document.getElementById(elementId);
+    if (el) {
+        const texto = el.innerText;
+        navigator.clipboard.writeText(texto).then(() => {
+            alert("¡Copiado al portapapeles!");
+        }).catch(err => {
+            console.error("Error al copiar: ", err);
+        });
+    }
+}
+
+
 function copiarCBU() {
     const cbu = document.getElementById("cBUText")?.innerText || document.getElementById("cbuText")?.innerText;
     if (cbu) {
