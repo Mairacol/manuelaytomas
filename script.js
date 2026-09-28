@@ -123,17 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let displayTitle = "Invitado Especial";
     if (rawParam) {
-        // Limpiamos los guiones y comas
-        const cleaned = rawParam.replace(/-/g, " ").replace(/,/g, " y ").trim();
+        // Limpiamos guiones, comas y pasamos todo a minúscula para normalizar
+        const cleaned = rawParam.replace(/-/g, " ").replace(/,/g, " y ").trim().toLowerCase();
         
-        // Forzamos la capitalización correcta palabra por palabra de forma segura
-        displayTitle = cleaned.toLowerCase().replace(/(^|\s)([a-zà-ÿ])/g, (match, space, letter) => space + letter.toUpperCase());
+        // Convertimos la primera letra de cada palabra en mayúscula correctamente
+        displayTitle = cleaned.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+    const familyNameEl = document.getElementById("familyName");
+    if (familyNameEl) {
+        familyNameEl.textContent = displayTitle;
+    
     }
     // Declaración explícita de variables necesarias
     const totalSlots = parseInt(urlParams.get("pases") || urlParams.get("inv") || "1", 10);
     const guestID = urlParams.get("id") || "SIN_ID";
 
-    const familyNameEl = document.getElementById("familyName");
+
     const slotsEl = document.getElementById("slots");
     const guestLabelEl = document.getElementById("txtGuestLabel"); 
     const guestsContainer = document.getElementById("guests");
