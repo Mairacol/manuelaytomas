@@ -1676,10 +1676,14 @@ body {
 }
 
 .radio-pill {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 0px;
+    height: 42px;          
+    padding-top: 7px;      
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
     background-color: var(--color-burgundy);
     border: 1.5px solid var(--color-burgundy);
     border-radius: 30px;
@@ -1688,12 +1692,13 @@ body {
     font-size: 1.35rem;
     color: var(--color-bg-light);
     font-weight: normal;
+    line-height: 1;        
     transition: all 0.3s ease;
     user-select: none;
     width: 100px;
     text-align: center;
+    box-sizing: border-box;
 }
-
 .radio-pill:hover {
     opacity: 0.85;
     transform: translateY(-2px);
