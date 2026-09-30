@@ -223,9 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </select>
     </div>
 
-    <div class="field-block" style="margin-bottom: 10px;">
-        <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios (opcional)">
-    </div>
+  <div class="field-block" style="margin-bottom: 10px;">
+    
+    <span class="field-label-optional">(opcional)</span>
+    
+    <input type="text" class="editorial-input guest-diet" placeholder="Mensaje para los novios">
+</div>
 `;
           
             

@@ -1659,6 +1659,15 @@ body {
 .editorial-input:focus, .editorial-select:focus, .editorial-textarea:focus {
     outline: none !important;
 }
+.field-label-optional {
+    display: block;
+    font-family: var(--font-body); 
+    font-size: 0.9rem;             
+    color: var(--color-olive-dark);
+    text-align: left;              
+    margin-bottom: 2px;            
+    margin-left: 30px;
+}
 /* ==========================================
 
 /* ==========================================
