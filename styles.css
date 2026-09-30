@@ -469,7 +469,6 @@ body {
   display: inline-block;
   transform: translateX(-20px);
 }
-
 /* ==========================================================================
    FECHA & AGENDAR
    ========================================================================== */
@@ -502,7 +501,7 @@ body {
 .date-editorial-tag {
     font-size: clamp(2.8rem, 9vw, 4.2rem);
     text-transform: uppercase;
-    color: var(--color-terracotta);
+    color: #9e4139;
     opacity: 0.7;
     font-family: var(--font-featured);
     margin-top: 45px;
@@ -536,7 +535,7 @@ body {
 }
 
 .tam {
-  width:130px;
+  width: 130px;
   height: 130px;
 }
 
@@ -615,6 +614,7 @@ body {
     animation-name: peekFromBottom;
     animation-delay: 1.4s; 
 }
+
 .toast-img {
     width: 100%;
     height: 100%;
@@ -623,35 +623,40 @@ body {
 }
 
 
+/* --- TUS MEDIDAS EXACTAS CON POSICIÓN ADAPTABLE --- */
+
 .arm-top-left { 
-    top: 120px; 
-    left: 5px; 
+    top: 8%; 
+    left: 2%; 
 }
 
 .arm-top-right { 
-    top: 140px; 
-    right: 5px; 
+    top: 9%; 
+    right: 2%; 
 }
 
 .arm-mid-left { 
     top: 48%; 
-    left: 5px; 
+    left: 2%; 
 }
 
 .arm-mid-right { 
     top: 55%; 
-    right: 5px; 
+    right: 2%; 
     width: 90px; 
     height: 90px; 
 }
 
 .arm-bottom-left { 
-    bottom: 30px; 
-    left: 5px; 
+    bottom: 15%; 
+    left: 2%; 
+    width: 100px;
+    height: 100px; 
+    background-size: 80%; 
 }
 
 .arm-bottom-center { 
-    bottom: -15px; 
+    bottom: 2%; 
     left: 50%; 
     transform: translateX(-50%); 
     width: 110px; 
@@ -659,9 +664,11 @@ body {
 }
 
 .arm-bottom-right { 
-    bottom: 30px; 
-    right: 5px; 
+    bottom: 9%; 
+    right: 2%; 
 }
+
+/* ------------------------------------------------ */
 
 .editorial-btn,
 .party-editorial-btn,
@@ -714,14 +721,13 @@ body {
   position: absolute;
   bottom: -110px;
   left: 50%;
-  transform: translateX(-55%);
-  width: 157px; 
+  transform: translateX(-55%) scaleY(0.5);
+  width: 277px; 
   height: 250px; 
-  background-image: url('/images/subrayadost.webp');
+  background-image: url('/images/subrayadoterracota.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  
 }
 /* ==========================================================================
    CEREMONIA & FIESTA (ESCALA EDITORIAL AMPLIADA)
