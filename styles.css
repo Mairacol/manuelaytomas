@@ -741,9 +741,8 @@ body {
   max-width: 480px; 
   margin: auto;
   text-align: center;
- 
+  margin-top: 50px; 
 }
-
 
 .image-container-editorial,
 .party-image-container {
@@ -755,7 +754,9 @@ body {
   align-items: center;
   
 }
-
+.party-editorial-content, .party-section {
+  margin-top: -140px; /* <--- Prueba bajando este valor (ej. -30px, -50px) para que el brindis suba y se acerque al "VER MAPA" de la iglesia */
+}
 
 .party-image-container {
   margin-top: 0; 
@@ -779,6 +780,7 @@ body {
   margin: 0;
   font-family: var(--font-bold);
   color:var(--color-terracotta);
+  line-height: -1%;
 }
 
 
@@ -795,9 +797,8 @@ body {
   margin: 0;
   color: var(--color-olive-dark);
   font-family: var(--font-title);
-  margin-top: -10px;
+  margin-top: -15px; /* <--- Hazlo más negativo (ej. -15px o -18px) para juntar más los textos del medio */
 }
-
 /* Botones de enlace VER MAPA */
 .editorial-btn,
 .party-editorial-btn {
