@@ -1235,7 +1235,36 @@ body {
   color: var(--color-olive-dark);
   line-height: -1;
 }
+/* Contenedor general de la tarjeta de regalos para centrar todos sus textos */
+.gifts-bank-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
+/* Asegura que cada línea de datos (Titular, Banco, CBU, Alias) muestre el texto centrado */
+.gifts-bank-card p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Asegura que los span dentro de la tarjeta también estén centrados */
+.gifts-bank-card span {
+  text-align: center;
+  display: inline-block;
+}
+
+/* Estilo para las secciones de cuentas por si tienen márgenes que desalineen */
+.gifts-bank-card .account-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 .gifts-icon {
   width: 180px;
   max-width: 80%;
