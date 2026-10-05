@@ -241,11 +241,11 @@ body {
 
 /* --- FECHA --- */
 .intro-date {
-    font-size: 1.4rem; /* Tamaño achicado para que coincida con la proporción de la imagen */
+    font-size: 1.4rem; 
     color: var(--color-olive-dark); 
     text-align: center;
-    font-weight: 700; /* Tipografía bold (no heavy) */
-    letter-spacing: 0; /* Interletrado 0 */
+    font-weight: 700; 
+    letter-spacing: 0; 
     font-family: var(--font-bold);
     position: absolute;
     top: 30%;                   
