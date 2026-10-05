@@ -1699,7 +1699,7 @@ body {
     margin-bottom: 2px;            
     margin-left: auto;             
     margin-right: auto;            
-    transform: translateY(20px);   /* Baja el elemento visualmente 20px desde su posición actual */
+    transform: translateY(20px);   
 }
 /* ==========================================
 
