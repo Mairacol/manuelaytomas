@@ -1695,9 +1695,11 @@ body {
     font-family: var(--font-body); 
     font-size: 0.9rem;             
     color: var(--color-olive-dark);
-    text-align: left;              
+    text-align: center;            
     margin-bottom: 2px;            
-    margin-left: 30px;
+    margin-left: auto;             
+    margin-right: auto;            
+    transform: translateY(20px);   /* Baja el elemento visualmente 20px desde su posición actual */
 }
 /* ==========================================
 
