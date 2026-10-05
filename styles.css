@@ -1445,10 +1445,10 @@ body {
 
 .info-util-underline-img {
   position: absolute;
-  bottom: -58px;        
+  bottom: 8px;        
   left: 50%;
   transform: translateX(-55%) scaleY(0.5);
-  width: 177px;
+  width: 150px;
   height: auto;         
   display: block;
 }
